@@ -22,12 +22,13 @@ body {
 .page {
   display: grid;
   grid-template-columns: 1fr 1fr;              /* equal widths for main and sidebar */
+  grid-template-rows: auto 1fr auto;          /* header = auto, middle grows, footer = auto */
   grid-template-areas:
     "header header"
     "main   sidebar"
     "footer footer";
   gap: var(--gap);
-  min-height: 100svh;
+  min-height: 100svh;                         /* ensure full viewport height */
   max-width: var(--page-max);
   margin: 0 auto;
   padding: clamp(0.75rem, 2vw, 1.25rem);
@@ -110,4 +111,16 @@ header h1 a:focus {
 /* Full-width main for single-column content pages */
 main.fullwidth {
   grid-column: 1 / -1;
+}
+
+/* Logo inside header */
+header h1 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* spacing between logo and text */
+}
+
+header .logo {
+  height: 1.4em;   /* scales with the text size */
+  width: auto;     /* keeps proportions */
 }

@@ -13,12 +13,12 @@ if (!isset($title)) {
 </head>
 <body>
   <div class="page">
-    <header>
-      <h1>
-        <a href="/index">
-          <img src="images/logo.png" alt="TransformGov Talks logo" class="logo">
-          TransformGov Talks
+    <header role="banner" aria-label="Site header">
+      <div class="header-inner">
+        <a href="/" class="logo-link">
+          <img src="/images/logo.png" alt="TransformGov Talks logo" class="logo">
         </a>
-      </h1>
+        <h1><a href="/">TransformGov Talks</a></h1>
+      </div>
     </header>
 

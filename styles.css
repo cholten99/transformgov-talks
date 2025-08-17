@@ -124,3 +124,32 @@ header .logo {
   height: 1.4em;   /* scales with the text size */
   width: auto;     /* keeps proportions */
 }
+
+/* Header: logo + title alignment (scoped, safe) */
+header .header-inner {
+  display: flex;
+  align-items: center;   /* vertical centering for logo + text */
+  gap: 15px;             /* space between logo and text */
+}
+
+header .logo {
+  height: 50px;          /* scale logo; adjust if needed */
+  width: auto;
+  display: block;        /* remove baseline gap */
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em;
+  line-height: 1.1;
+  color: #222;
+}
+
+header h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+header h1 a:hover,
+header h1 a:focus {
+  text-decoration: underline;
+}

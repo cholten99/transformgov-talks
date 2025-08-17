@@ -1,0 +1,113 @@
+:root{
+  --page-max: 1100px;
+  --gap: 1rem;
+  --pad: 1rem;
+  --bg: #94bc44;   /* background behind the boxes */
+  --fg: #222;
+  --card: #ffffff;
+  --border: #ddd;
+}
+
+/* Reset & base */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+/* Page grid */
+.page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;              /* equal widths for main and sidebar */
+  grid-template-areas:
+    "header header"
+    "main   sidebar"
+    "footer footer";
+  gap: var(--gap);
+  min-height: 100svh;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: clamp(0.75rem, 2vw, 1.25rem);
+}
+
+/* Regions */
+header { grid-area: header; }
+main   { grid-area: main; }
+aside  { grid-area: sidebar; }
+footer { grid-area: footer; }
+
+/* Blocks */
+header, main, aside > .sidebar-card, footer {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--pad);
+}
+
+/* Sidebar: top fits content, bottom fills remaining height */
+aside {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: var(--gap);
+}
+
+/* Demo-only minimums (safe to remove later) */
+header  { min-height: 80px; }
+main    { min-height: 300px; }
+.sidebar-card { min-height: 120px; }
+footer  { min-height: 80px; }
+
+/* Responsive: stack when narrow */
+@media (max-width: 800px) {
+  .page {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "main"
+      "sidebar"
+      "footer";
+  }
+}
+
+/* Optional: tidy default headings/paragraphs */
+h1, h2, h3, p { margin: 0 0 0.5rem; }
+footer p { margin: 0; }
+
+/* Header link */
+header h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+header h1 a:hover,
+header h1 a:focus {
+  text-decoration: underline;
+}
+
+/* Button style */
+.button-link {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: #94bc44;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background 0.2s ease-in-out;
+}
+.button-link:hover,
+.button-link:focus {
+  background: #7da337;
+}
+
+/* Highlight text that blends into background */
+.highlight {
+  color: var(--bg);
+}
+
+/* Full-width main for single-column content pages */
+main.fullwidth {
+  grid-column: 1 / -1;
+}

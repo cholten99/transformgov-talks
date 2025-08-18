@@ -27,7 +27,7 @@
         <!-- Main Navigation -->
         <nav class="main-nav" aria-label="Main navigation">
           <a href="/about">About</a>
-          <a href="https://medium.com/@transformgovtalks/introducing-transformgov-talks-f9b1c3bceb0f" target="_blank" rel="noopener">Blog</a>
+          <a href="https://medium.com/@transformgovtalks" target="_blank" rel="noopener">Blog</a>
           <a href="https://www.youtube.com/@TransformGovTalks" target="_blank" rel="noopener">Videos</a>
           <a href="https://sites.libsyn.com/534749" target="_blank" rel="noopener">Audio</a>
         </nav>
@@ -49,7 +49,7 @@
           <a href="https://www.facebook.com/profile.php?id=61557565844725" target="_blank" rel="noopener" aria-label="Facebook">
             <img src="/images/icons/facebook.svg" alt="">
           </a>
-          <a href="https://www.linkedin.com/company/transforgov-talks/about/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/company/transformgov-talks/about/" target="_blank" rel="noopener" aria-label="LinkedIn">
             <img src="/images/icons/linkedin.svg" alt="">
           </a>
           <a href="https://mastodon.social/@transformgovtalks" target="_blank" rel="me noopener" aria-label="Mastodon">

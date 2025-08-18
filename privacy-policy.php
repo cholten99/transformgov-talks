@@ -26,9 +26,9 @@ include "header.php";
   <h3>What data do we collect?</h3>
   <p>TransformGov Talks collects the following data:</p>
   <ul>
-    <li>Meetup.com registration details (name, profile bio, groups, RSVPs, answers to event questions, guest numbers, comments, possibly email if permitted).</li>
+    <li>Luma.com registration details (name, email, answers to event questions, guest numbers, comments).</li>
     <li>Newsletter sign-ups: name and email address (via Wix.com).</li>
-    <li>Volunteer sign-ups: name and email address (via Google Groups).</li>
+    <li>Volunteer sign-ups: phone number (via WhatsApp).</li>
     <li>Survey data if we conduct community demographics surveys.</li>
   </ul>
 

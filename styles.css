@@ -150,14 +150,14 @@ header h1 {
 .main-nav a:hover { text-decoration: underline; }
 
 /* Newsletter button spacing */
-.newsletter-button { margin-left: 20px; }
+.newsletter-button { margin: 0 8px; }   /* equal space on both sides */
 
 /* Social icons – consolidated (for new SVG set) */
 .social-icons {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-left: 20px;                 /* breathing room after button */
+  margin-left: 8px;   /* smaller gap after button */
 }
 .social-icons a {
   display: inline-flex;

@@ -59,4 +59,36 @@ include "header.php";
   </section>
 </aside>
 
-<?php include "footer.php"; ?>
+
+<?php
+  // Speaker carousel (auto-reads /images/speakers)
+  $speakerDir   = __DIR__ . '/images/speakers';
+  $speakerFiles = [];
+  if (is_dir($speakerDir)) {
+    $speakerFiles = glob($speakerDir . '/*.{jpg,jpeg,png,webp,avif,gif}', GLOB_BRACE);
+    natsort($speakerFiles);
+  }
+?>
+
+<?php if (!empty($speakerFiles)): ?>
+  <section class="speaker-carousel" aria-label="Event speakers">
+    <h2 class="speaker-carousel__title">Recent speakers</h2>
+    <div class="carousel-viewport">
+      <?php foreach ($speakerFiles as $i => $absPath):
+            $src = '/images/speakers/' . basename($absPath); ?>
+        <img
+          src="<?php echo htmlspecialchars($src); ?>"
+          alt=""
+          class="slide<?php echo $i === 0 ? ' active' : ''; ?>"
+          loading="<?php echo $i === 0 ? 'eager' : 'lazy'; ?>"
+          decoding="async"
+        />
+      <?php endforeach; ?>
+    </div>
+  </section>
+
+  <!-- Load the carousel JS only on this page (and only if we have slides) -->
+  <script src="/code.js" defer></script>
+<?php endif; ?>
+
+<?php include 'footer.php'; ?>

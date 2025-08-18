@@ -2,13 +2,18 @@
 
 <main class="fullwidth">
   <h2>Our Sponsors</h2>
-  <p>
-    TransformGov Talks would not be possible without the generous support of our sponsors.  
-    We’ll be listing them here shortly along with information on how you can get involved.
-  </p>
-  <p>
-    If your organisation is interested in supporting TransformGov Talks, please <a href="mailto:transformgovtalks@gmail.com">get in touch</a>.
-  </p>
+
+  <div class="sponsor">
+    <img src="images/sponsors/ukgovcamp.webp" alt="UKGovCamp logo" class="sponsor-logo">
+    <div class="sponsor-text">
+      <p>
+        <strong>UKGovCamp</strong> is a free, annual unconference for people who want to make 
+        the public sector better. The agenda is set by the people who turn up, using the well 
+        established unconference format.
+      </p>
+    </div>
+  </div>
+
 </main>
 
 <?php include 'footer.php'; ?>

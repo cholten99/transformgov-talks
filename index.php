@@ -20,6 +20,35 @@ include "header.php";
     Sign up to our newsletter above ☝️ to receive links to video and audio 
     recordings of our meetups and stay informed about upcoming events.
   </p>
+
+  <?php
+    // Robust: pick a valid speaker image and output it (or nothing if none)
+    $speakerDir = __DIR__ . '/images/speakers';
+    $speakerFiles = [];
+    if (is_dir($speakerDir)) {
+      $speakerFiles = glob($speakerDir . '/*.{jpg,jpeg,png,webp,avif,gif,JPG,JPEG,PNG,WEBP,AVIF,GIF}', GLOB_BRACE);
+      $speakerFiles = array_values(array_filter($speakerFiles, 'is_file'));
+    }
+
+    $picked = null;
+    if (!empty($speakerFiles)) {
+      $maxTries = min(10, count($speakerFiles));
+      for ($i = 0; $i < $maxTries; $i++) {
+        $candidate = $speakerFiles[array_rand($speakerFiles)];
+        if (@is_readable($candidate) && @getimagesize($candidate) !== false) {
+          $picked = $candidate;
+          break;
+        }
+      }
+    }
+
+    if ($picked) {
+      $src = '/images/speakers/' . rawurlencode(basename($picked));
+      echo '<div class="featured-speaker">';
+      echo '<img src="' . htmlspecialchars($src) . '" alt="Past TransformGov Talks speaker" loading="lazy" decoding="async" />';
+      echo '</div>';
+    }
+  ?>
 </main>
 
 <aside aria-label="Sidebar" id="sidebar">
@@ -59,36 +88,5 @@ include "header.php";
   </section>
 </aside>
 
-
-<?php
-  // Speaker carousel (auto-reads /images/speakers)
-  $speakerDir   = __DIR__ . '/images/speakers';
-  $speakerFiles = [];
-  if (is_dir($speakerDir)) {
-    $speakerFiles = glob($speakerDir . '/*.{jpg,jpeg,png,webp,avif,gif}', GLOB_BRACE);
-    natsort($speakerFiles);
-  }
-?>
-
-<?php if (!empty($speakerFiles)): ?>
-  <section class="speaker-carousel" aria-label="Event speakers">
-    <h2 class="speaker-carousel__title">Recent speakers</h2>
-    <div class="carousel-viewport">
-      <?php foreach ($speakerFiles as $i => $absPath):
-            $src = '/images/speakers/' . basename($absPath); ?>
-        <img
-          src="<?php echo htmlspecialchars($src); ?>"
-          alt=""
-          class="slide<?php echo $i === 0 ? ' active' : ''; ?>"
-          loading="<?php echo $i === 0 ? 'eager' : 'lazy'; ?>"
-          decoding="async"
-        />
-      <?php endforeach; ?>
-    </div>
-  </section>
-
-  <!-- Load the carousel JS only on this page (and only if we have slides) -->
-  <script src="/code.js" defer></script>
-<?php endif; ?>
-
 <?php include 'footer.php'; ?>
+

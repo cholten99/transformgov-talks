@@ -54,17 +54,18 @@ include "header.php";
 <aside aria-label="Sidebar" id="sidebar">
   <!-- Top sidebar box -->
   <section class="sidebar-card" id="event-box">
-    <h3>Our next event!</h3>
+    <h3>Our September event!</h3>
     <p>
-      Next month, because many people are away enjoying the summer break, 
-      we'll be doing something a bit different.
+      <ul>
+        <li>Dr Moira Nicolson, Lead Behavioural Scientist (Cabinet Office) and Honorary Research Fellow (UCL) plus Holly Marquez, Senior Behavioural Scientist, (Cabinet Office) on "Failing Forward: Why Planning for AI Disasters Unlocks Breakthrough Innovation"</li>
+        <li>Second topic to be accounced soon!</li>
+      </ul>
     </p>
     <p>
-      Join us on the <strong>27th of August</strong> at the Buckingham Arms for 
-      <em>TGT's first Summer Drinks!</em>
+      Join us on the <strong>27th of August</strong> at the MpJ.
     </p>
     <p>
-      <a href="https://lu.ma/sdzpnfl9" 
+      <a href="https://luma.com/sm09nslz" 
          class="button-link" 
          target="_blank" 
          rel="noopener noreferrer">

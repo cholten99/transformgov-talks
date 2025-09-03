@@ -58,7 +58,7 @@ include "header.php";
     <p>
       <ul>
         <li>Dr Moira Nicolson, Lead Behavioural Scientist (Cabinet Office) and Honorary Research Fellow (UCL) plus Holly Marquez, Senior Behavioural Scientist, (Cabinet Office) on "Failing Forward: Why Planning for AI Disasters Unlocks Breakthrough Innovation"</li>
-        <li>Second topic to be accounced soon!</li>
+        <li>Ben Sauer, author/speaker/coach: teaching people the art of strategic storytelling, on 'Always Be Creating Clarity: Daily habits for strategic storytelling'</li>
       </ul>
     </p>
     <p>

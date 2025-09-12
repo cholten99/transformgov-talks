@@ -62,7 +62,7 @@ include "header.php";
       </ul>
     </p>
     <p>
-      Join us on the <strong>27th of August</strong> at the MpJ.
+      Join us on the <strong>24th of August</strong> at the MoJ.
     </p>
     <p>
       <a href="https://luma.com/sm09nslz" 

@@ -2,7 +2,6 @@
       <div class="footer-top">
         <a href="https://transforgov-talks.myspreadshop.co.uk/all" target="_blank" rel="noopener">Merch</a> |
         <a href="https://chat.whatsapp.com/JSLuWXEFEZZGlpIIHa0y0a" target="_blank" rel="noopener">Volunteer</a> |
-        <a href="/sponsors">Sponsors</a> |
         <a href="/resources/poster.pdf" target="_blank" rel="noopener">Download a Poster</a> |
         <a href="https://calendar.google.com/calendar/event?action=TEMPLATE&amp;tmeid=Nm9tNGtnNzFhNTI4ZWk2NXZrZmJzcHAza3ZfMjAyNTA0MzBUMTcwMDAwWiB0cmFuc2Zvcm1nb3Z0YWxrc0Bt&amp;tmsrc=transformgovtalks%40gmail.com&amp;scp=ALL" target="_blank" rel="noopener">Calendar Hold</a>
       </div>

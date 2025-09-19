@@ -20,47 +20,16 @@ include "header.php";
     Sign up to our newsletter above ☝️ to receive links to video and audio 
     recordings of our meetups and stay informed about upcoming events.
   </p>
-
-  <?php
-    // Robust: pick a valid speaker image and output it (or nothing if none)
-    $speakerDir = __DIR__ . '/images/speakers';
-    $speakerFiles = [];
-    if (is_dir($speakerDir)) {
-      $speakerFiles = glob($speakerDir . '/*.{jpg,jpeg,png,webp,avif,gif,JPG,JPEG,PNG,WEBP,AVIF,GIF}', GLOB_BRACE);
-      $speakerFiles = array_values(array_filter($speakerFiles, 'is_file'));
-    }
-
-    $picked = null;
-    if (!empty($speakerFiles)) {
-      $maxTries = min(10, count($speakerFiles));
-      for ($i = 0; $i < $maxTries; $i++) {
-        $candidate = $speakerFiles[array_rand($speakerFiles)];
-        if (@is_readable($candidate) && @getimagesize($candidate) !== false) {
-          $picked = $candidate;
-          break;
-        }
-      }
-    }
-
-    if ($picked) {
-      $src = '/images/speakers/' . rawurlencode(basename($picked));
-      echo '<div class="featured-speaker">';
-      echo '<img src="' . htmlspecialchars($src) . '" alt="Past TransformGov Talks speaker" loading="lazy" decoding="async" />';
-      echo '</div>';
-    }
-  ?>
 </main>
 
 <aside aria-label="Sidebar" id="sidebar">
   <!-- Top sidebar box -->
   <section class="sidebar-card" id="event-box">
     <h3>Our September event!</h3>
-    <p>
-      <ul>
-        <li>Dr Moira Nicolson, Lead Behavioural Scientist (Cabinet Office) and Honorary Research Fellow (UCL) plus Holly Marquez, Senior Behavioural Scientist, (Cabinet Office) on "Failing Forward: Why Planning for AI Disasters Unlocks Breakthrough Innovation"</li>
-        <li>Ben Sauer, author/speaker/coach: teaching people the art of strategic storytelling, on 'Always Be Creating Clarity: Daily habits for strategic storytelling'</li>
-      </ul>
-    </p>
+    <ul>
+      <li>Dr Moira Nicolson, Lead Behavioural Scientist (Cabinet Office) and Honorary Research Fellow (UCL) plus Holly Marquez, Senior Behavioural Scientist, (Cabinet Office) on "Failing Forward: Why Planning for AI Disasters Unlocks Breakthrough Innovation"</li>
+      <li>Ben Sauer, author/speaker/coach: teaching people the art of strategic storytelling, on 'Always Be Creating Clarity: Daily habits for strategic storytelling'</li>
+    </ul>
     <p>
       Join us on the <strong>24th of September</strong> at the MoJ.
     </p>

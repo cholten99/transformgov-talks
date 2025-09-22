@@ -4,7 +4,7 @@
   include 'header.php';
 ?>
 
-<main class="fullwidth">
+<main class="fullwidth full-main">
   <!-- Intro card -->
   <section class="about-section">
     <h2>About TransformGov Talks</h2>

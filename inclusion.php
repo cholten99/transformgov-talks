@@ -1,6 +1,6 @@
 <?php include 'header.php'; ?>
 
-<main class="fullwidth">
+<main class="fullwidth full-main">
   <h2>Inclusion Statement</h2>
 
   <p>

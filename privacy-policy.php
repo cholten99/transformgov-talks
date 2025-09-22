@@ -3,7 +3,7 @@ $title = "Privacy Policy · TransformGov Talks";
 include "header.php";
 ?>
 
-<main id="content" class="fullwidth">
+<main class="fullwidth full-main">
   <h2>Privacy Policy</h2>
 
   <p>TransformGov Talks is a fully independent organisation that organises the TransformGov Talks event series and has done so since 2024. Our community is always at the heart of what we do, and we want to continue to make sure we’re doing our best to protect information about you that you’ve trusted us to hold. This privacy policy will explain how we use the personal data we collect from people who attend our events and / or sign up for our newsletter or volunteer mailing list.</p>

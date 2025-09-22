@@ -3,7 +3,7 @@ $title = "TransformGov Talks";
 include "header.php";
 ?>
 
-<main id="content">
+<main id="content" class="split-main">
   <!-- Top left bubble -->
   <section class="main-card" id="intro-box">
     <h2>

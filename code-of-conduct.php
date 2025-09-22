@@ -3,7 +3,7 @@ $title = "Code of Conduct · TransformGov Talks";
 include "header.php";
 ?>
 
-<main id="content" class="fullwidth">
+<main class="fullwidth full-main">
   <h2>Code of Conduct</h2>
 
   <h3>Incidents</h3>

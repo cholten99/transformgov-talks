@@ -2,9 +2,9 @@
   --page-max: 1300px;
   --gap: 1rem;
   --pad: 1rem;
-  --bg: #94bc44;   /* background behind the boxes */
+  --bg: #94bc44;   /* page background */
   --fg: #222;
-  --card: #ffffff;
+  --card: #ffffff; /* card background */
   --border: #ddd;
 }
 
@@ -31,16 +31,16 @@ body {
   min-height: 100svh;
   max-width: var(--page-max);
   margin: 0 auto;
-  padding: clamp(0.75rem, 2vw, 1.25rem);
+  padding: 10px;
 }
 
-/* Regions */
+/* Grid regions */
 header { grid-area: header; }
 main   { grid-area: main; }
 aside  { grid-area: sidebar; }
 footer { grid-area: footer; }
 
-/* Blocks */
+/* Blocks: default single-card areas */
 header, main, aside > .sidebar-card, footer {
   background: var(--card);
   border: 1px solid var(--border);
@@ -48,115 +48,62 @@ header, main, aside > .sidebar-card, footer {
   padding: var(--pad);
 }
 
-/* Sidebar: top fits content, bottom fills remaining height */
-aside {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  gap: var(--gap);
-}
-
-/* Demo-only minimums (safe to remove later) */
-header  { min-height: 80px; }
-main    { min-height: 300px; }
-footer  { min-height: 80px; }
-
-/* Responsive: stack when narrow */
-@media (max-width: 800px) {
-  .page {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "header"
-      "main"
-      "sidebar"
-      "footer";
-  }
-}
-
-/* Optional: tidy default headings/paragraphs */
-h1, h2, h3, p { margin: 0 0 0.5rem; }
-
-/* Header link (site title) */
-header h1 a {
-  color: inherit;
-  text-decoration: none;
-}
-header h1 a:hover,
-header h1 a:focus {
-  text-decoration: underline;
-}
-
-/* Buttons (shared) */
-.button-link,
-.newsletter-button {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
-  background: #94bc44;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: 600;
-  transition: background 0.2s ease-in-out;
-}
-.button-link:hover,
-.button-link:focus,
-.newsletter-button:hover,
-.newsletter-button:focus {
-  background: #7da337;
-}
-
-/* Highlight text that blends into background */
-.highlight { color: #94bc44; }
-
-/* Full-width main for single-column content pages */
-main.fullwidth { grid-column: 1 / -1; }
-
-/* ---------------- HEADER ---------------- */
-
-/* Header container */
+/* ---------- Header layout ---------- */
 header .header-inner {
   display: flex;
   align-items: center;
-  gap: 20px; /* space between logo, title, nav, button, icons */
+  gap: 12px;
 }
 
-/* Logo inside header */
-header .logo {
-  height: 50px;
-  width: auto;
-  display: block;
-}
+.logo { height: 44px; width: auto; vertical-align: middle; }
 
-/* Title */
 header h1 {
   margin: 0;
-  font-size: 2em;
-  line-height: 1.1;
-  color: #222;
+  font-size: clamp(1.2rem, 2vw + 0.6rem, 2rem);
+  font-weight: 800;
 }
+header h1 a { color: inherit; text-decoration: none; }
+header h1 a:hover { text-decoration: underline; }
 
-/* Nav links */
+/* Main nav + CTA */
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 15px;
-  margin-left: auto;    /* push nav + button + icons to right side */
+  gap: 16px;
+  margin-left: auto;    /* push nav + button + icons to the right */
 }
+/* Bigger, bolder header links */
 .main-nav a {
-  color: #333;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #222;
   text-decoration: none;
-  font-weight: 500;
+  line-height: 1.2;
+  padding: 2px 0;
 }
-.main-nav a:hover { text-decoration: underline; }
+.main-nav a:hover,
+.main-nav a:focus { text-decoration: underline; }
 
-/* Newsletter button spacing */
-.newsletter-button { margin: 0 8px; }   /* equal space on both sides */
+/* Newsletter button */
+.newsletter-button {
+  display: inline-block;
+  background: #76a736;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: 700;
+  margin-left: 8px;
+}
+.newsletter-button:hover,
+.newsletter-button:focus { background: #5f8b2b; }
 
-/* Social icons – consolidated (for new SVG set) */
+/* Social / contact icons */
 .social-icons {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-left: 8px;   /* smaller gap after button */
+  margin-left: 8px;
 }
 .social-icons a {
   display: inline-flex;
@@ -171,103 +118,141 @@ header h1 {
   display: block;
 }
 
-/* ---------------- FOOTER (single source) ---------------- */
-.page > footer {
-  grid-column: 1 / -1;
-  width: auto;
-  margin: 0;
+/* Typography */
+h2 { margin: 0 0 0.5rem; font-size: clamp(1.3rem, 1.2vw + 0.8rem, 1.8rem); }
+h3 { margin: 0 0 0.5rem; font-size: clamp(1.1rem, 0.9vw + 0.7rem, 1.3rem); }
+.highlight { color: #6aa10f; font-weight: 800; }
+
+p { margin: 0 0 0.75rem; }
+ul { margin: 0.5rem 0 0.75rem 1.25rem; }
+
+/* Sidebar column: stack cards with a gap */
+aside { 
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);              /* ensures the RHS bubbles have a gap */
+}
+aside > .sidebar-card h3 { margin-bottom: 0.25rem; }
+
+/* ---------- Index-only split layout ---------- */
+/* Remove card from <main> and apply to child cards */
+.split-main {
+  background: transparent;
+  border: 0;
+  padding: 0;
+
+  display: flex;                /* stack the two left cards */
+  flex-direction: column;
+  gap: var(--gap);              /* same gap as sidebar */
+}
+
+/* The two left bubbles */
+.split-main > .main-card {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: var(--pad);
-  text-align: center;
-  font-size: 0.9rem;
+}
+
+/* Make bottom cards flex so column bottoms align */
+.split-main > .main-card:last-child,
+aside > .sidebar-card:last-child {
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 }
-.page > footer .footer-top,
-.page > footer .footer-bottom {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+
+/* ---------- Full-width main (pages without a sidebar, e.g. 404) ---------- */
+main.full-main {
+  grid-column: 1 / -1;          /* span both columns */
 }
-.page > footer a {
-  color: #333;
+
+/* Buttons (shared) */
+.button-link {
+  display: inline-block;
+  padding: 10px 14px;
+  background: #76a736;
+  color: #fff;
   text-decoration: none;
-  white-space: nowrap;
-}
-.page > footer a:hover { text-decoration: underline; }
-
-/* ---------------- ABOUT PAGE ---------------- */
-
-/* Intro and section cards */
-.about-section {
-  background: var(--card);
-  border-radius: 8px;
-  padding: 1.25rem;
-  margin-bottom: 0.75rem;     /* tighter gap */
-}
-.about-section h2 {
-  font-size: 1.8em;
-  font-weight: 700;
-  margin: 0 0 0.6rem;
-  color: #222;
-}
-
-/* Person card: name above, then row with image + text */
-.about-card {
-  background: var(--card);
-  border-radius: 8px;
-  padding: 1.25rem;
-  margin-bottom: 0.75rem;
-  display: block;             /* keep name on its own line */
-}
-.about-card h3 {
-  margin: 0 0 0.6rem;
-  font-size: 1.25em;
+  border-radius: 6px;
   font-weight: 600;
-  color: #333;
+  transition: background 0.2s ease-in-out;
 }
+.button-link:hover { background: #5f8b2b; }
 
-/* Row inside person card */
+/* ---------- Footer (match header link style) ---------- */
+footer {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #222;
+  text-align: center;
+}
+footer .footer-top,
+footer .footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 6px 0;
+}
+footer a {
+  color: #222;
+  text-decoration: none;
+  font-weight: 700;
+}
+footer a:hover,
+footer a:focus { text-decoration: underline; }
+
+/* ---------- About page portraits: consistent thumbnail size (240px) ---------- */
 .about-profile-row {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
 }
-
-/* Consistent square thumbnails for organiser cards (desktop) */
 .about-profile-row img {
-  width: 150px;
-  height: 150px;           /* square */
-  object-fit: cover;       /* crop to fill without distortion */
+  width: 240px;
+  height: 240px;
+  flex: 0 0 240px;     /* keep column width fixed */
+  object-fit: cover;   /* crop to square nicely */
   border-radius: 6px;
-  flex: 0 0 150px;
-  display: block;
 }
 
-.about-profile-text p { margin: 0.5rem 0 0; }
+/* Optional portrait wrappers */
+.about-card { }
+.about-profile { }
+.about-profile-text { }
 
-/* Remove “double gap” between stacked boxes */
-.about-section + .about-section,
-.about-section + .about-card,
-.about-card + .about-section,
-.about-card + .about-card {
-  margin-top: 0;
+/* Optional legacy portrait styles */
+.featured-speaker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 12px 0;
+}
+.featured-speaker img {
+  display: inline-block;
+  max-height: 420px;
+  width: auto;
+  min-height: 300px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-/* Mobile: stack image above text */
-@media (max-width: 700px) {
-  .about-profile-row {
-    flex-direction: column;
-    align-items: flex-start;
+/* Responsive */
+@media (max-width: 900px) {
+  .page {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "main"
+      "sidebar"
+      "footer";
   }
-  .about-profile-row img {
-    width: 100%;
-    height: auto;
-    max-width: 320px;
-    margin-bottom: 0.5rem;
-  }
+  .main-nav { flex-wrap: wrap; }
+  header .header-inner { align-items: flex-start; gap: 8px; }
 }
+
+/* (Removed the old mobile override so portraits stay square) */
+

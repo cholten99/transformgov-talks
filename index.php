@@ -18,29 +18,46 @@ include "header.php";
       in the public sector or great examples of impactful delivery of policy or services. 
       This is followed by plenty of time to chat after — with free pizza!
     </p>
-  </section>
-
-  <!-- Lower left bubble (newsletter) -->
-  <section class="main-card" id="newsletter-box">
-    <h3>Sign up to our newsletter</h3>
     <p>
       Sign up to our newsletter above ☝️ to receive links to video and audio 
       recordings of our meetups and stay informed about upcoming events.
     </p>
+    <figure class="speaker-promo" style="margin:0.75rem 0 0; display:block;">
+      <img
+        src="/images/speaker.jpg"
+        alt="TransformGov Talks speaker"
+        loading="lazy"
+        decoding="async"
+        style="max-width:100%; height:auto; border-radius:6px;"
+      >
+    </figure>
+  </section>
+
+  <!-- Lower left bubble (newsletter) -->
+  <section class="main-card" id="sponsor-box">
+    <h3>Kindly sponsored by</h3>
+      <div class="sponsor-logos">
+        <img src="/images/sponsors/Ammut.png"               alt="Anmut"            loading="lazy" decoding="async">
+        <img src="/images/sponsors/DXW.png"                 alt="dxw"              loading="lazy" decoding="async">
+        <img src="/images/sponsors/GovCamp.jpg"             alt="GovCamp"          loading="lazy" decoding="async">
+        <img src="/images/sponsors/Oxford%20Insights.png"   alt="Oxford Insights"  loading="lazy" decoding="async">
+        <img src="/images/sponsors/PD.png"                  alt="Public Digital"   loading="lazy" decoding="async">
+        <img src="/images/sponsors/TPX.png"                 alt="TPXimpact"        loading="lazy" decoding="async">
+      </div>
   </section>
 </main>
 
 <aside aria-label="Sidebar" id="sidebar">
   <!-- Top sidebar box -->
   <section class="sidebar-card" id="event-box">
-    <h3>Our September event!</h3>
+    <h3>Our October event!</h3>
     <ul>
-      <li>Dr Moira Nicolson, Lead Behavioural Scientist (Cabinet Office) and Honorary Research Fellow (UCL) plus Holly Marquez, Senior Behavioural Scientist (Cabinet Office) on "Failing Forward: Why Planning for AI Disasters Unlocks Breakthrough Innovation"</li>
-      <li>Ben Sauer, author/speaker/coach: teaching people the art of strategic storytelling, on 'Always Be Creating Clarity: Daily habits for strategic storytelling'</li>
+      <li>Ed Humpherson, Office for Statistics Regulation, on why 'transformation' has been so challenging for official statistics.</li>
+      <li>Another exciting speaker to be announced soon!</li>
     </ul>
-    <p>Join us on the <strong>24th of September</strong> at the MoJ.</p>
+    <p>Join us on the <strong>29th of October</strong> at the MoJ.</p>
     <p>
-      <a href="https://luma.com/sm09nslz" 
+      <a href="https://luma.com/3c92r9qr" 
          class="button-link" 
          target="_blank" 
          rel="noopener noreferrer">
@@ -53,14 +70,8 @@ include "header.php";
   <section class="sidebar-card" id="video-box">
     <h3>Watch our latest event</h3>
     <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:6px;">
-      <iframe src="https://www.youtube.com/embed/70xjXI_R6wo" 
-              title="YouTube video player" 
-              frameborder="0"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              allowfullscreen
-              style="position:absolute; top:0; left:0; width:100%; height:100%;">
-      </iframe>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/fVu7dO9dGTw?si=20CbfTr222eDVdB2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+	</iframe>
     </div>
   </section>
 </aside>

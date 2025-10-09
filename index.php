@@ -40,7 +40,7 @@ include "header.php";
         <img src="/images/sponsors/Ammut.png"               alt="Anmut"            loading="lazy" decoding="async">
         <img src="/images/sponsors/DXW.png"                 alt="dxw"              loading="lazy" decoding="async">
         <img src="/images/sponsors/GovCamp.png"             alt="GovCamp"          loading="lazy" decoding="async">
-        <img src="/images/sponsors/Oxford%20Insights.png"   alt="Oxford Insights"  loading="lazy" decoding="async">
+      <!--  <img src="/images/sponsors/Oxford%20Insights.png"   alt="Oxford Insights"  loading="lazy" decoding="async"> -->
         <img src="/images/sponsors/PD.png"                  alt="Public Digital"   loading="lazy" decoding="async">
         <img src="/images/sponsors/TPX.png"                 alt="TPXimpact"        loading="lazy" decoding="async">
         <img src="/images/sponsors/HA.png"                  alt="Holistic Agility"        loading="lazy" decoding="async">

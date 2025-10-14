@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TransformGov Talks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+  </head>
+
+  <body class="w-full md:w-4/5 md:mx-auto tg-bg-ourgreen min-h-screen p-2 text-lg md:text-xl leading-relaxed">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:items-stretch">
+      <!-- header spans both on desktop; full-width on mobile -->
+      <!--#include file="includes/header.html" -->
+
+      <!-- LHS column -->
+      <main class="h-full flex flex-col gap-2">
+        <section class="md:flex-1 p-4 rounded-lg tg-bg-cell">
+          <h2 class="text-xl font-bold">
+            TransformGov Talks: Innovating <span class="tg-text-ourgreen">Together</span>
+          </h2>
+          <p class="mt-2"> We provide a space for people who care about making government work better to meet, whether they're inside or outside government.</p>
+          <p class="mt-2">
+            Each monthly meet-up features presentations and discussions about innovation in the public sector or great examples of impactful delivery of policy or services. This is followed by plenty of time to chat after — with free pizza! 🍕🍕🍕
+          </p>
+          <p class="mt-2">
+            <a href="https://transformgov-talks.kit.com/b6dac7cdd5" target="_blank" class="underline underline-offset-2 hover:underline-offset-4">
+              Sign up to our newsletter
+            </a>
+            or social media (see links above) ☝️ !
+          </p>
+          <p><img class="pt-4" src="https://www.transformgov.org.uk/images/speaker.jpg" alt="Photo of TGT speaker"></p>
+        </section>
+      </main>
+
+      <!-- RHS column: top card flexes, video keeps natural height -->
+      <aside class="h-full grid grid-rows-[1fr_auto] gap-2">
+        <section class="p-4 space-y-2 rounded-lg tg-bg-cell min-h-0">
+          <h2 class="text-xl font-bold">Our October event!</h2>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>Ed Humpherson, Office for Statistics Regulation, on why 'transformation' has been so challenging for official statistics.</li>
+            <li>Another exciting speaker to be announced soon!</li>
+          </ul>
+          <p class="mt-2">Join us on the <span class="font-bold">29th of October</span> at the MoJ.</p>
+          <button type="button"
+            class="inline-flex items-center gap-2 rounded-md tg-bg-ourgreen px-4 py-2 text-white
+                   font-medium shadow hover:bg-red-400
+                   focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2
+                   disabled:opacity-50 disabled:cursor-not-allowed transition">
+            Register now!
+          </button>
+        </section>
+
+        <section class="p-4 rounded-lg tg-bg-cell">
+          <h2 class="text-xl font-bold">Watch our latest video</h2>
+          <iframe class="pt-4 w-full overflow-hidden rounded-lg aspect-video"
+                  src="https://www.youtube.com/embed/fVu7dO9dGTw?si=20CbfTr222eDVdB2"
+                  title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </section>
+      </aside>
+
+      <!-- sponsors spans both on desktop; full-width on mobile -->
+      <section class="md:col-span-2">
+        <section class="p-4 rounded-lg tg-bg-cell">
+          <h2 class="text-xl font-bold">Kindly sponsored by</h2>
+          <div class="flex flex-wrap items-center gap-3">
+            <img class="h-16 w-auto rounded" src="https://transformgov.org.uk/images/sponsors/Ammut.png" alt="Anmut" loading="lazy">
+            <img class="h-16 w-auto rounded" src="https://transformgov.org.uk/images/sponsors/DXW.png" alt="DXW" loading="lazy">
+            <img class="h-16 w-auto rounded" src="https://transformgov.org.uk/images/sponsors/GovCamp.png" alt="GovCamp" loading="lazy">
+            <img class="h-16 w-auto rounded" src="https://transformgov.org.uk/images/sponsors/Oxford%20Insights.png" alt="Oxford Insights" loading="lazy">
+            <img class="h-16 w-auto rounded" src="https://transformgov.org.uk/images/sponsors/PD.png" alt="Public Digital" loading="lazy">
+            <img class="h-16 w-auto rounded" src="https://transformgov.org.uk/images/sponsors/TPX.png" alt="TPX" loading="lazy">
+            <img class="h-16 w-auto rounded" src="https://transformgov.org.uk/images/sponsors/HA.png" alt="Holistic Agility" loading="lazy">
+          </div>
+        </section>
+      </section>
+
+      <!-- footer spans both on desktop; full-width on mobile -->
+      <!--#include file="includes/footer.html" -->
+    </div>
+  </body>
+</html>
+

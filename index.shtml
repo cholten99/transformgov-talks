@@ -12,7 +12,7 @@
   <body class="w-full md:w-4/5 md:mx-auto tg-bg-ourgreen min-h-screen p-2 text-lg md:text-xl leading-relaxed">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:items-stretch">
       <!-- header spans both on desktop; full-width on mobile -->
-      <!--#include file="includes/header.html" -->
+      <!--#include virtual="/includes/header.html" -->
 
       <!-- LHS column -->
       <main class="h-full flex flex-col gap-2">
@@ -44,14 +44,18 @@
             <li>Ed Humpherson, Office for Statistics Regulation, on why 'transformation' has been so challenging for official statistics.</li>
             <li>Another exciting speaker to be announced soon!</li>
           </ul>
-          <p class="mt-2">Join us on the <span class="font-bold">29th of October</span> at the MoJ.</p>
-          <button type="button"
-            class="inline-flex items-center gap-2 rounded-md tg-bg-ourgreen px-4 py-2 text-white
-                   font-medium shadow hover:bg-red-400
-                   focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2
-                   disabled:opacity-50 disabled:cursor-not-allowed transition">
-            Register now!
-          </button>
+            <p class="mt-2">Join us on the <span class="font-bold">29th of October</span> at the MoJ.</p>
+            <a
+              href="https://luma.com/3c92r9qr"
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center gap-2 rounded-md tg-bg-ourgreen px-4 py-2 text-white
+                     font-medium shadow hover:bg-red-400
+                     focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2
+                     disabled:opacity-50 disabled:cursor-not-allowed transition"
+            >
+              Register now!
+            </a>
         </section>
 
         <section class="p-4 rounded-lg tg-bg-cell">
@@ -80,7 +84,7 @@
       </section>
 
       <!-- footer spans both on desktop; full-width on mobile -->
-      <!--#include file="includes/footer.html" -->
+      <!--#include virtual="/includes/footer.html" -->
     </div>
   </body>
 </html>

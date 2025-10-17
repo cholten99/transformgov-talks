@@ -41,8 +41,8 @@
         <section class="p-4 space-y-2 rounded-lg tg-bg-cell min-h-0">
           <h2 class="text-xl font-bold">Our October event!</h2>
           <ul class="list-disc pl-6 space-y-1">
-            <li>Ed Humpherson, Office for Statistics Regulation, on why 'transformation' has been so challenging for official statistics.</li>
-            <li>Another exciting speaker to be announced soon!</li>
+            <li>Ed Humpherson, Office for Statistics Regulation, on why 'transformation' has been so challenging for official statistics</li>
+            <li>Dr Lauren Petrie, Government Internal Audit Agency, on the GIAA's work with data and AI</li>
           </ul>
             <p class="mt-2">Join us on the <span class="font-bold">29th of October</span> at the MoJ.</p>
             <a

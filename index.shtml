@@ -28,11 +28,13 @@
           </p>
           <p class="mt-2">
             <a href="https://transformgov-talks.kit.com/b6dac7cdd5" target="_blank" class="underline underline-offset-2 hover:underline-offset-4">
-              Sign up to our newsletter
-            </a>
+              Sign up to our newsletter</a>
             or social media (see links above) ☝️ !
           </p>
-          <p><img class="pt-4" src="https://www.transformgov.org.uk/images/speaker.jpg" alt="Photo of TGT speaker"></p>
+          
+          <p class="mt-2 mb-2">Click on the box below to find out about previous events.</p>
+          <!--#include virtual="/includes/tgt-slideshow.html" -->
+          
         </section>
       </main>
 
@@ -85,6 +87,10 @@
       <!-- footer spans both on desktop; full-width on mobile -->
       <!--#include virtual="/includes/footer.html" -->
     </div>
+  
+    <!-- For the clickable gallery -->  
+    <script src="/assets/slideshow.js" defer></script>
+
   </body>
 </html>
 

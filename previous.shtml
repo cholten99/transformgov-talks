@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Code of Conduct · TransformGov Talks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/png" href="/images/logo.png" />
+</head>
+<body class="w-full md:w-4/5 md:mx-auto tg-bg-ourgreen min-h-screen p-2 text-lg md:text-xl leading-relaxed">
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:items-stretch">
+    <!--#include virtual="/includes/header.html" -->
+
+    <!-- Full-width message card -->
+    <main class="md:col-span-2">
+      <section class="p-8 rounded-2xl tg-bg-cell shadow">
+        <!-- Fill the bubble width (no max-width clamp) -->
+        <article class="w-full space-y-4">
+          <h1 class="text-2xl font-extrabold">Previous Events</h1>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>September 2025</li>
+              <ul class="list-disc pl-6 space-y-1">
+                <li>Dr Moira Nicolson and Holly Marquez (Cabinet Office) on "Failing Forward: Why Planning for AI Disasters Unlocks Breakthrough Innovation"</li>
+                <li>​Ben Sauer, author/speaker/coach on 'Always Be Creating Clarity: Daily habits for strategic storytelling'</li>
+                <li>
+                  <a href="https://medium.com/@transformgovtalks/september-2025-event-write-up-e0fb4c63821a" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Blog</a>, 
+                  <a href="https://www.youtube.com/watch?v=fVu7dO9dGTw" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">YouTube</a>, 
+                  <a href="https://open.spotify.com/episode/3SrgN3flvs5j62M7brRY9N?si=-3a4H_I-SCqm-rzn2U-oZQ" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Spotify</a> and
+                  <a href="https://podcasts.apple.com/us/podcast/transformgov-talks-seventh-episode/id1776623246?i=1000714581610" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Apple Podcasts</a>.
+                </li>
+              </ul>
+            <li>July 2025</li>
+              <ul class="list-disc pl-6 space-y-1">
+                <li>Andrew Knight, Head of UK Government's Policy Design Community</li>
+                <li>​Jessica Batt - Transforming Public Procurement, Cabinet Office</li> 
+              </ul>
+            <li>June 2025</li>
+              <ul class="list-disc pl-6 space-y-1">
+                <li>Antonio Weiss on his new book, "AI Demystified"</li>
+                <li>​Becky Miller, Defra, on designing policy with complex evidence</li> 
+                <li>
+                  <a href="https://medium.com/@transformgovtalks/seventh-event-write-up-c665f03488c7" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Blog</a>, 
+                  <a href="https://youtu.be/70xjXI_R6wo?si=ggqtC9aip_xvvGRA" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">YouTube</a>, 
+                  <a href="https://open.spotify.com/episode/7IvKwXRCMiOt1Se84safkD?si=TwLzDp6JT26KEBvKjHZNgA" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Spotify</a> and
+                  <a href="https://podcasts.apple.com/au/podcast/transformgov-talks-seventh-episode/id1776623246?i=1000714581610" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Apple Podcasts</a>.
+                </li>
+              </ul>
+            <li>May 2025</li>
+              <ul class="list-disc pl-6 space-y-1">
+                <li>Noel Hatch,Adur & Worthing Councils, on Redesigning from the inside out: learning as we change</li>
+                <li>​Lucy Makinson, i.AI, on Consult: An AI Tool for Enhanced Public Consultation Analysis</li> 
+                <li>
+                  <a href="https://medium.com/@transformgovtalks/sixth-event-write-up-e927f94ba5f6" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Blog</a>, 
+                  <a href="https://www.youtube.com/watch?v=NsyDtjQxdK0" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">YouTube</a>, 
+                  <a href="https://open.spotify.com/episode/2Z3p45K7bnTve60Up5Hz0y" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Spotify</a> and
+                  <a href="https://podcasts.apple.com/au/podcast/transformgov-talks-sixth-episode/id1776623246?i=1000710414802" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Apple Podcasts</a>.
+                </li>
+              </ul>
+            <li>April 2025</li>
+              <ul class="list-disc pl-6 space-y-1">
+                <li>Catherine Day, Cabinet Office, on participatory government</li>
+                <li>​Kara Kane, also Cabinet Office, on Test, Learn and Grow</li> 
+                <li>
+                  <a href="https://medium.com/@transformgovtalks/sixth-event-write-up-e927f94ba5f6" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Blog</a>, 
+                  <a href="https://www.youtube.com/watch?v=NsyDtjQxdK0" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">YouTube</a>, 
+                  <a href="https://open.spotify.com/episode/2Z3p45K7bnTve60Up5Hz0y" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Spotify</a> and
+                  <a href="https://podcasts.apple.com/au/podcast/transformgov-talks-sixth-episode/id1776623246?i=1000710414802" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Apple Podcasts</a>.
+                </li>
+              </ul>
+            <li>March 2025</li>
+              <ul class="list-disc pl-6 space-y-1">
+                <li>Henry Midgley, Durham University, on Holding Government to Account: Democracy and the National Audit Office</li>
+                <li>​Kirsty Innes, Labour Together, on the future of Digital ID</li> 
+                <li>
+                  <a href="https://medium.com/@transformgovtalks/fourth-event-write-up-580288e3dd64" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Blog</a>, 
+                  <a href="https://www.youtube.com/watch?v=BcmFP5XjQvs" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">YouTube</a>, 
+                  <a href="https://open.spotify.com/episode/537DBjicMNlyxYf4BgfqBd?si=y-AxUoYMS2-67-wCXfrDKw" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Spotify</a> and
+                  <a href="https://podcasts.apple.com/il/podcast/transformgov-talks-fourth-episode/id1776623246?i=1000701137624" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Apple Podcasts</a>.
+                </li>
+              </ul>
+            <li>February 2025</li>
+              <ul class="list-disc pl-6 space-y-1">
+                <li>Miriam Levin, Director of Participatory Programmes, Demos, on 'Involving citizens in policymaking - the Citizens' White Paper and beyond'</li>
+                <li>​Sarah Crandall, Engagement Lead and Senior Digital, Data and Technology Adviser, DSIT, on 'The new GDS'</li> 
+                <li>
+                  <a href="https://medium.com/@transformgovtalks/third-event-write-up-1b4420fccfbb" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Blog</a>, 
+                  <a href="https://www.youtube.com/watch?v=0GZokbG4lIU" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">YouTube</a>, 
+                  <a href="https://open.spotify.com/episode/537DBjicMNlyxYf4BgfqBd?si=y-AxUoYMS2-67-wCXfrDKw" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Spotify</a> and
+                  <a href="https://podcasts.apple.com/il/podcast/transformgov-talks-third-episode/id1776623246?i=1000697079144" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Apple Podcasts</a>.
+                </li>
+              </ul>
+            <li>December 2024</li>
+              <ul class="list-disc pl-6 space-y-1">
+                <li>Simon Manby and Holly Simpson from the MoJ on digital and policy teams working together</li>
+                <li>Isadora Schappell and Anna Goulden from UCL's Institute for Innovation and Public Purpose on missions and the Public Sector Capability Index</li> 
+                <li>
+                  <a href="https://medium.com/@transformgovtalks/second-event-write-up-7312065b8ec7" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Blog</a>, 
+                  <a href="https://www.youtube.com/watch?v=yebGcEPCULY" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">YouTube</a>, 
+                  <a href="https://open.spotify.com/episode/6j2YKP7G6DcXHvvZZwSE5U?si=l1atjNPtTfipNTw369HCKA" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Spotify</a> and
+                  <a href="https://podcasts.apple.com/gb/podcast/transformgov-talks-second-episode/id1776623246?i=1000679576777" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Apple Podcasts</a>.
+                </li>
+              </ul>
+            <li>October 2024</li>
+              <ul class="list-disc pl-6 space-y-1">
+                <li>Andreas Varotsis on the government AI incubator</li> 
+                <li>Jeni Tennison on the new DSIT external advisory board</li>
+                <li>
+                  <a href="https://medium.com/@transformgovtalks/first-event-write-up-4d7490c851ce" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Blog</a>, 
+                  <a href="https://www.youtube.com/watch?v=lMkiEnzEDg8" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">YouTube</a>, 
+                  <a href="https://open.spotify.com/episode/3mv6ElquWdSVpYDFFkTRc8" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Spotify</a> and
+                  <a href="https://podcasts.apple.com/gb/podcast/transformgov-talks-first-episode/id1776623246?i=1000674728598" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Apple Podcasts</a>.
+                </li>
+              </ul>
+          </ul>
+        </article>
+      </section>
+    </main>
+
+    <!--#include virtual="/includes/footer.html" -->
+  </div>
+</body>
+</html>
+

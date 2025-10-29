@@ -1,0 +1,3 @@
+<!doctype html>
+<p>Now: <!--#echo var="DATE_LOCAL" --></p>
+<p>Docroot: <!--#printenv DOCUMENT_ROOT --></p>

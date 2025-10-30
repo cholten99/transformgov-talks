@@ -39,14 +39,14 @@
       <!-- RHS column: top card flexes, video keeps natural height -->
       <aside class="h-full grid grid-rows-[1fr_auto] gap-2">
         <section class="p-4 space-y-2 rounded-lg tg-bg-cell min-h-0">
-          <h2 class="text-xl font-bold">Our October event!</h2>
+          <h2 class="text-xl font-bold">Our November event!</h2>
           <ul class="list-disc pl-6 space-y-1">
-            <li>Ed Humpherson, Office for Statistics Regulation, on why 'transformation' has been so challenging for official statistics</li>
-            <li>Dr Lauren Petrie, Government Internal Audit Agency, on the GIAA's work with data and AI</li>
+            <li>Rachel Coldicutt, Careful Industries, on local government AI procurement and a new version of Consequence Scanning</li>
+            <li>A second exciting speaker to be announced soon!</li>
           </ul>
-            <p class="mt-2">Join us on the <span class="font-bold">29th of October</span> at the MoJ.</p>
+            <p class="mt-2">Join us on the <span class="font-bold">26th of November</span> at the MoJ.</p>
             <a
-              href="https://luma.com/3c92r9qr"
+              href="https://luma.com/4nead4y6"
               target="_blank"
               rel="noopener"
               class="inline-flex items-center gap-2 rounded-md tg-bg-ourgreen px-4 py-2 text-white
@@ -60,10 +60,8 @@
 
         <section class="p-4 rounded-lg tg-bg-cell">
           <h2 class="text-xl font-bold">Watch our latest video</h2>
-          <iframe class="pt-4 w-full overflow-hidden rounded-lg aspect-video"
-                  src="https://www.youtube.com/embed/fVu7dO9dGTw?si=20CbfTr222eDVdB2"
-                  title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/VC6DAFnSavk?si=NTxnnaDj6a4mlprh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
         </section>
       </aside>
 

@@ -20,6 +20,17 @@
         <article class="w-full space-y-4">
           <h1 class="text-2xl font-extrabold">Previous Events</h1>
           <ul class="list-disc pl-6 space-y-1">
+            <li>October 2025</li>
+              <ul class="list-disc pl-6 space-y-1">
+                <li>Ed Humpherson, Office for Statistics Regulation, on why 'transformation' has been so challenging for official statistics.</li>
+                <li>​Dr Lauren Petrie, Government Internal Audit Agency, on the GIAA's work with data and AI</li>
+                <li>
+                  <a href="https://medium.com/@transformgovtalks/october-2025-event-write-up-67834e7e0f4a target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Blog</a>, 
+                  <a href="https://youtu.be/VC6DAFnSavk?si=YM4M0agDu_Gsq5Gf" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">YouTube</a>, 
+                  <a href="https://open.spotify.com/episode/0gw6QqpTGK67QBzgnbbeQH?si=p-3OakVGQ8C6gCd0fLboWg" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Spotify</a> and
+                  <a href="https://podcasts.apple.com/us/podcast/transformgov-talks-october-2025/id1776623246?i=1000734125890" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Apple Podcasts</a>.
+                </li>
+              </ul>
             <li>September 2025</li>
               <ul class="list-disc pl-6 space-y-1">
                 <li>Dr Moira Nicolson and Holly Marquez (Cabinet Office) on "Failing Forward: Why Planning for AI Disasters Unlocks Breakthrough Innovation"</li>

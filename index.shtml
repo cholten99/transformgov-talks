@@ -39,14 +39,16 @@
       <!-- RHS column: top card flexes, video keeps natural height -->
       <aside class="h-full grid grid-rows-[1fr_auto] gap-2">
         <section class="p-4 space-y-2 rounded-lg tg-bg-cell min-h-0">
-          <h2 class="text-xl font-bold">Our November event!</h2>
+          <h2 class="text-xl font-bold">Our December event!</h2>
           <ul class="list-disc pl-6 space-y-1">
-            <li>Rachel Coldicutt, Careful Industries, on local government AI procurement and a new version of Consequence Scanning</li>
-            <li>Katy Beale, Chief Delivery and Engagement Officer - Digital and Innovation, Westminster City Council</li>
+            <li>Caroline Star, Operations Director at School of International Futures, on Governing Beyond the Now: Why Policy Needs a Long View and How We 
+Get There</li>
+            <li>​Derek Alton, Host & Chief Explorer at Civic Punks, on A Journey Into the Future of Government: What does 21st-century government that works 
+for people and the planet look like?</li>
           </ul>
-            <p class="mt-2">Join us on the <span class="font-bold">26th of November</span> at the MoJ.</p>
+            <p class="mt-2">Join us on <span class="font-bold">Wednesday 10th of November</span> at <span class="font-bold">TPX Impact in Whitechaple</span>.</p>
             <a
-              href="https://luma.com/4nead4y6"
+              href="https://luma.com/1b6pmysz"
               target="_blank"
               rel="noopener"
               class="inline-flex items-center gap-2 rounded-md tg-bg-ourgreen px-4 py-2 text-white
@@ -60,8 +62,8 @@
 
         <section class="p-4 rounded-lg tg-bg-cell">
           <h2 class="text-xl font-bold">Watch our latest video</h2>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/VC6DAFnSavk?si=NTxnnaDj6a4mlprh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-          </iframe>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/H_y8BnxwwEw?si=Lqg9NMahujeU-1Fv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+		</iframe>
         </section>
       </aside>
 

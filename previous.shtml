@@ -20,6 +20,18 @@
         <article class="w-full space-y-4">
           <h1 class="text-2xl font-extrabold">Previous Events</h1>
           <ul class="list-disc pl-6 space-y-1">
+            <li>December 2025</li>
+              <ul class="list-disc pl-6 space-y-1">
+                <li>Caroline Star, Operations Director at School of International Futures, on Governing Beyond the Now: Why Policy Needs a Long View and How We Get There.</li>
+                <li>Derek Alton, Host & Chief Explorer at Civic Punks, on A Journey Into the Future of Government: What does 21st-century government that works for people and the planet look like?</li>
+                <li>
+                  <a href="https://medium.com/@transformgovtalks/december-2025-write-up-cce0dfe534c9" target="_blank" rel="noopener noreferrer"
+class="underline underline-offset-2 hover:underline-offset-4">Blog</a>,
+                  <a href="https://www.youtube.com/watch?v=NS8hUHxjVRs" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">YouTube</a>,
+                  <a href="https://open.spotify.com/episode/2G5rWhcmwcvmszd4gnZPIc?si=FcLgACWrRnGmTa2bl4-CGA" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Spotify</a> and
+                  <a href="https://podcasts.apple.com/us/podcast/transformgov-talks-december-2025/id1776623246?i=1000740774340" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Apple Podcasts</a>. 
+                </li>
+              </ul>
             <li>November 2025</li>
               <ul class="list-disc pl-6 space-y-1">
                 <li>Rachel Coldicutt, Careful Industries, on local government AI procurement and a new version of Consequence Scanning</li>
@@ -29,8 +41,8 @@ Technology</li>
                   <a href="https://medium.com/@transformgovtalks/november-2025-event-write-up-eaa85b546311" target="_blank" rel="noopener noreferrer"
 class="underline underline-offset-2 hover:underline-offset-4">Blog</a>,
                   <a href="https://youtu.be/H_y8BnxwwEw?si=m4DP-6T6tpuKA5-X" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">YouTube</a>,
-                  <a href="https://medium.com/r/?url=https%3A%2F%2Fopen.spotify.com%2Fepisode%2F4WIoRqmwOZzxgxotLgyOIt%3Fsi%3D-Z0j9EM_RxuS5fTGngF2VQ" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Spotify</a> and
-                  <a href="https://medium.com/r/?url=https%3A%2F%2Fpodcasts.apple.com%2Fus%2Fpodcast%2Ftransformgov-talks-november-2025%2Fid1776623246%3Fi%3D1000739528268" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Apple Podcasts</a>. 
+                  <a href="https://open.spotify.com/episode/4WIoRqmwOZzxgxotLgyOIt?si=-Z0j9EM_RxuS5fTGngF2VQ" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Spotify</a> and
+                  <a href="https://podcasts.apple.com/us/podcast/transformgov-talks-november-2025/id1776623246?i=1000739528268" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Apple Podcasts</a>. 
                 </li>
               </ul>
             <li>October 2025</li>

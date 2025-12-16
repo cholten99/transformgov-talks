@@ -42,7 +42,7 @@
           <h2 class="text-xl font-bold">Our January event!</h2>
           <ul class="list-disc pl-6 space-y-1">
             <li>Matt Wood-Hill, MHCLG, and Linda O’Halloran, TPXimpact on public service market-shaping.</li>
-            <li>​Another exciting speaker to be announced soon!</li>
+            <li>​Patrick Diamond, Professor in Public Policy, Queen Mary, University of London, on what we've learned from 25 years of research on government effectiveness</li>
           </ul>
             <p class="mt-2">Join us on <span class="font-bold">Wednesday 28th of January</span> at <span class="font-bold">TPXImpact in Whitechapel</span>.</p>
             <a
@@ -69,12 +69,13 @@
         <section class="p-4 rounded-lg tg-bg-cell">
           <h2 class="text-xl font-bold">Kindly sponsored by</h2>
           <div class="flex flex-wrap items-center gap-3">
-            <img class="h-16 w-auto rounded" src="https://transformgov.org.uk/images/sponsors/Ammut.png" alt="Anmut" loading="lazy">
-            <img class="h-16 w-auto rounded" src="https://transformgov.org.uk/images/sponsors/DXW.png" alt="DXW" loading="lazy">
-            <img class="h-16 w-auto rounded" src="https://transformgov.org.uk/images/sponsors/GovCamp.png" alt="GovCamp" loading="lazy">
-            <img class="h-16 w-auto rounded" src="https://transformgov.org.uk/images/sponsors/PD.png" alt="Public Digital" loading="lazy">
-            <img class="h-16 w-auto rounded" src="https://transformgov.org.uk/images/sponsors/TPX.png" alt="TPX" loading="lazy">
-            <img class="h-16 w-auto rounded" src="https://transformgov.org.uk/images/sponsors/HA.png" alt="Holistic Agility" loading="lazy">
+            <img class="h-16 w-auto rounded" src="images/sponsors/Ammut.png" alt="Anmut" loading="lazy">
+            <img class="h-16 w-auto rounded" src="/images/sponsors/DXW.png" alt="DXW" loading="lazy">
+            <img class="h-16 w-auto rounded" src="/images/sponsors/GovCamp.png" alt="GovCamp" loading="lazy">
+            <img class="h-16 w-auto rounded" src="/images/sponsors/PD.png" alt="Public Digital" loading="lazy">
+            <img class="h-16 w-auto rounded" src="/images/sponsors/TPX.png" alt="TPX" loading="lazy">
+            <img class="h-16 w-auto rounded" src="/images/sponsors/HA.png" alt="Holistic Agility" loading="lazy">
+            <img class="h-16 w-auto rounded" src="/images/sponsors/Ceva.png" alt="Ceva" loading="lazy">
           </div>
         </section>
       </section>

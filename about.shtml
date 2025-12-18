@@ -166,6 +166,46 @@
             </article>
           </li>
 
+          <li class="h-full">
+            <article class="h-full rounded-2xl bg-white/70 p-4 md:p-5 shadow flex flex-col">
+              <div class="flex items-center gap-4">
+                <img src="/images/us/Vijay.jpg" alt="Photo of Vijay Luthra"
+                     class="h-20 w-20 md:h-28 md:w-28 rounded-xl object-cover bg-black/10" loading="lazy" />
+                <div>
+                  <h2 class="text-xl md:text-2xl font-black leading-tight">Vijay Luthra</h2>
+                  <p class="text-base md:text-lg opacity-80">Co-organiser</p>
+                </div>
+              </div>
+
+              <p class="mt-4 text-base md:text-lg">
+              JVijay is a 20 year practitioner in government and public service reform, working at the intersection of strategy, transformation and delivery supporting leaders involved in driving public services reform.  Prior to joining the Civil Service he was a roadie.
+              </p>
+              <p class="mt-4 text-base md:text-lg">
+              He is the founder of Ceva, a challenger consultancy working with central and local government, the NHS, defence and education on complex change. More recently in his career he worked at PwC, PA Consulting and Capita and with a number of tech start-ups.  He has been involved in a range of large-scale reform efforts, including health system transformation internationally as well as national level transformation initiatives in defence, education and national security.
+              </p>
+              <p class="mt-4 text-base md:text-lg">
+              Vijay has also served as a councillor, school governor and NHS Non-Executive Director and is a volunteer advisor to Kidney Research UK and Great Ormond Street Hospital Children’s Charity.
+              </p>
+              <p class="mt-4 text-base md:text-lg">
+              Vijay is drawn to TransformGov Talks as a way of contributing to a thoughtful, practitioner-led space. He is particularly interested in learning from others about what really helps transformation stick in government and public services. He is interested in culture, capability, leadership and the realities of delivery rather than just the theory and in creating a space where honest stories are shared, orthodoxy is challenged and people working on change in government can learn from each other in an environment of psychological safety.
+              </p>
+              <!-- Links / socials -->
+              <div class="mt-4 flex flex-wrap items-center gap-3">
+                <a href="mailto:Vijay@cevaglobal.co" class="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-black/5 hover:bg-black/10 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+                  <img src="/images/icons/email.svg" alt="" class="h-5 w-5" loading="lazy" /> Email
+                </a>
+                <a href="https://www.linkedin.com/in/vijaykluthra/" target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-black/5 hover:bg-black/10 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+                  <img src="/images/icons/linkedin.svg" alt="" class="h-5 w-5" loading="lazy" /> LinkedIn
+                </a>
+                <a href="https://bsky.app/profile/vijayluthra.bsky.social" target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-black/5 hover:bg-black/10 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+                  <img src="/images/icons/bluesky.svg" alt="" class="h-5 w-5" loading="lazy" /> Bluesky
+                </a>
+              </div>
+            </article>
+          </li>
+
           <!-- Add more <li>…</li> blocks here for additional people -->
         </ul>
       </section>

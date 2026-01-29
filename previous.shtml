@@ -20,6 +20,20 @@
         <article class="w-full space-y-4">
           <h1 class="text-2xl font-extrabold">Previous Events</h1>
           <ul class="list-disc pl-6 space-y-1">
+            
+            <li>January 2026</li>
+              <ul class="list-disc pl-6 space-y-1">
+                <li>Matt Wood-Hill, MHCLG, and Linda O’Halloran, TPXimpact on public service market-shaping,</li>
+                <li>Patrick Diamond, Professor in Public Policy, Queen Mary, University of London, on what we’ve learned from 25 years of research on government effectiveness.</li>
+                <li>
+                  <a href="https://medium.com/@transformgovtalks/january-2026-write-up-d0a32709cd0c" target="_blank" rel="noopener noreferrer"
+class="underline underline-offset-2 hover:underline-offset-4">Blog</a>,
+                  <a href="https://youtu.be/VmdruiJiTco?si=ZluaqvsxzPMsOXRt" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">YouTube</a>,
+                  <a href="https://open.spotify.com/episode/21JQs52PPYCQKeXyRE3W8r?si=pPJDbNzSTa208_UTPQ4NhQ" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Spotify</a> and
+                  <a href="https://podcasts.apple.com/us/podcast/transformgov-talks-january-2026/id1776623246?i=1000747110832" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Apple Podcasts</a>. 
+                </li>
+              </ul>
+            
             <li>December 2025</li>
               <ul class="list-disc pl-6 space-y-1">
                 <li>Caroline Star, Operations Director at School of International Futures, on Governing Beyond the Now: Why Policy Needs a Long View and How We Get There.</li>

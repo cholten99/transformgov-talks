@@ -69,13 +69,27 @@
         <section class="p-4 rounded-lg tg-bg-cell">
           <h2 class="text-xl font-bold">Kindly sponsored by</h2>
           <div class="flex flex-wrap items-center gap-3">
-            <img class="h-16 w-auto rounded" src="images/sponsors/Ammut.png" alt="Anmut" loading="lazy">
-            <img class="h-16 w-auto rounded" src="/images/sponsors/DXW.png" alt="DXW" loading="lazy">
-            <img class="h-16 w-auto rounded" src="/images/sponsors/GovCamp.png" alt="GovCamp" loading="lazy">
-            <img class="h-16 w-auto rounded" src="/images/sponsors/PD.png" alt="Public Digital" loading="lazy">
-            <img class="h-16 w-auto rounded" src="/images/sponsors/TPX.png" alt="TPX" loading="lazy">
-            <img class="h-16 w-auto rounded" src="/images/sponsors/HA.png" alt="Holistic Agility" loading="lazy">
-            <img class="h-16 w-auto rounded" src="/images/sponsors/Ceva.png" alt="Ceva" loading="lazy">
+            <a href="https://www.anmut.co.uk/" target="_blank">
+              <img class="h-16 w-auto rounded" src="images/sponsors/Ammut.png" alt="Anmut" loading="lazy">
+            </a>
+            <a href="https://www.dxw.com/" target="_blank">
+              <img class="h-16 w-auto rounded" src="/images/sponsors/DXW.png" alt="DXW" loading="lazy">
+            </a>
+            <a href="https://ukgovcamp.com" target="_blank">
+              <img class="h-16 w-auto rounded" src="/images/sponsors/GovCamp.png" alt="GovCamp" loading="lazy">
+            </a>
+            <a href="https://public.digital/" target="_blank">
+              <img class="h-16 w-auto rounded" src="/images/sponsors/PD.png" alt="Public Digital" loading="lazy">
+            </a>
+            <a href="https://tpximpact.com/" target="_blank">
+              <img class="h-16 w-auto rounded" src="/images/sponsors/TPX.png" alt="TPX" loading="lazy">
+            </a>
+            <a href="https://holisticagility.com/" target="_blank">
+              <img class="h-16 w-auto rounded" src="/images/sponsors/HA.png" alt="Holistic Agility" loading="lazy">
+            </a>
+            <a href="https://www.ceva.co.uk/" target="_blank">
+              <img class="h-16 w-auto rounded" src="/images/sponsors/Ceva.png" alt="Ceva" loading="lazy">
+            </a>
           </div>
         </section>
       </section>

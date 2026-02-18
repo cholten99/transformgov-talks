@@ -68,7 +68,7 @@
       <section class="md:col-span-2">
         <section class="p-4 rounded-lg tg-bg-cell">
           <h2 class="text-xl font-bold">Kindly sponsored by</h2>
-          <div class="flex flex-wrap items-center gap-3">
+          <div class="flex flex-nowrap items-center gap-3 overflow-x-auto">
             <a href="https://www.anmut.co.uk/" target="_blank">
               <img class="h-16 w-auto rounded" src="images/sponsors/Ammut.png" alt="Anmut" loading="lazy">
             </a>
@@ -89,6 +89,9 @@
             </a>
             <a href="http://www.cevaglobal.co/" target="_blank">
               <img class="h-16 w-auto rounded" src="/images/sponsors/Ceva.png" alt="Ceva" loading="lazy">
+            </a>
+            <a href="https://sotf.org.uk/" target="_blank">
+              <img class="h-16 w-auto rounded" src="/images/sponsors/SotF.png" alt="Ceva" loading="lazy">
             </a>
           </div>
         </section>

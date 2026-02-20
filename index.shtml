@@ -34,7 +34,8 @@
             or social media (see links above) ☝️ !
           </p>
           <p>
-            <img class="pt-4" src="https://www.transformgov.org.uk/images/speaker.jpg" alt="Photo of TGT speaker">
+<!--            <img class="pt-4" src="https://www.transformgov.org.uk/images/speaker.jpg" alt="Photo of TGT speaker"> -->
+            <img class="pt-4" src="/images/speaker.jpg" alt="Photo of TGT speaker">
           </p>
         </section>
       </main>

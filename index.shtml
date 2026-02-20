@@ -9,58 +9,46 @@
     <link rel="icon" type="image/png" href="/images/logo.png" />
   </head>
 
-  <body class="w-full md:w-4/5 md:mx-auto tg-bg-ourgreen min-h-screen p-0 md:p-2 text-lg md:text-xl leading-relaxed">
-
-    <!-- MAIN GRID -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-2">
-
-      <!-- HEADER -->
+  <body class="w-full md:w-4/5 md:mx-auto tg-bg-ourgreen min-h-screen p-2 text-lg md:text-xl leading-relaxed">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:items-stretch">
+      <!-- header spans both on desktop; full-width on mobile -->
       <!--#include virtual="/includes/header.html" -->
 
-      <!-- LEFT COLUMN -->
-      <main class="flex flex-col gap-0 md:gap-2">
-
-        <section class="p-4 rounded-none md:rounded-lg tg-bg-cell">
+      <!-- LHS column -->
+      <main class="h-full flex flex-col gap-2">
+        <!-- Make this card flex to fill the column height on desktop -->
+        <section class="md:flex-1 p-4 rounded-lg tg-bg-cell">
           <h2 class="text-xl font-bold">
             TransformGov Talks: Innovating <span class="tg-text-ourgreen">Together</span>
           </h2>
-
           <p class="mt-2">
             We provide a space to meet for people who care about making government work better, whether they're inside or outside the public sector.
           </p>
-
           <p class="mt-2">
             Each monthly meet-up features presentations and discussions about innovation in the public sector or great examples of impactful delivery of policy or services. This is followed by plenty of time to chat after — with free pizza! 🍕🍕🍕
           </p>
-
           <p class="mt-2">
             <a href="https://transformgov-talks.kit.com/b6dac7cdd5" target="_blank" class="underline underline-offset-2 hover:underline-offset-4">
               Sign up to our newsletter
             </a>
             or social media (see links above) ☝️ !
           </p>
-
-          <img class="pt-4" src="https://www.transformgov.org.uk/images/speaker.jpg" alt="Photo of TGT speaker">
+          <p>
+            <img class="pt-4" src="https://www.transformgov.org.uk/images/speaker.jpg" alt="Photo of TGT speaker">
+          </p>
         </section>
-
       </main>
 
-      <!-- RIGHT COLUMN -->
-      <aside class="flex flex-col gap-0 md:gap-2">
-
-        <!-- THIS ONE IS YOUR "REFERENCE" CARD -->
-        <section class="p-4 space-y-2 rounded-none md:rounded-lg tg-bg-cell">
+      <!-- RHS column: ensure combined height matches LHS by making RHS a flex column -->
+      <aside class="h-full flex flex-col gap-2">
+        <!-- Let the top card take remaining space -->
+        <section class="p-4 space-y-2 rounded-lg tg-bg-cell flex-1 min-h-0">
           <h2 class="text-xl font-bold">Our February event!</h2>
-
           <ul class="list-disc pl-6 space-y-1">
             <li>Liam Hawkes, Principal Service Designer, and Violette Gadenne, Senior User Researcher, Policy and Innovation Lab (CoLab), Home Office, on setting the scene, not running the show: service design in a spending review</li>
             <li>​James Plunkett, Kinship Works, on the energy at the edges — and how the centre can spread it</li>
           </ul>
-
-          <p class="mt-2">
-            Join us on <span class="font-bold">Wednesday 25th of February</span> at <span class="font-bold">the MoJ in Westminster</span>.
-          </p>
-
+          <p class="mt-2">Join us on <span class="font-bold">Wednesday 25th of February</span> at <span class="font-bold">the MoJ in Westminster</span>.</p>
           <a
             href="https://luma.com/q19znan6"
             target="_blank"
@@ -74,59 +62,58 @@
           </a>
         </section>
 
-        <section class="p-4 rounded-none md:rounded-lg tg-bg-cell">
+        <section class="p-4 rounded-lg tg-bg-cell">
           <h2 class="text-xl font-bold">Watch our latest video</h2>
-
-          <iframe class="w-full aspect-video"
+          <!-- Responsive iframe so it doesn't force weird sizing -->
+          <iframe
+            class="mt-2 w-full aspect-video"
             src="https://www.youtube.com/embed/VmdruiJiTco?si=pmDzroc_BbG4rWY0"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
         </section>
-
       </aside>
 
-      <!-- SPONSORS -->
+      <!-- sponsors spans both on desktop; full-width on mobile -->
       <section class="md:col-span-2">
-        <section class="p-4 rounded-none md:rounded-lg tg-bg-cell">
-
+        <section class="p-4 rounded-lg tg-bg-cell">
           <h2 class="text-xl font-bold">Kindly sponsored by</h2>
 
-          <div class="flex flex-wrap items-center justify-center gap-4 mt-2">
+          <!-- Wrap on mobile; prevent squishing; keep proportions; square corners -->
+          <div class="mt-2 flex flex-wrap items-center justify-center gap-4">
             <a href="https://www.anmut.co.uk/" target="_blank" rel="noopener">
-              <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="images/sponsors/Ammut.png" alt="Anmut">
+              <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="images/sponsors/Ammut.png" alt="Anmut" loading="lazy">
             </a>
             <a href="https://www.dxw.com/" target="_blank" rel="noopener">
-              <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="/images/sponsors/DXW.png" alt="dxw">
+              <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="/images/sponsors/DXW.png" alt="dxw" loading="lazy">
             </a>
             <a href="https://ukgovcamp.com" target="_blank" rel="noopener">
-              <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="/images/sponsors/GovCamp.png" alt="GovCamp">
+              <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="/images/sponsors/GovCamp.png" alt="GovCamp" loading="lazy">
             </a>
             <a href="https://public.digital/" target="_blank" rel="noopener">
-              <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="/images/sponsors/PD.png" alt="Public Digital">
+              <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="/images/sponsors/PD.png" alt="Public Digital" loading="lazy">
             </a>
             <a href="https://tpximpact.com/" target="_blank" rel="noopener">
-              <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="/images/sponsors/TPX.png" alt="TPXimpact">
+              <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="/images/sponsors/TPX.png" alt="TPXimpact" loading="lazy">
             </a>
             <a href="https://holisticagility.com/" target="_blank" rel="noopener">
-              <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="/images/sponsors/HA.png" alt="Holistic Agility">
+              <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="/images/sponsors/HA.png" alt="Holistic Agility" loading="lazy">
             </a>
             <a href="http://www.cevaglobal.co/" target="_blank" rel="noopener">
-              <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="/images/sponsors/Ceva.png" alt="Ceva Global">
+              <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="/images/sponsors/Ceva.png" alt="Ceva Global" loading="lazy">
             </a>
             <a href="https://sotf.org.uk/" target="_blank" rel="noopener">
-              <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="/images/sponsors/SotF.png" alt="State of Flux">
+              <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="/images/sponsors/SotF.png" alt="State of Flux" loading="lazy">
             </a>
           </div>
-
         </section>
       </section>
 
-      <!-- FOOTER -->
+      <!-- footer spans both on desktop; full-width on mobile -->
       <!--#include virtual="/includes/footer.html" -->
-
     </div>
   </body>
 </html>

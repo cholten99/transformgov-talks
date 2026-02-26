@@ -46,12 +46,15 @@
         <section class="p-4 space-y-2 rounded-lg tg-bg-cell flex-1 min-h-0">
           <h2 class="text-xl font-bold">Our February event!</h2>
           <ul class="list-disc pl-6 space-y-1">
-            <li>Liam Hawkes, Principal Service Designer, and Violette Gadenne, Senior User Researcher, Policy and Innovation Lab (CoLab), Home Office, on setting the scene, not running the show: service design in a spending review</li>
-            <li>​James Plunkett, Kinship Works, on the energy at the edges — and how the centre can spread it</li>
+            <li>Lara Groves, Ada Lovelace Institute, on Scribe and prejudice? Exploring the use of AI transcription tools in social care</li>
+            <li>​Owen Prendeville, Group Manager – Public Affairs (Parliament), Information Commissioner's Office, on           
+              <a href="https://ico.org.uk/about-the-ico/campaigns/better-records-together/" class="underline underline-offset-2 hover:underline-offset-4" target="_blank" rel="noopener"> the ICO’s Better Records Together campaign 
+              </a>to drive improvements for access to care records
+            </li>
           </ul>
-          <p class="mt-2">Join us on <span class="font-bold">Wednesday 25th of February</span> at <span class="font-bold">the MoJ in Westminster</span>.</p>
+          <p class="mt-2">Join us on <span class="font-bold">Wednesday 25th of March</span> at <span class="font-bold">the MoJ in Westminster</span>.</p>
           <a
-            href="https://luma.com/q19znan6"
+            href="https://luma.com/8i84tnwy"
             target="_blank"
             rel="noopener"
             class="inline-flex items-center gap-2 rounded-md tg-bg-ourgreen px-4 py-2 text-white
@@ -66,15 +69,8 @@
         <section class="p-4 rounded-lg tg-bg-cell">
           <h2 class="text-xl font-bold">Watch our latest video</h2>
           <!-- Responsive iframe so it doesn't force weird sizing -->
-          <iframe
-            class="mt-2 w-full aspect-video"
-            src="https://www.youtube.com/embed/VmdruiJiTco?si=pmDzroc_BbG4rWY0"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/IGxNH5rHZUA?si=3NGfuRVq2dJUFpfI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
         </section>
       </aside>
 

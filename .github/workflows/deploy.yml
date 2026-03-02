@@ -11,7 +11,26 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements_build.txt
+
+      - name: Build previous.shtml from YAML
+        run: |
+          python build_previous.py \
+            --input-yaml previous_events.yml \
+            --template previous_template.shtml.j2 \
+            --output previous.shtml \
+            --log-level INFO
 
       - name: Upload static files via SFTP
         uses: appleboy/scp-action@v0.1.7
@@ -20,7 +39,8 @@ jobs:
           username: ${{ secrets.SFTP_USERNAME }}
           key: ${{ secrets.SFTP_PRIVATE_KEY }}
           port: 22
-          source: "."  # Or "./public" or similar if your files are in a subfolder
+          # Exclude repo/admin bits from deployment (keeps the server dir clean).
+          # Remove these excludes if you *want* the generator files on the server too.
+          source: ".,!**/.git/**,!**/.github/**,!**/build_previous.py,!**/previous_events.yml,!**/previous_template.shtml.j2,!**/requirements_build.txt,!**/README.md"
           target: "/var/www/transformgov-talks"
           rm: true
-

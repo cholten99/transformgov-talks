@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Previous Events · TransformGov Talks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/png" href="/images/logo.png" />
+</head>
+<body class="w-full md:w-4/5 md:mx-auto tg-bg-ourgreen min-h-screen p-2 text-lg md:text-xl leading-relaxed">
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:items-stretch">
+    <!--#include virtual="/includes/header.html" -->
+
+    <!-- Full-width message card -->
+    <main class="md:col-span-2">
+      <section class="p-8 rounded-2xl tg-bg-cell shadow">
+        <!-- Fill the bubble width (no max-width clamp) -->
+        <article class="w-full space-y-4">
+          <h1 class="text-2xl font-extrabold">Previous Events</h1>
+          <ul class="list-disc pl-6 space-y-1">
+{% for ev in events %}
+            <li>{{ ev.month }}</li>
+{% if ev.bullets or ev.links_html %}
+              <ul class="list-disc pl-6 space-y-1">
+{% for item in ev.bullets %}
+                <li>{{ item }}</li>
+{% endfor %}
+{% if ev.links_html %}
+                <li>{{ ev.links_html }}</li>
+{% endif %}
+              </ul>
+{% endif %}
+{% endfor %}
+          </ul>
+        </article>
+      </section>
+    </main>
+
+    <!--#include virtual="/includes/footer.html" -->
+  </div>
+</body>
+</html>

@@ -33,14 +33,12 @@ jobs:
             --log-level INFO
 
       - name: Upload static files via SFTP
-        uses: appleboy/scp-action@v0.1.7
+        uses: appleboy/scp-action@v1.0.0
         with:
           host: ${{ secrets.SFTP_HOST }}
           username: ${{ secrets.SFTP_USERNAME }}
           key: ${{ secrets.SFTP_PRIVATE_KEY }}
           port: 22
-          # Exclude repo/admin bits from deployment (keeps the server dir clean).
-          # Remove these excludes if you *want* the generator files on the server too.
-          source: ".,!**/.git/**,!**/.github/**,!**/build_previous.py,!**/previous_events.yml,!**/previous_template.shtml.j2,!**/requirements_build.txt,!**/README.md"
+          source: "."
           target: "/var/www/transformgov-talks"
           rm: true

@@ -46,7 +46,7 @@
         <section class="p-4 space-y-2 rounded-lg tg-bg-cell flex-1 min-h-0">
           <h2 class="text-xl font-bold">Our February event!</h2>
           <ul class="list-disc pl-6 space-y-1">
-            <li>Lara Groves, Ada Lovelace Institute, on Scribe and prejudice? Exploring the use of AI transcription tools in social care</li>
+            <li>Lara Groves and Oliver Bruff, Ada Lovelace Institute, on Scribe and prejudice? Exploring the use of AI transcription tools in social care</li>
             <li>​Owen Prendeville, Group Manager – Public Affairs (Parliament), Information Commissioner's Office, on           
               <a href="https://ico.org.uk/about-the-ico/campaigns/better-records-together/" class="underline underline-offset-2 hover:underline-offset-4" target="_blank" rel="noopener"> the ICO’s Better Records Together campaign 
               </a>to drive improvements for access to care records

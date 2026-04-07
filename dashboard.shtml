@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard · TransformGov Talks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+  </head>
+  <body class="w-full md:w-4/5 md:mx-auto tg-bg-ourgreen min-h-screen p-2 text-lg md:text-xl leading-relaxed">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:items-stretch">
+      <!--#include virtual="/includes/header.html" -->
+
+      <main class="md:col-span-2 flex flex-col gap-2">
+
+        <section class="p-6 md:p-8 rounded-2xl tg-bg-cell shadow">
+          <h1 class="text-3xl font-extrabold mb-2">Dashboard</h1>
+          <p class="opacity-70 text-base">Internal overview — not linked from the main site.</p>
+        </section>
+
+        <section class="p-6 md:p-8 rounded-2xl tg-bg-cell shadow">
+          <h2 class="text-2xl font-extrabold">Attendance</h2>
+        </section>
+
+        <section class="p-6 md:p-8 rounded-2xl tg-bg-cell shadow">
+          <h2 class="text-2xl font-extrabold">Mailing List</h2>
+        </section>
+
+      </main>
+
+      <!--#include virtual="/includes/footer.html" -->
+    </div>
+
+  </body>
+  </html>
+  

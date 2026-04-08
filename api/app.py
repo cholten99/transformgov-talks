@@ -81,9 +81,10 @@ def youtube_videos():
 CREATE_LIBSYN = """
 CREATE TABLE IF NOT EXISTS libsyn_downloads (
     id              SERIAL PRIMARY KEY,
-    episode_title   TEXT        NOT NULL,
-    total_downloads INT         NOT NULL DEFAULT 0,
-    uploaded_at     TIMESTAMP   NOT NULL DEFAULT NOW()
+    episode_title   TEXT      NOT NULL,
+    release_date    DATE,
+    total_downloads INT       NOT NULL DEFAULT 0,
+    uploaded_at     TIMESTAMP NOT NULL DEFAULT NOW()
 );
 """
 
@@ -145,6 +146,7 @@ def upload_libsyn():
     headers = rows[0]
     title_col = find_col(headers, "title", "episode", "name", "show")
     dl_col    = find_col(headers, "download", "total", "play", "listen", "count")
+    date_col  = find_col(headers, "release", "publish", "date")
 
     if title_col is None or dl_col is None:
         return jsonify({
@@ -160,7 +162,8 @@ def upload_libsyn():
         raw   = row[dl_col].strip().replace(",", "")
         if not title or not raw.isdigit():
             continue
-        episodes.append((title, int(raw)))
+        date = row[date_col].strip()[:10] if date_col and len(row) > date_col else None
+        episodes.append((title, date, int(raw)))
 
     if not episodes:
         return jsonify({"error": "No valid episode rows found"}), 400
@@ -169,9 +172,10 @@ def upload_libsyn():
     try:
         with conn.cursor() as cur:
             cur.execute(CREATE_LIBSYN)
+            cur.execute("ALTER TABLE libsyn_downloads ADD COLUMN IF NOT EXISTS release_date DATE")
             cur.execute("DELETE FROM libsyn_downloads")
             cur.executemany(
-                "INSERT INTO libsyn_downloads (episode_title, total_downloads) VALUES (%s, %s)",
+                "INSERT INTO libsyn_downloads (episode_title, release_date, total_downloads) VALUES (%s, %s, %s)",
                 episodes
             )
             conn.commit()
@@ -231,6 +235,33 @@ def upload_luma():
             )
             conn.commit()
         return jsonify({"ok": True, "events": len(counts)})
+    finally:
+        conn.close()
+
+
+# ── Libsyn read endpoint ─────────────────────────────────────────────────────
+
+@app.route("/api/libsyn/episodes")
+def libsyn_episodes():
+    conn = get_db()
+    try:
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT
+                    episode_title,
+                    release_date,
+                    total_downloads,
+                    SUM(total_downloads) OVER (ORDER BY release_date)::int AS cumulative
+                FROM libsyn_downloads
+                ORDER BY release_date
+            """)
+            rows = cur.fetchall()
+        return jsonify([{
+            "title":           r[0],
+            "release_date":    r[1].isoformat() if r[1] else None,
+            "downloads":       r[2],
+            "cumulative":      r[3],
+        } for r in rows])
     finally:
         conn.close()
 

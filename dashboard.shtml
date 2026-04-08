@@ -22,8 +22,44 @@
         </section>
 
         <section class="p-6 md:p-8 rounded-2xl tg-bg-cell shadow">
-          <h2 class="text-2xl font-extrabold">Attendance</h2>
-          <p class="opacity-60 text-base mt-2">Coming soon.</p>
+          <h2 class="text-2xl font-extrabold mb-4">Registrations</h2>
+
+          <div class="flex flex-wrap gap-6 mb-6">
+            <div class="rounded-xl bg-white/70 px-6 py-4 shadow text-center min-w-[120px]">
+              <p class="text-4xl font-black" id="reg-stat-unique">—</p>
+              <p class="text-sm opacity-70 mt-1">Total unique registrants</p>
+            </div>
+            <div class="rounded-xl bg-white/70 px-6 py-4 shadow text-center min-w-[120px]">
+              <p class="text-4xl font-black" id="reg-stat-inperson">—</p>
+              <p class="text-sm opacity-70 mt-1">In-person (all time)</p>
+            </div>
+            <div class="rounded-xl bg-white/70 px-6 py-4 shadow text-center min-w-[120px]">
+              <p class="text-4xl font-black" id="reg-stat-online">—</p>
+              <p class="text-sm opacity-70 mt-1">Online (all time)</p>
+            </div>
+          </div>
+
+          <div class="relative mb-6" style="height:340px">
+            <canvas id="reg-chart"></canvas>
+          </div>
+          <p id="reg-chart-error" class="text-red-600 text-sm mt-2 hidden"></p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-black/10 text-left opacity-60">
+                  <th class="py-2 pr-3 font-semibold">Date</th>
+                  <th class="py-2 pr-3 font-semibold">Event</th>
+                  <th class="py-2 pr-2 text-right font-semibold">In-person</th>
+                  <th class="py-2 pr-2 text-right font-semibold">Online</th>
+                  <th class="py-2 pr-2 text-right font-semibold">Total</th>
+                  <th class="py-2 pr-2 text-right font-semibold">New unique</th>
+                  <th class="py-2 text-right font-semibold">Cum. unique</th>
+                </tr>
+              </thead>
+              <tbody id="reg-table-body"></tbody>
+            </table>
+          </div>
         </section>
 
         <section class="p-6 md:p-8 rounded-2xl tg-bg-cell shadow">
@@ -398,6 +434,131 @@
       }
     } catch (err) {
       errEl.textContent = "Could not load podcast data: " + err.message;
+      errEl.classList.remove("hidden");
+    }
+  })();
+
+  (async () => {
+    const errEl = document.getElementById("reg-chart-error");
+    try {
+      const resp = await fetch("/api/luma/events");
+      if (!resp.ok) throw new Error(`API returned ${resp.status}`);
+      const data = await resp.json();
+
+      const totalUnique   = data.length ? data[data.length - 1].cumulative_unique : 0;
+      const totalInPerson = data.reduce((s, e) => s + e.in_person, 0);
+      const totalOnline   = data.reduce((s, e) => s + e.online,    0);
+      document.getElementById("reg-stat-unique").textContent   = totalUnique.toLocaleString();
+      document.getElementById("reg-stat-inperson").textContent = totalInPerson.toLocaleString();
+      document.getElementById("reg-stat-online").textContent   = totalOnline.toLocaleString();
+
+      const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+      const labels = data.map(e => {
+        const d = new Date(e.event_date);
+        return MONTHS[d.getUTCMonth()] + " " + String(d.getUTCFullYear()).slice(2);
+      });
+
+      const ctx = document.getElementById("reg-chart").getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels,
+          datasets: [
+            {
+              label: "In-person",
+              data: data.map(e => e.in_person),
+              backgroundColor: "rgba(34,108,87,0.85)",
+              stack: "reg",
+              order: 2,
+            },
+            {
+              label: "Online",
+              data: data.map(e => e.online),
+              backgroundColor: "rgba(34,108,87,0.38)",
+              stack: "reg",
+              order: 2,
+            },
+            {
+              label: "Cumulative unique",
+              data: data.map(e => e.cumulative_unique),
+              type: "line",
+              borderColor: "rgba(180,100,30,1)",
+              backgroundColor: "rgba(180,100,30,0.08)",
+              borderWidth: 2,
+              pointRadius: 3,
+              fill: false,
+              tension: 0.3,
+              order: 1,
+              yAxisID: "y2",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: "index", intersect: false },
+          plugins: {
+            legend: { position: "top" },
+            tooltip: {
+              callbacks: {
+                title: items => data[items[0].dataIndex].event_name,
+                afterBody: items => {
+                  const e = data[items[0].dataIndex];
+                  return [`New unique: ${e.new_unique}`, `Total: ${e.total}`];
+                },
+              },
+            },
+          },
+          scales: {
+            x:  { stacked: true, grid: { display: false } },
+            y:  { stacked: true, title: { display: true, text: "Registrations" }, beginAtZero: true },
+            y2: { title: { display: true, text: "Cumulative unique" }, position: "right", beginAtZero: true, grid: { drawOnChartArea: false } },
+          },
+        },
+      });
+
+      // Table — newest first
+      const events = [...data].reverse();
+      const tbody = document.getElementById("reg-table-body");
+
+      function makeRegRow(e) {
+        const d = new Date(e.event_date);
+        const ds = d.toLocaleDateString("en-GB", { month: "short", year: "numeric", timeZone: "UTC" });
+        const tr = document.createElement("tr");
+        tr.className = "border-b border-black/5 hover:bg-black/5";
+        tr.innerHTML = `
+          <td class="py-2 pr-3 opacity-60 whitespace-nowrap">${ds}</td>
+          <td class="py-2 pr-3">${e.event_name}</td>
+          <td class="py-2 pr-2 text-right font-mono">${e.in_person}</td>
+          <td class="py-2 pr-2 text-right font-mono">${e.online}</td>
+          <td class="py-2 pr-2 text-right font-mono font-semibold">${e.total}</td>
+          <td class="py-2 pr-2 text-right font-mono">${e.new_unique}</td>
+          <td class="py-2 text-right font-mono">${e.cumulative_unique}</td>
+        `;
+        return tr;
+      }
+
+      events.slice(0, 3).forEach(e => tbody.appendChild(makeRegRow(e)));
+
+      if (events.length > 3) {
+        const rest = events.slice(3);
+        const detailsRow = document.createElement("tr");
+        detailsRow.innerHTML = `
+          <td colspan="7" class="pt-1 pb-1">
+            <details>
+              <summary class="cursor-pointer text-sm opacity-60 hover:opacity-100 select-none py-1">
+                Show ${rest.length} more events
+              </summary>
+              <table class="w-full mt-1"><tbody id="reg-hidden-body"></tbody></table>
+            </details>
+          </td>
+        `;
+        tbody.appendChild(detailsRow);
+        const hiddenBody = detailsRow.querySelector("#reg-hidden-body");
+        rest.forEach(e => hiddenBody.appendChild(makeRegRow(e)));
+      }
+    } catch (err) {
+      errEl.textContent = "Could not load registrations data: " + err.message;
       errEl.classList.remove("hidden");
     }
   })();

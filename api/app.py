@@ -239,6 +239,40 @@ def upload_luma():
         conn.close()
 
 
+# ── Luma registrations read endpoint ────────────────────────────────────────
+
+@app.route("/api/luma/events")
+def luma_events():
+    conn = get_db()
+    try:
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT
+                    event_name,
+                    event_date,
+                    in_person,
+                    online,
+                    unknown_type,
+                    total,
+                    new_unique,
+                    cumulative_unique
+                FROM luma_attendance
+                ORDER BY event_date
+            """)
+            rows = cur.fetchall()
+        return jsonify([{
+            "event_name":        r[0],
+            "event_date":        r[1].isoformat() if r[1] else None,
+            "in_person":         r[2],
+            "online":            r[3],
+            "unknown_type":      r[4],
+            "total":             r[5],
+            "new_unique":        r[6],
+            "cumulative_unique": r[7],
+        } for r in rows])
+    finally:
+        conn.close()
+
 # ── Libsyn read endpoint ─────────────────────────────────────────────────────
 
 @app.route("/api/libsyn/episodes")

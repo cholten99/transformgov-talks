@@ -116,7 +116,7 @@ def main():
             log.info("Table ready.")
 
             execute_values(cur, """
-                INSERT INTO yt_videos (video_id, title, published_at, view_count, synced_at)
+                INSERT INTO yt_videos (video_id, title, published_at, view_count)
                 VALUES %s
                 ON CONFLICT (video_id) DO UPDATE SET
                     title        = EXCLUDED.title,

@@ -20,40 +20,7 @@
         <p class="opacity-60 text-base">Upload exported data files to keep dashboard stats current.</p>
       </section>
 
-      <!-- Libsyn -->
-      <section class="p-6 md:p-8 rounded-2xl tg-bg-cell shadow">
-        <h2 class="text-2xl font-extrabold mb-1">Libsyn — Podcast Downloads</h2>
-        <p id="libsyn-status" class="text-sm opacity-60 mb-5">Checking last upload…</p>
 
-        <details class="mb-5 text-sm bg-black/5 rounded-xl p-4">
-          <summary class="cursor-pointer font-semibold select-none">How to export from Libsyn</summary>
-          <ol class="mt-3 space-y-1 list-decimal list-inside opacity-80">
-            <li>Log in to <a href="https://five.libsyn.com" target="_blank" class="underline">five.libsyn.com</a></li>
-            <li>Click <strong>Stats</strong> in the top navigation</li>
-            <li>Click the <strong>Download Report</strong> button (upper-right of the page)</li>
-            <li>Tick <strong>Downloads by Episode</strong> (at minimum) then click <strong>Export</strong></li>
-            <li>A <code>.zip</code> file downloads — upload it here, or extract the CSV inside and upload that</li>
-          </ol>
-        </details>
-
-        <div class="flex flex-col gap-3">
-          <label class="block">
-            <span class="text-sm font-semibold opacity-70">Select file (.csv or .zip)</span>
-            <input type="file" id="libsyn-file" accept=".csv,.zip"
-                   class="mt-1 block w-full text-sm file:mr-3 file:py-2 file:px-4
-                          file:rounded-lg file:border-0 file:font-semibold
-                          file:bg-[rgba(34,108,87,0.15)] file:text-[rgba(34,108,87,1)]
-                          hover:file:bg-[rgba(34,108,87,0.25)] cursor-pointer" />
-          </label>
-          <button id="libsyn-btn" disabled
-                  class="self-start px-5 py-2 rounded-xl font-bold text-white text-base
-                         bg-[rgba(34,108,87,1)] disabled:opacity-40 disabled:cursor-not-allowed
-                         hover:bg-[rgba(34,108,87,0.85)] transition-colors">
-            Upload
-          </button>
-          <p id="libsyn-result" class="text-sm hidden"></p>
-        </div>
-      </section>
 
       <!-- Luma -->
       <section class="p-6 md:p-8 rounded-2xl tg-bg-cell shadow">
@@ -96,10 +63,6 @@
   </div>
 
   <script>
-  // Enable upload buttons when files are selected
-  document.getElementById("libsyn-file").addEventListener("change", e => {
-    document.getElementById("libsyn-btn").disabled = !e.target.files.length;
-  });
   document.getElementById("luma-file").addEventListener("change", e => {
     document.getElementById("luma-btn").disabled = !e.target.files.length;
   });
@@ -109,19 +72,14 @@
     try {
       const r = await fetch("/api/upload/status");
       const s = await r.json();
-
       function fmtStatus(info, label) {
         if (!info.last_upload) return `No ${label} data uploaded yet.`;
         const d = new Date(info.last_upload).toLocaleDateString("en-GB",
           { day: "numeric", month: "short", year: "numeric" });
         return `Last uploaded: ${d} — ${info.rows} row${info.rows === 1 ? "" : "s"} loaded.`;
       }
-
-      document.getElementById("libsyn-status").textContent = fmtStatus(s.libsyn, "Libsyn");
-      document.getElementById("luma-status").textContent   = fmtStatus(s.luma,   "Luma");
-    } catch (e) {
-      // silently ignore if API not yet reachable
-    }
+      document.getElementById("luma-status").textContent = fmtStatus(s.luma, "Luma");
+    } catch (e) { /* silently ignore */ }
   })();
 
   async function doUpload(fileInputId, btnId, resultId, endpoint, successMsg) {
@@ -129,32 +87,25 @@
     const btn    = document.getElementById(btnId);
     const result = document.getElementById(resultId);
     if (!file) return;
-
     btn.disabled = true;
     btn.textContent = "Uploading…";
     result.className = "text-sm hidden";
-
     const form = new FormData();
     form.append("file", file);
-
     try {
-      const r   = await fetch(endpoint, { method: "POST", body: form });
+      const r    = await fetch(endpoint, { method: "POST", body: form });
       const data = await r.json();
       if (data.ok) {
         result.textContent = successMsg(data);
         result.className = "text-sm text-green-700";
-        // Refresh status line
         const s = await (await fetch("/api/upload/status")).json();
-        const key = endpoint.includes("libsyn") ? "libsyn" : "luma";
-        const label = endpoint.includes("libsyn") ? "Libsyn" : "Luma";
         function fmtStatus(info, lbl) {
           if (!info.last_upload) return `No ${lbl} data uploaded yet.`;
           const d = new Date(info.last_upload).toLocaleDateString("en-GB",
             { day: "numeric", month: "short", year: "numeric" });
           return `Last uploaded: ${d} — ${info.rows} row${info.rows === 1 ? "" : "s"} loaded.`;
         }
-        document.getElementById(endpoint.includes("libsyn") ? "libsyn-status" : "luma-status")
-          .textContent = fmtStatus(s[key], label);
+        document.getElementById("luma-status").textContent = fmtStatus(s.luma, "Luma");
       } else {
         result.textContent = "Error: " + (data.error || "Unknown error");
         result.className = "text-sm text-red-600";
@@ -168,12 +119,6 @@
       result.classList.remove("hidden");
     }
   }
-
-  document.getElementById("libsyn-btn").addEventListener("click", () =>
-    doUpload("libsyn-file", "libsyn-btn", "libsyn-result",
-             "/api/upload/libsyn",
-             d => `Done — ${d.episodes} episode${d.episodes === 1 ? "" : "s"} loaded.`)
-  );
 
   document.getElementById("luma-btn").addEventListener("click", () =>
     doUpload("luma-file", "luma-btn", "luma-result",

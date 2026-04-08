@@ -79,6 +79,38 @@
           </div>
         </section>
 
+      <section class="p-6 md:p-8 rounded-2xl tg-bg-cell shadow">
+        <h2 class="text-2xl font-extrabold mb-4">Podcast Downloads</h2>
+
+        <div class="flex flex-wrap gap-6 mb-6">
+          <div class="rounded-xl bg-white/70 px-6 py-4 shadow text-center min-w-[120px]">
+            <p class="text-4xl font-black" id="pod-stat-total">—</p>
+            <p class="text-sm opacity-70 mt-1">Total downloads</p>
+          </div>
+          <div class="rounded-xl bg-white/70 px-6 py-4 shadow text-center min-w-[120px]">
+            <p class="text-4xl font-black" id="pod-stat-eps">—</p>
+            <p class="text-sm opacity-70 mt-1">Episodes</p>
+          </div>
+        </div>
+
+        <div class="relative mb-6" style="height:320px">
+          <canvas id="podcast-chart"></canvas>
+        </div>
+        <p id="pod-chart-error" class="text-red-600 text-sm mt-2 hidden"></p>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="border-b border-black/10 text-left opacity-60">
+                <th class="py-2 pr-4 font-semibold">Date</th>
+                <th class="py-2 pr-4 font-semibold">Episode</th>
+                <th class="py-2 text-right font-semibold">Downloads</th>
+              </tr>
+            </thead>
+            <tbody id="pod-table-body"></tbody>
+          </table>
+        </div>
+      </section>
       </main>
 
       <!--#include virtual="/includes/footer.html" -->
@@ -263,6 +295,112 @@
         errEl.classList.remove("hidden");
       }
     })();
+
+  (async () => {
+    const errEl = document.getElementById("pod-chart-error");
+    try {
+      const resp = await fetch("/api/libsyn/episodes");
+      if (!resp.ok) throw new Error(`API returned ${resp.status}`);
+      const data = await resp.json();
+
+      const totalDl = data.reduce((s, e) => s + e.downloads, 0);
+      document.getElementById("pod-stat-total").textContent = totalDl.toLocaleString();
+      document.getElementById("pod-stat-eps").textContent   = data.length;
+
+      const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+      const labels = data.map(e => {
+        const d = new Date(e.release_date);
+        return MONTHS[d.getUTCMonth()] + " " + d.getUTCFullYear();
+      });
+
+      const ctx = document.getElementById("podcast-chart").getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels,
+          datasets: [
+            {
+              label: "Downloads",
+              data: data.map(e => e.downloads),
+              backgroundColor: "rgba(34,108,87,0.75)",
+              borderColor: "rgba(34,108,87,1)",
+              borderWidth: 1,
+              order: 2,
+            },
+            {
+              label: "Cumulative downloads",
+              data: data.map(e => e.cumulative),
+              type: "line",
+              borderColor: "rgba(34,108,87,1)",
+              backgroundColor: "rgba(34,108,87,0.1)",
+              borderWidth: 2,
+              pointRadius: 3,
+              fill: false,
+              tension: 0.3,
+              order: 1,
+              yAxisID: "y2",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: "index", intersect: false },
+          plugins: {
+            legend: { position: "top" },
+            tooltip: {
+              callbacks: { title: items => data[items[0].dataIndex].title },
+            },
+          },
+          scales: {
+            x: { grid: { display: false } },
+            y:  { title: { display: true, text: "Downloads" }, beginAtZero: true },
+            y2: { title: { display: true, text: "Cumulative" }, position: "right", beginAtZero: true, grid: { drawOnChartArea: false } },
+          },
+        },
+      });
+
+      // Table: newest first, top 2 visible, rest under twisty
+      const episodes = [...data].reverse();
+      const tbody = document.getElementById("pod-table-body");
+
+      function makePodRow(e) {
+        const d = new Date(e.release_date);
+        const dateStr = d.toLocaleDateString("en-GB", { month: "short", year: "numeric", timeZone: "UTC" });
+        const tr = document.createElement("tr");
+        tr.className = "border-b border-black/5 hover:bg-black/5";
+        tr.innerHTML = `
+          <td class="py-2 pr-4 opacity-60 whitespace-nowrap">${dateStr}</td>
+          <td class="py-2 pr-4">${e.title}</td>
+          <td class="py-2 text-right font-mono">${e.downloads}</td>
+        `;
+        return tr;
+      }
+
+      episodes.slice(0, 2).forEach(e => tbody.appendChild(makePodRow(e)));
+
+      if (episodes.length > 2) {
+        const rest = episodes.slice(2);
+        const detailsRow = document.createElement("tr");
+        detailsRow.innerHTML = `
+          <td colspan="3" class="pt-1 pb-1">
+            <details>
+              <summary class="cursor-pointer text-sm opacity-60 hover:opacity-100 select-none py-1">
+                Show ${rest.length} more episodes
+              </summary>
+              <table class="w-full mt-1"><tbody id="pod-hidden-body"></tbody></table>
+            </details>
+          </td>
+        `;
+        tbody.appendChild(detailsRow);
+        const hiddenBody = detailsRow.querySelector("#pod-hidden-body");
+        rest.forEach(e => hiddenBody.appendChild(makePodRow(e)));
+      }
+    } catch (err) {
+      errEl.textContent = "Could not load podcast data: " + err.message;
+      errEl.classList.remove("hidden");
+    }
+  })();
     </script>
 
   </body>

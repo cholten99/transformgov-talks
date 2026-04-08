@@ -40,6 +40,5 @@ jobs:
           username: ${{ secrets.SFTP_USERNAME }}
           key: ${{ secrets.SFTP_PRIVATE_KEY }}
           port: 22
-          source: "."
+          source: "*"
           target: "/var/www/transformgov-talks"
-          rm: true

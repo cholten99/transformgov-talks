@@ -218,9 +218,11 @@
           },
         });
 
-        // Table: newest first
+        // Table: newest first — top 2 visible, rest under twisty
+        const videos = [...data].reverse();
         const tbody = document.getElementById("yt-table-body");
-        [...data].reverse().forEach(v => {
+
+        function makeRow(v) {
           const d = new Date(v.published_at);
           const dateStr = d.toLocaleDateString("en-GB", { month: "short", year: "numeric", timeZone: "UTC" });
           const tr = document.createElement("tr");
@@ -234,8 +236,28 @@
             </td>
             <td class="py-2 text-right font-mono">${v.view_count.toLocaleString()}</td>
           `;
-          tbody.appendChild(tr);
-        });
+          return tr;
+        }
+
+        videos.slice(0, 2).forEach(v => tbody.appendChild(makeRow(v)));
+
+        if (videos.length > 2) {
+          const rest = videos.slice(2);
+          const detailsRow = document.createElement("tr");
+          detailsRow.innerHTML = `
+            <td colspan="3" class="pt-1 pb-1">
+              <details>
+                <summary class="cursor-pointer text-sm opacity-60 hover:opacity-100 select-none py-1">
+                  Show ${rest.length} more videos
+                </summary>
+                <table class="w-full mt-1"><tbody id="yt-hidden-body"></tbody></table>
+              </details>
+            </td>
+          `;
+          tbody.appendChild(detailsRow);
+          const hiddenBody = detailsRow.querySelector("#yt-hidden-body");
+          rest.forEach(v => hiddenBody.appendChild(makeRow(v)));
+        }
       } catch (err) {
         errEl.textContent = "Could not load YouTube data: " + err.message;
         errEl.classList.remove("hidden");

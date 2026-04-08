@@ -18,7 +18,6 @@
 
         <section class="p-6 md:p-8 rounded-2xl tg-bg-cell shadow">
           <h1 class="text-3xl font-extrabold mb-1">Dashboard</h1>
-          <p class="opacity-60 text-base">Internal overview — not linked from the main site.</p>
         </section>
 
         <section class="p-6 md:p-8 rounded-2xl tg-bg-cell shadow">
@@ -311,20 +310,25 @@
 
         if (videos.length > 2) {
           const rest = videos.slice(2);
-          const detailsRow = document.createElement("tr");
-          detailsRow.innerHTML = `
-            <td colspan="3" class="pt-1 pb-1">
-              <details>
-                <summary class="cursor-pointer text-sm opacity-60 hover:opacity-100 select-none py-1">
-                  Show ${rest.length} more videos
-                </summary>
-                <table class="w-full mt-1"><tbody id="yt-hidden-body"></tbody></table>
-              </details>
-            </td>
-          `;
-          tbody.appendChild(detailsRow);
-          const hiddenBody = detailsRow.querySelector("#yt-hidden-body");
-          rest.forEach(v => hiddenBody.appendChild(makeRow(v)));
+          const hiddenRows = rest.map(v => {
+            const tr = makeRow(v);
+            tr.classList.add("hidden");
+            tbody.appendChild(tr);
+            return tr;
+          });
+          const toggleRow = document.createElement("tr");
+          toggleRow.innerHTML = `<td colspan="3" class="pt-1 pb-2">
+            <button class="text-sm opacity-60 hover:opacity-100 py-1 cursor-pointer bg-transparent border-0 p-0" id="yt-toggle">
+              ▶ Show ${rest.length} more videos
+            </button></td>`;
+          tbody.appendChild(toggleRow);
+          let ytExpanded = false;
+          toggleRow.querySelector("#yt-toggle").addEventListener("click", () => {
+            ytExpanded = !ytExpanded;
+            hiddenRows.forEach(tr => tr.classList.toggle("hidden", !ytExpanded));
+            toggleRow.querySelector("#yt-toggle").textContent =
+              ytExpanded ? `▼ Show fewer videos` : `▶ Show ${rest.length} more videos`;
+          });
         }
       } catch (err) {
         errEl.textContent = "Could not load YouTube data: " + err.message;
@@ -417,20 +421,25 @@
 
       if (episodes.length > 2) {
         const rest = episodes.slice(2);
-        const detailsRow = document.createElement("tr");
-        detailsRow.innerHTML = `
-          <td colspan="3" class="pt-1 pb-1">
-            <details>
-              <summary class="cursor-pointer text-sm opacity-60 hover:opacity-100 select-none py-1">
-                Show ${rest.length} more episodes
-              </summary>
-              <table class="w-full mt-1"><tbody id="pod-hidden-body"></tbody></table>
-            </details>
-          </td>
-        `;
-        tbody.appendChild(detailsRow);
-        const hiddenBody = detailsRow.querySelector("#pod-hidden-body");
-        rest.forEach(e => hiddenBody.appendChild(makePodRow(e)));
+        const hiddenRows = rest.map(e => {
+          const tr = makePodRow(e);
+          tr.classList.add("hidden");
+          tbody.appendChild(tr);
+          return tr;
+        });
+        const toggleRow = document.createElement("tr");
+        toggleRow.innerHTML = `<td colspan="3" class="pt-1 pb-2">
+          <button class="text-sm opacity-60 hover:opacity-100 py-1 cursor-pointer bg-transparent border-0 p-0" id="pod-toggle">
+            ▶ Show ${rest.length} more episodes
+          </button></td>`;
+        tbody.appendChild(toggleRow);
+        let podExpanded = false;
+        toggleRow.querySelector("#pod-toggle").addEventListener("click", () => {
+          podExpanded = !podExpanded;
+          hiddenRows.forEach(tr => tr.classList.toggle("hidden", !podExpanded));
+          toggleRow.querySelector("#pod-toggle").textContent =
+            podExpanded ? `▼ Show fewer episodes` : `▶ Show ${rest.length} more episodes`;
+        });
       }
     } catch (err) {
       errEl.textContent = "Could not load podcast data: " + err.message;
@@ -542,20 +551,25 @@
 
       if (events.length > 3) {
         const rest = events.slice(3);
-        const detailsRow = document.createElement("tr");
-        detailsRow.innerHTML = `
-          <td colspan="7" class="pt-1 pb-1">
-            <details>
-              <summary class="cursor-pointer text-sm opacity-60 hover:opacity-100 select-none py-1">
-                Show ${rest.length} more events
-              </summary>
-              <table class="w-full mt-1"><tbody id="reg-hidden-body"></tbody></table>
-            </details>
-          </td>
-        `;
-        tbody.appendChild(detailsRow);
-        const hiddenBody = detailsRow.querySelector("#reg-hidden-body");
-        rest.forEach(e => hiddenBody.appendChild(makeRegRow(e)));
+        const hiddenRows = rest.map(e => {
+          const tr = makeRegRow(e);
+          tr.classList.add("hidden");
+          tbody.appendChild(tr);
+          return tr;
+        });
+        const toggleRow = document.createElement("tr");
+        toggleRow.innerHTML = `<td colspan="7" class="pt-1 pb-2">
+          <button class="text-sm opacity-60 hover:opacity-100 py-1 cursor-pointer bg-transparent border-0 p-0" id="reg-toggle">
+            ▶ Show ${rest.length} more events
+          </button></td>`;
+        tbody.appendChild(toggleRow);
+        let regExpanded = false;
+        toggleRow.querySelector("#reg-toggle").addEventListener("click", () => {
+          regExpanded = !regExpanded;
+          hiddenRows.forEach(tr => tr.classList.toggle("hidden", !regExpanded));
+          toggleRow.querySelector("#reg-toggle").textContent =
+            regExpanded ? `▼ Show fewer events` : `▶ Show ${rest.length} more events`;
+        });
       }
     } catch (err) {
       errEl.textContent = "Could not load registrations data: " + err.message;

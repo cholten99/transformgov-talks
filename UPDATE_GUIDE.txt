@@ -1,0 +1,41 @@
+HOW TO UPDATE THE DASHBOARD AFTER EACH TGT EVENT
+=================================================
+
+There are four data sources. Do all four after each event.
+
+
+1. REGISTRATIONS (Luma)
+-----------------------
+- In Lu.ma, go to the event → Guests → Export (download the CSV)
+- Give the CSV to Claude and say:
+  "Please add this Luma event to the database. Event name: [e.g. May 2026], date: [e.g. 2026-05-20]"
+- Claude will upload it to the API and the dashboard will update.
+
+
+2. PODCAST DOWNLOADS (Libsyn)
+------------------------------
+- In Libsyn, go to Reports → Episode Downloads and export as CSV or ZIP
+- Drop the file into this folder and tell Claude:
+  "Please update the podcast data from [filename]"
+- Claude will load it into the database.
+
+
+3. MAILING LIST (Kit)
+----------------------
+- No file needed. Just tell Claude:
+  "Please sync the Kit mailing list"
+- Claude will SSH into the server and run sync_kit.py.
+
+
+4. YOUTUBE
+----------
+- No file needed. Just tell Claude:
+  "Please sync YouTube"
+- Claude will SSH into the server and run sync_youtube.py.
+
+
+NOTES
+-----
+- Delete any exported CSV/ZIP files from this folder after use —
+  they contain email addresses and should not be committed to the repo.
+- Kit and YouTube can be synced any time, not just after events.

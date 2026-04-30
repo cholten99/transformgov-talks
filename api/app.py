@@ -6,6 +6,7 @@ import zipfile
 from pathlib import Path
 from flask import Flask, jsonify, request
 import psycopg2
+import psycopg2.extras
 from dotenv import load_dotenv
 
 load_dotenv(Path(__file__).parent.parent / ".env")
@@ -186,55 +187,102 @@ def upload_libsyn():
 
 # ── Luma upload ──────────────────────────────────────────────────────────────
 
+CREATE_LUMA_GUESTS = """
+CREATE TABLE IF NOT EXISTS luma_guests (
+    id          SERIAL PRIMARY KEY,
+    event_id    INT  NOT NULL REFERENCES luma_attendance(id) ON DELETE CASCADE,
+    email       TEXT NOT NULL,
+    ticket_name TEXT
+);
+CREATE INDEX IF NOT EXISTS luma_guests_email_idx ON luma_guests(email);
+"""
+
+
+def _parse_luma_csv(text):
+    """Return list of dicts with email and ticket_name for every row in a Lu.ma guest CSV."""
+    rows = parse_csv_text(text)
+    if not rows or len(rows) < 2:
+        return []
+    headers = rows[0]
+    email_col  = find_col(headers, "email")
+    ticket_col = find_col(headers, "ticket_name", "ticket name", "ticket")
+    guests = []
+    for row in rows[1:]:
+        email = row[email_col].strip().lower() if email_col is not None and len(row) > email_col else ""
+        ticket = row[ticket_col].strip() if ticket_col is not None and len(row) > ticket_col else ""
+        if email:
+            guests.append({"email": email, "ticket_name": ticket})
+    return guests
+
+
 @app.route("/api/upload/luma", methods=["POST"])
 def upload_luma():
+    """
+    Accept a single Lu.ma guest-list CSV for one event.
+    Form fields required alongside the file:
+      event_name  – e.g. "May 2026"
+      event_date  – ISO date, e.g. "2026-05-20"
+    """
     if "file" not in request.files:
         return jsonify({"error": "No file provided"}), 400
-    f = request.files["file"]
-    text = f.read().decode("utf-8-sig", errors="replace")
-    rows = parse_csv_text(text)
 
-    if not rows or len(rows) < 2:
-        return jsonify({"error": "CSV appears empty"}), 400
+    event_name = request.form.get("event_name", "").strip()
+    event_date = request.form.get("event_date", "").strip() or None
+    if not event_name:
+        return jsonify({"error": "event_name form field is required"}), 400
 
-    headers = rows[0]
-    event_col = find_col(headers, "event name", "event", "session", "talk")
-    date_col  = find_col(headers, "event start", "event date", "date", "start")
+    text = request.files["file"].read().decode("utf-8-sig", errors="replace")
+    guests = _parse_luma_csv(text)
+    if not guests:
+        return jsonify({"error": "No guest rows found in CSV"}), 400
 
-    if event_col is None:
-        return jsonify({
-            "error": "Could not identify event name column",
-            "headers_found": headers
-        }), 400
-
-    # Count attendees per event
-    from collections import defaultdict
-    counts  = defaultdict(int)
-    dates   = {}
-    for row in rows[1:]:
-        if len(row) <= event_col:
-            continue
-        name = row[event_col].strip()
-        if not name:
-            continue
-        counts[name] += 1
-        if date_col is not None and len(row) > date_col and name not in dates:
-            dates[name] = row[date_col].strip()[:10] or None
-
-    if not counts:
-        return jsonify({"error": "No valid attendee rows found"}), 400
+    in_person = sum(1 for g in guests if g["ticket_name"].lower() == "in person")
+    online    = sum(1 for g in guests if g["ticket_name"].lower() == "online")
+    unknown   = len(guests) - in_person - online
+    total     = len(guests)
+    new_emails = {g["email"] for g in guests}
 
     conn = get_db()
     try:
         with conn.cursor() as cur:
+            # Ensure tables exist
             cur.execute(CREATE_LUMA)
-            cur.execute("DELETE FROM luma_attendance")
-            cur.executemany(
-                "INSERT INTO luma_attendance (event_name, event_date, attendees) VALUES (%s, %s, %s)",
-                [(name, dates.get(name), count) for name, count in counts.items()]
+            cur.execute(CREATE_LUMA_GUESTS)
+
+            # Calculate new_unique against all previously seen emails
+            cur.execute("SELECT email FROM luma_guests")
+            seen_emails = {r[0] for r in cur.fetchall()}
+            new_unique = len(new_emails - seen_emails)
+
+            cur.execute("SELECT COALESCE(MAX(cumulative_unique), 0) FROM luma_attendance")
+            prev_cumulative = cur.fetchone()[0]
+            cumulative_unique = prev_cumulative + new_unique
+
+            cur.execute("""
+                INSERT INTO luma_attendance
+                    (event_name, event_date, in_person, online, unknown_type,
+                     total, new_unique, cumulative_unique)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                RETURNING id
+            """, (event_name, event_date, in_person, online, unknown,
+                  total, new_unique, cumulative_unique))
+            event_id = cur.fetchone()[0]
+
+            psycopg2.extras.execute_values(cur,
+                "INSERT INTO luma_guests (event_id, email, ticket_name) VALUES %s",
+                [(event_id, g["email"], g["ticket_name"]) for g in guests]
             )
             conn.commit()
-        return jsonify({"ok": True, "events": len(counts)})
+        return jsonify({
+            "ok": True,
+            "event_name": event_name,
+            "total": total,
+            "in_person": in_person,
+            "online": online,
+            "unknown": unknown,
+            "new_unique": new_unique,
+            "cumulative_unique": cumulative_unique,
+        })
     finally:
         conn.close()
 

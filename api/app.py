@@ -205,7 +205,7 @@ def _parse_luma_csv(text):
         return []
     headers = rows[0]
     email_col  = find_col(headers, "email")
-    ticket_col = find_col(headers, "ticket_name", "ticket name", "ticket")
+    ticket_col = find_col(headers, "ticket_name", "ticket name", "ticket", "type")
     guests = []
     for row in rows[1:]:
         email = row[email_col].strip().lower() if email_col is not None and len(row) > email_col else ""

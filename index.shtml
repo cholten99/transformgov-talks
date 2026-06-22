@@ -45,16 +45,16 @@
       <aside class="h-full flex flex-col gap-2">
         <!-- Let the top card take remaining space -->
         <section class="p-4 space-y-2 rounded-lg tg-bg-cell flex-1 min-h-0">
-          <h2 class="text-xl font-bold">Our June event!</h2>
+          <h2 class="text-xl font-bold">Our June event — cancelled</h2>
+          <p class="mt-2">Unfortunately our June event (Wednesday 24th June) has been cancelled due to extreme heat predicted in central London on that day. We hope to see you at our <span class="font-bold">July event</span>!</p>
+          <h2 class="text-xl font-bold mt-4">Our July event!</h2>
           <ul class="list-disc pl-6 space-y-1">
-            <li>Paul Drechsler, lead non-executive board member, Department for Business and Trade, on 'The Power and Potential of Great Government-Business Engagement'</li>
-            <li>Another excellent speaker to be announced soon!</li>
+            <li>Charlie Browne and Michael Kibedi, UK Parliament, on 'Beyond and Between Our Screens: how design ethnography is informing the evolution of Hansard's technology'</li>
+            <li>Another exciting presentation to be announced soon!</li>
           </ul>
-          <p class="mt-2">Join us on <span class="font-bold">Wednesday 24th June</span> at <span class="font-bold">the MoJ in Petty France</span>.</p>
-          <p class="mt-2"><a href="https://meet.google.com/uxj-ckeb-vpr?utm_source=luma" target="_blank" class="underline underline-offset-2 hover:underline-offset-4">
-          The event will be streamed here.</a></p>
+          <p class="mt-2">Join us on <span class="font-bold">Wednesday 29th July</span> at <span class="font-bold">the MoJ in Petty France</span>.</p>
           <a
-            href="https://luma.com/yl6zvj1h"
+            href="https://luma.com/5ux09nfv"
             target="_blank"
             rel="noopener"
             class="inline-flex items-center gap-2 rounded-md tg-bg-ourgreen px-4 py-2 text-white

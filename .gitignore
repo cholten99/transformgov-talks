@@ -1,6 +1,5 @@
 .env
-  .DS_Store
-  __pycache__/
-  *.pyc
-  *.pyo
-  
+.venv/
+__pycache__/
+private/luma_emails.json
+data/

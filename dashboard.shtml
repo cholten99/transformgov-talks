@@ -155,7 +155,7 @@
     (async () => {
       const errEl = document.getElementById("chart-error");
       try {
-        const resp = await fetch("/api/subscribers/monthly");
+        const resp = await fetch("/data/subscribers.json");
         if (!resp.ok) throw new Error(`API returned ${resp.status}`);
         const data = await resp.json();
 
@@ -221,7 +221,7 @@
     (async () => {
       const errEl = document.getElementById("yt-chart-error");
       try {
-        const resp = await fetch("/api/youtube/videos");
+        const resp = await fetch("/data/videos.json");
         if (!resp.ok) throw new Error(`API returned ${resp.status}`);
         const data = await resp.json();
 
@@ -339,7 +339,7 @@
   (async () => {
     const errEl = document.getElementById("pod-chart-error");
     try {
-      const resp = await fetch("/api/libsyn/episodes");
+      const resp = await fetch("/data/libsyn.json");
       if (!resp.ok) throw new Error(`API returned ${resp.status}`);
       const data = await resp.json();
 
@@ -450,7 +450,7 @@
   (async () => {
     const errEl = document.getElementById("reg-chart-error");
     try {
-      const resp = await fetch("/api/luma/events");
+      const resp = await fetch("/data/luma.json");
       if (!resp.ok) throw new Error(`API returned ${resp.status}`);
       const data = await resp.json();
 

@@ -26,13 +26,13 @@
             We provide a space to meet for people who care about making government work better, whether they're inside or outside the public sector.
           </p>
           <p class="mt-2">
-            Each monthly meet-up features presentations and discussions about innovation in the public sector or great examples of impactful delivery of policy or services. This is followed by plenty of time to chat after — with free pizza! 🍕🍕🍕
+            Each monthly meet-up features presentations and discussions about innovation in the public sector or great examples of impactful delivery of policy or services. This is followed by plenty of time to chat after — with free pizza! <span class="whitespace-nowrap">🍕🍕🍕</span>
           </p>
           <p class="mt-2">
             <a href="https://transformgov-talks.kit.com/b6dac7cdd5" target="_blank" class="underline underline-offset-2 hover:underline-offset-4">
               Sign up to our newsletter
             </a>
-            or social media (see links above) ☝️ !
+            or social media (see links above) ☝️!
           </p>
           <p>
 <!--            <img class="pt-4" src="https://www.transformgov.org.uk/images/speaker.jpg" alt="Photo of TGT speaker"> -->
@@ -68,8 +68,9 @@
 
         <section class="p-4 rounded-lg tg-bg-cell">
           <h2 class="text-xl font-bold">Watch our latest video</h2>
-          <!-- Responsive iframe so it doesn't force weird sizing -->
-<iframe width="560" height="315" src="https://www.youtube.com/embed/-IuH5tA2WPo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div class="mt-2 w-full aspect-video">
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/-IuH5tA2WPo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
         </section>
       </aside>
 
@@ -79,7 +80,7 @@
           <h2 class="text-xl font-bold">Kindly sponsored by</h2>
 
           <!-- Wrap on mobile; prevent squishing; keep proportions; square corners -->
-          <div class="mt-2 flex flex-wrap items-center justify-center gap-4">
+          <div class="mt-2 grid grid-cols-2 md:grid-cols-4 gap-4 items-center justify-items-center">
             <a href="https://www.anmut.co.uk/" target="_blank" rel="noopener">
               <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="images/sponsors/Ammut.png" alt="Anmut" loading="lazy">
             </a>
@@ -102,7 +103,7 @@
               <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="/images/sponsors/Ceva.png" alt="Ceva Global" loading="lazy">
             </a>
             <a href="https://sotf.org.uk/" target="_blank" rel="noopener">
-              <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="/images/sponsors/SotF.png" alt="State of Flux" loading="lazy">
+              <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="/images/sponsors/SotF.png" alt="State of the Future" loading="lazy">
             </a>
             <a href="https://agile.co.uk/" target="_blank" rel="noopener">
               <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="/images/sponsors/Agile.png" alt="Agile" loading="lazy">

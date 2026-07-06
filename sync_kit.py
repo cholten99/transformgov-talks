@@ -3,17 +3,16 @@
 sync_kit.py — Fetch Kit mailing list subscribers and write data/subscribers.json.
 Usage: python3 sync_kit.py
 """
-import os, json, logging
+import json, logging
 from pathlib import Path
 from collections import defaultdict
 import requests
-from dotenv import load_dotenv
 
-load_dotenv(Path(__file__).parent / ".env")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s: %(message)s")
 log = logging.getLogger(__name__)
 
-KIT_API_KEY = os.getenv("KIT_API_KEY")
+_secret_path = Path("/home/dave/secrets/transformgov_talks_kit_api_key")
+KIT_API_KEY = _secret_path.read_text().strip() if _secret_path.exists() else None
 KIT_BASE    = "https://api.kit.com/v4"
 HEADERS     = {"X-Kit-Api-Key": KIT_API_KEY, "Accept": "application/json"}
 DATA_FILE   = Path(__file__).parent / "data" / "subscribers.json"
@@ -42,7 +41,7 @@ def fetch_subscribers():
 
 def main():
     if not KIT_API_KEY:
-        log.error("KIT_API_KEY not set — check .env")
+        log.error("transformgov_talks_kit_api_key not set — check /home/dave/secrets/")
         raise SystemExit(1)
 
     monthly = defaultdict(int)

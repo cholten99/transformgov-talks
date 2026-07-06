@@ -3,16 +3,15 @@
 sync_youtube.py — Fetch YouTube channel stats and write data/videos.json.
 Usage: python3 sync_youtube.py
 """
-import os, json, logging
+import json, logging
 from pathlib import Path
 import requests
-from dotenv import load_dotenv
 
-load_dotenv(Path(__file__).parent / ".env")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-API_KEY    = os.getenv("YOUTUBE_API_KEY")
+_secret_path = Path("/home/dave/secrets/transformgov_talks_youtube_api_key")
+API_KEY    = _secret_path.read_text().strip() if _secret_path.exists() else None
 CHANNEL_ID = "UCW9P8NYWUYRaGfArX-7jiMQ"
 BASE_URL   = "https://www.googleapis.com/youtube/v3"
 DATA_FILE  = Path(__file__).parent / "data" / "videos.json"
@@ -56,7 +55,7 @@ def get_video_details(video_ids):
 
 def main():
     if not API_KEY:
-        log.error("YOUTUBE_API_KEY not set — check .env")
+        log.error("transformgov_talks_youtube_api_key not set — check /home/dave/secrets/")
         raise SystemExit(1)
 
     log.info("Fetching uploads playlist...")

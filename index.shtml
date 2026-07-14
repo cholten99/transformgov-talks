@@ -45,9 +45,7 @@
       <aside class="h-full flex flex-col gap-2">
         <!-- Let the top card take remaining space -->
         <section class="p-4 space-y-2 rounded-lg tg-bg-cell flex-1 min-h-0">
-          <h2 class="text-xl font-bold">Our June event — cancelled</h2>
-          <p class="mt-2">Unfortunately our June event (Wednesday 24th June) has been cancelled due to extreme heat predicted in central London on that day. We hope to see you at our <span class="font-bold">July event</span>!</p>
-          <h2 class="text-xl font-bold mt-4">Our July event!</h2>
+          <h2 class="text-xl font-bold">Our July event!</h2>
           <ul class="list-disc pl-6 space-y-1">
             <li>Charlie Browne and Michael Kibedi, UK Parliament, on 'Beyond and Between Our Screens: how design ethnography is informing the evolution of Hansard's technology'</li>
             <li>Katie Thorpe, Learning Consultant and Senior Fellow at the Institute for Government, on "Churn!" - a board game about making good policy against the odds</li>

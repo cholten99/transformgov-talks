@@ -15,6 +15,37 @@
       <!-- header spans both on desktop; full-width on mobile -->
       <!--#include virtual="/includes/header.html" -->
 
+      <!-- Scotland event banner; spans both on desktop; full-width on mobile -->
+      <section class="md:col-span-2">
+        <section class="p-4 rounded-lg tg-bg-cell">
+          <article class="flex flex-col md:flex-row items-center gap-6">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/1/10/Flag_of_Scotland.svg"
+              alt="Flag of Scotland"
+              class="w-24 md:w-32 shrink-0"
+            >
+            <div class="space-y-2">
+              <h2 class="text-xl font-bold">TransformGov Talks Scotland</h2>
+              <p>
+                Taking place at the <span class="font-bold">Palace of Holyroodhouse, Edinburgh</span> on
+                <span class="font-bold">Tuesday 22 September</span>, <span class="font-bold">18:00 - 19:30</span>.
+              </p>
+              <a
+                href="https://luma.com/a9ubumzh"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-md tg-bg-ourgreen px-4 py-2 text-white
+                       font-medium shadow hover:bg-red-400
+                       focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2
+                       disabled:opacity-50 disabled:cursor-not-allowed transition"
+              >
+                Register to watch the live stream
+              </a>
+            </div>
+          </article>
+        </section>
+      </section>
+
       <!-- LHS column -->
       <main class="h-full flex flex-col gap-2">
         <!-- Make this card flex to fill the column height on desktop -->

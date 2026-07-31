@@ -15,6 +15,37 @@
       <!-- header spans both on desktop; full-width on mobile -->
       <!--#include virtual="/includes/header.html" -->
 
+      <!-- Cymru event banner; spans both on desktop; full-width on mobile -->
+      <section class="md:col-span-2">
+        <section class="p-4 rounded-lg tg-bg-cell">
+          <article class="flex flex-col md:flex-row items-center gap-6">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Flag_of_Wales.svg"
+              alt="Flag of Wales"
+              class="w-24 md:w-32 shrink-0"
+            >
+            <div class="space-y-2">
+              <h2 class="text-xl font-bold">TransformGov Talks Cymru</h2>
+              <p>
+                Taking place at <span class="font-bold">The Bike Lock Ltd, Cardiff, Wales</span> on
+                <span class="font-bold">Thursday 17 September</span>, <span class="font-bold">18:00 - 19:00</span>.
+              </p>
+              <a
+                href="https://luma.com/gaq6niit"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-md tg-bg-ourgreen px-4 py-2 text-white
+                       font-medium shadow hover:bg-red-400
+                       focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2
+                       disabled:opacity-50 disabled:cursor-not-allowed transition"
+              >
+                Register to attend or watch online
+              </a>
+            </div>
+          </article>
+        </section>
+      </section>
+
       <!-- Scotland event banner; spans both on desktop; full-width on mobile -->
       <section class="md:col-span-2">
         <section class="p-4 rounded-lg tg-bg-cell">

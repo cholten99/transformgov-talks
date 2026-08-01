@@ -21,6 +21,20 @@
           <h1 class="text-2xl font-extrabold">Previous Events</h1>
           <ul class="list-disc pl-6 space-y-1">
 
+            <li>July 2026</li>
+
+              <ul class="list-disc pl-6 space-y-1">
+
+                <li>Charlie Browne, Managing Editor: Hansard, UK Parliament (House of Commons) and Michael Kibedi, User Researcher, UK Parliament (Digital Service), on Beyond and Between Our Screens - how design ethnography is informing the evolution of Hansard's technology</li>
+
+                <li>Katie Thorpe, Learning Consultant and Senior Fellow at the Institute for Government, on "Churn!" - a board game about making good policy against the odds</li>
+
+
+                <li><a href="https://medium.com/@transformgovtalks/july-2026-write-up-53a609e2ec5c" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Blog</a>, <a href="https://youtu.be/V1uDuOPr5NU" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">YouTube</a> and <a href="https://open.spotify.com/episode/6XaYk1Uqd62Vjtnc5hACEp?si=yrHb_knsShWNhE1NjqzFew" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Spotify</a>.</li>
+
+              </ul>
+
+
             <li>May 2026</li>
 
               <ul class="list-disc pl-6 space-y-1">

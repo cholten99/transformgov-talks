@@ -1,4 +1,12 @@
 events:
+- month: July 2026
+  items:
+  - 'Charlie Browne, Managing Editor: Hansard, UK Parliament (House of Commons) and Michael Kibedi, User Researcher, UK Parliament (Digital Service), on Beyond and Between Our Screens - how design ethnography is informing the evolution of Hansard''s technology'
+  - Katie Thorpe, Learning Consultant and Senior Fellow at the Institute for Government, on "Churn!" - a board game about making good policy against the odds
+  links:
+    blog: https://medium.com/@transformgovtalks/july-2026-write-up-53a609e2ec5c
+    youtube: https://youtu.be/V1uDuOPr5NU
+    spotify: https://open.spotify.com/episode/6XaYk1Uqd62Vjtnc5hACEp?si=yrHb_knsShWNhE1NjqzFew
 - month: May 2026
   items:
   - Caitlin Wakeford, Product Manager, LNER, on Fancy Sketches - How to use AI to prototype quickly, centre the user and not get stuck in magical thinking

@@ -22,19 +22,29 @@ Claude will copy the CSV to the server and run:
 Then delete the CSV — it contains email addresses.
 
 
-STEP 2: PODCAST DOWNLOADS (Libsyn)
-------------------------------------
-Export from Libsyn:
-  Libsyn → Reports → Episode Downloads → Export (CSV or ZIP)
+STEP 2: PODCAST DOWNLOADS (self-hosted, automatic)
+-----------------------------------------------------
+As of 2026-08-10 the show is self-hosted at podcast-feed.transformgov.org.uk
+instead of Libsyn, so there's no CSV to export any more — nothing to do
+here. Two cron jobs on the server keep data/libsyn.json up to date on their
+own, in order, every morning:
 
-Give the file to Claude and say:
-  "Please update the podcast data from [filename]"
+  06:45 UTC  generator/count_listens.py   (in the podcast-host repo)
+             counts each episode's listens from Apache's own access logs.
+  07:00 UTC  sync_podcast_host.py         (in this repo)
+             adds those listens on top of the frozen pre-migration Libsyn
+             totals in data/libsyn_baseline.json (a one-time snapshot,
+             never regenerated) and writes data/libsyn.json.
 
-Claude will copy the file to the server and run:
-  python3 sync_libsyn.py --file <filename>
+If you need fresher numbers than the next morning's cron run, tell Claude:
+  "Please sync the podcast downloads"
 
-This replaces all podcast data each time (Libsyn totals update over time).
-Then delete the file.
+Claude will run:
+  python3 sync_podcast_host.py
+
+(The old sync_libsyn.py script, which parsed a manually-exported Libsyn CSV,
+was removed 2026-08-10 — it only mattered while episodes were hosted on
+Libsyn.)
 
 
 STEP 3: MAILING LIST (Kit)
@@ -94,7 +104,7 @@ writes a JSON file that the dashboard reads directly in the browser:
 
   data/subscribers.json  ← Kit mailing list      (sync_kit.py)
   data/videos.json       ← YouTube stats         (sync_youtube.py)
-  data/libsyn.json       ← Podcast downloads     (sync_libsyn.py)
+  data/libsyn.json       ← Podcast downloads     (sync_podcast_host.py, cron'd daily)
   data/luma.json         ← Event registrations   (sync_luma.py)
 
 The private/ directory holds all past Luma guest emails for tracking

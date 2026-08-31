@@ -107,16 +107,21 @@
       <aside class="h-full flex flex-col gap-2">
         <!-- Let the top card take remaining space -->
         <section class="p-4 space-y-2 rounded-lg tg-bg-cell flex-1 min-h-0 flex flex-col justify-evenly">
-          <h2 class="text-xl font-bold">Our August event!</h2>
+          <h2 class="text-xl font-bold">Our September event!</h2>
           <p class="mt-2">
-            In a break from our usual programming, join us for a casual evening down the pub, socialising with fellow public sector reformers.
+            Join us on <span class="font-bold">30th September</span> at <span class="font-bold">6pm</span> for presentations, hosted by <span class="font-bold">Gavin Freeguard</span>, Director, State of the Future.
           </p>
           <p class="mt-2">
-            (No free pizza or drinks this month, you'll need to buy your own!)
+            <span class="font-bold">Riz Parveen</span>, Department for Work and Pensions, on the skills machinery of government change from DfE to DWP
           </p>
-          <p class="mt-2">Join us at <span class="font-bold">Buckingham Arms, 62 Petty France, London SW1H 9EU, UK</span> from <span class="font-bold">6pm to 7pm</span>.</p>
+          <p class="mt-2">
+            <span class="font-bold">Julia Finch</span>, Director of Athene Leadership, on 'Eggs in One Basket: Strategic Risk in an Age of Volatility'
+          </p>
+          <p class="mt-2">
+            The event will be streamed <a href="https://meet.google.com/uxj-ckeb-vpr" target="_blank" rel="noopener" class="underline">here</a>, followed by pizza, drinks and an opportunity to meet fellow government transformers.
+          </p>
           <a
-            href="https://luma.com/c0n132i7"
+            href="https://luma.com/bm1xsbsv"
             target="_blank"
             rel="noopener"
             class="inline-flex items-center gap-2 rounded-md tg-bg-ourgreen px-4 py-2 text-white

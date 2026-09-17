@@ -1,4 +1,13 @@
 events:
+- month: 'September 2026 — TransformGov Talks Cymru (The Bike Lock Ltd, Cardiff, Wales)'
+  items:
+  - 'Catherine Elms and Neil Butt, Welsh Revenue Authority, on their user-centred approach to designing the visitor accommodation register.'
+  - 'Lee Williams and Rebecca Morales-Reeves, Shared Resource Service, on how they''ve been ''Giving Council Tax a 21st Century Facelift''.'
+  - 'Jo Carter and Dafydd Vaughan, Transform Wales, on the conditions Wales needs to make digital transformation possible.'
+  links:
+    blog: https://medium.com/@transformgovtalks/tgt-cymru-transformgov-talks-x-transform-wales-september-2026-127778fea567?sharedUserId=transformgovtalks
+    youtube: https://youtu.be/Z2x2qCZCxa8
+    spotify: https://open.spotify.com/episode/2koWU72adzrjcqAGBRVO23?si=Z1XBdm8-R-WCQH57LuqhNQ
 - month: July 2026
   items:
   - 'Charlie Browne, Managing Editor: Hansard, UK Parliament (House of Commons) and Michael Kibedi, User Researcher, UK Parliament (Digital Service), on Beyond and Between Our Screens - how design ethnography is informing the evolution of Hansard''s technology (<a href="https://www.transformgov.org.uk/resources/2026-07-hansard-beyond-and-between-our-screens.pdf" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">slides</a>)'

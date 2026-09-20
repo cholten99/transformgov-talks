@@ -46,6 +46,23 @@
         </section>
       </section>
 
+      <!-- Related events; compact strip, spans both on desktop; full-width on mobile -->
+      <section class="md:col-span-2">
+        <section class="p-3 rounded-lg tg-bg-cell text-base">
+          <h2 class="font-bold inline">Related events:</h2>
+          <span class="ml-1">
+            <a href="https://policycamp.org.uk/" target="_blank" rel="noopener" class="underline underline-offset-2 hover:underline-offset-4">Policy Camp</a> ·
+            <a href="https://nationalconversations.org/" target="_blank" rel="noopener" class="underline underline-offset-2 hover:underline-offset-4">National Conversations</a> ·
+            <a href="https://civicpunks.com/" target="_blank" rel="noopener" class="underline underline-offset-2 hover:underline-offset-4">Civic Punks</a> ·
+            <a href="https://public.digital/data-bites-series" target="_blank" rel="noopener" class="underline underline-offset-2 hover:underline-offset-4">Data Bites</a> ·
+            <a href="https://www.thinkdigitalpartners.com/" target="_blank" rel="noopener" class="underline underline-offset-2 hover:underline-offset-4">Think Digital conferences</a> ·
+            <a href="https://www.nationalstrategy.uk/" target="_blank" rel="noopener" class="underline underline-offset-2 hover:underline-offset-4">The National Strategy Project</a> ·
+            <a href="https://www.govcamp.scot/" target="_blank" rel="noopener" class="underline underline-offset-2 hover:underline-offset-4">GovCamp Scotland</a> (21 Sep) ·
+            <a href="https://www.govcamp.cymru/" target="_blank" rel="noopener" class="underline underline-offset-2 hover:underline-offset-4">GovCamp Cymru</a> (6 Nov)
+          </span>
+        </section>
+      </section>
+
       <!-- LHS column -->
       <main class="h-full flex flex-col gap-2">
         <!-- Make this card flex to fill the column height on desktop -->

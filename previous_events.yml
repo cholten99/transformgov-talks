@@ -1,4 +1,12 @@
 events:
+- month: 'September 2026 — TransformGov Talks Scotland (Palace of Holyroodhouse, Edinburgh)'
+  items:
+  - 'Gordon Guthrie on his research project, Foundations of the Digital State, examining the role of parliament and government in creating and coordinating state digital systems.'
+  - 'Ann Kempster and Dafydd Vaughan, Transform Wales, on Transform Wales''s work on the organisation of digital services to deliver transformation change.'
+  links:
+    blog: https://medium.com/@transformgovtalks/tgt-scotland-september-2026-57308cc9a9a8?sharedUserId=transformgovtalks
+    youtube: https://youtu.be/QlbF8RiN-fA
+    spotify: https://open.spotify.com/episode/3dmlMAlfDrtETxdr04EcZm?si=fvfwZuMAT0Wra6pxeQfvTQ
 - month: 'September 2026 — TransformGov Talks Cymru (The Bike Lock Ltd, Cardiff, Wales)'
   items:
   - 'Catherine Elms and Damien Hatton, Welsh Revenue Authority, on their user-centred approach to designing the visitor accommodation register.'

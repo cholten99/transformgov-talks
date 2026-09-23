@@ -21,6 +21,20 @@
           <h1 class="text-2xl font-extrabold">Previous Events</h1>
           <ul class="list-disc pl-6 space-y-1">
 
+            <li>September 2026 — TransformGov Talks Scotland (Palace of Holyroodhouse, Edinburgh)</li>
+
+              <ul class="list-disc pl-6 space-y-1">
+
+                <li>Gordon Guthrie on his research project, Foundations of the Digital State, examining the role of parliament and government in creating and coordinating state digital systems.</li>
+
+                <li>Ann Kempster and Dafydd Vaughan, Transform Wales, on Transform Wales's work on the organisation of digital services to deliver transformation change.</li>
+
+
+                <li><a href="https://medium.com/@transformgovtalks/tgt-scotland-september-2026-57308cc9a9a8?sharedUserId=transformgovtalks" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Blog</a>, <a href="https://youtu.be/QlbF8RiN-fA" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">YouTube</a> and <a href="https://open.spotify.com/episode/3dmlMAlfDrtETxdr04EcZm?si=fvfwZuMAT0Wra6pxeQfvTQ" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:underline-offset-4">Spotify</a>.</li>
+
+              </ul>
+
+
             <li>September 2026 — TransformGov Talks Cymru (The Bike Lock Ltd, Cardiff, Wales)</li>
 
               <ul class="list-disc pl-6 space-y-1">

@@ -20,6 +20,7 @@ guest-list CSV, next event's Luma URL.
 | E. Next event info | scrape the Luma URL Dave gives | just the URL |
 | F. Website: next-event section | update `index.shtml`, **confirm the live-stream link each time** (don't assume unchanged) | E |
 | G. Website: front-page "latest video" | update the embed | A1 (below) only |
+| H. Website: Related events / parish notices strip | `index.shtml` has its own hardcoded "Related events:" strip, **separate from the blog/newsletter copy's parish notices list** — keep both in sync manually. Gap found 2026-10-01: Dave dropped a stale "GovCamp Scotland" entry from the blog copy (already passed) but the website strip still had it — two different places, easy to update one and forget the other. | parish notices confirmation |
 
 **Fork once the video's downloaded — these two don't depend on each other,
 run them side by side (this session's mistake: did them sequentially and
@@ -95,6 +96,23 @@ contains the newest files, dated **2026/09/30 17:54 BST**:
 **Status:** DONE — same answer as above. It's the "... - Notes by Gemini" Google Doc
 sitting alongside the recording. No separate lookup needed; same recursive scan finds
 both in one pass.
+
+**Public access — resolved (2026-10-01):** the doc was shared with the blog
+newsletter while still private (owner + service account only) — a reader
+clicking the link would've hit a permission wall. Turns out the service
+account's inherited **writer** role on the file is enough to add sharing
+permissions too, not just read it — tested directly:
+
+```
+POST https://www.googleapis.com/drive/v3/files/<doc_id>/permissions
+{"role": "reader", "type": "anyone"}
+```
+
+returned 200, and the doc became readable with zero auth immediately after
+(verified via a plain unauthenticated `curl` of the export URL). **This is
+now a standard step, not a manual prompt to Dave** — set `anyone`/`reader`
+on the Gemini notes doc as part of step 1's Drive scan, before drafting the
+blog copy, every time.
 
 ## 3. YouTube upload — auth
 

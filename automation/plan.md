@@ -2,6 +2,53 @@
 
 Going through each action one at a time. Recording decisions/findings here as we go.
 
+## Runbook: ordering & parallelization for next time
+
+**Raw inputs** (nothing starts without these; video/Gemini notes just need
+time after the event, the rest are manual asks to Dave): video + Gemini
+notes doc (Drive, appear naturally after the event), speaker photos,
+guest-list CSV, next event's Luma URL.
+
+**Independent tracks — kick all of these off together, right at the start:**
+
+| Track | Steps | Blocked on |
+|---|---|---|
+| A. Video | find latest recording in Drive → download | nothing |
+| B. YouTube auth | OAuth consent click (~30s, Testing-mode token, redo each time) | nothing |
+| C. Photos | pull from Mac Downloads | nothing |
+| D. Guest CSV → Kit + dashboard | pull CSV → `sync_luma.py` → Kit subscriber add + dashboard "heard about" chart (chart itself already built — this just feeds it data) | nothing |
+| E. Next event info | scrape the Luma URL Dave gives | just the URL |
+| F. Website: next-event section | update `index.shtml`, **confirm the live-stream link each time** (don't assume unchanged) | E |
+| G. Website: front-page "latest video" | update the embed | A1 (below) only |
+
+**Fork once the video's downloaded — these two don't depend on each other,
+run them side by side (this session's mistake: did them sequentially and
+deleted the video in between, forcing a wasteful re-download):**
+- **A1. YouTube upload** = downloaded video + Track B's token → YouTube URL
+- **A2. Podcast** = downloaded video → extract MP3 → add episode entry →
+  render feed → publish
+
+**The one real bottleneck, not parallelizable — just a clock:** after A2
+publishes the feed, Spotify/Apple each independently index the episode
+(Spotify was near-instant this run, Apple took a few hours). Everything in
+tracks C, D, E, F, G should happen *during* this wait, not after it.
+
+**Final convergence — blocked until YouTube + Spotify + Apple links all
+exist:**
+1. Finalize blog copy (draft it earlier with the other content, just not the
+   three links) — including a decision on whether the Gemini summary link
+   should be public (still unresolved as of Sept 2026: linked while private)
+2. Dave posts it to Medium → blog URL
+3. Once the blog URL exists, these three are mutually independent — run in
+   parallel: **Bluesky thread** (`post_bluesky_thread.py`), **newsletter
+   draft** (`create_newsletter_draft.py`), **past-events page entry**
+4. Dave reviews and sends the newsletter from Kit's dashboard — manual,
+   deliberately never automated (see item 10)
+
+Critical path ≈ *(Google's own recording/notes delay) → download → publish
+podcast feed → Apple indexing wait → Dave posts blog → final parallel
+batch.* Everything else is slack, not critical path.
+
 ## 1. Upload video to YouTube
 
 **Needs:** raw video file.

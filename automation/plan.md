@@ -226,6 +226,23 @@ its event list).
 specific event URL, pulling date/time/venue/speakers from it works fine (its
 `__NEXT_DATA__` JSON blob has structured data once you're on the right page).
 
+## 10. Newsletter (Kit)
+
+**Script:** `automation/create_newsletter_draft.py` — builds the same content
+as the blog post (speaker photos, all four links, parish notices, next event)
+as HTML and creates it as a **Kit broadcast draft** via the v4 API.
+
+**Hard rule: this only ever creates a draft, never sends.** No `send_at`
+field is set in the API call — status comes back as `"draft"`. Sending is a
+deliberate separate manual step Dave does from the Kit dashboard after
+reviewing. **Never add code that schedules or sends** — that was an explicit
+instruction, not just a default.
+
+**Dependency:** speaker photos must be hosted somewhere with a public URL
+first (Kit emails need real image URLs, not local files) — this session they
+were copied into `/var/www/transformgov-talks/images/` and referenced from
+there. Do this before running the script.
+
 ---
 
 ## Manual inputs still needed after every event (can't be found automatically)
@@ -247,6 +264,36 @@ scriptable/automatic once these are in hand:
 5. **Spotify / Apple Podcasts links** — only exist once the podcast episode
    is published *and* those platforms have indexed it (can take time) —
    can't be fetched at the moment the blog copy is drafted.
+6. **Guest list CSV from Luma** — also lands in the Mac's `~/Downloads/` root
+   (named like `TransformGov Talks_ <Month> <Year> - Guests - <timestamp>.csv`).
+   Needed for both the Kit subscriber sync and the dashboard's "how did you
+   hear about us" data. No API access to Luma exists, so this is always a
+   manual export + copy, same as the photos above.
+
+### How to reach the Mac to pull photos/guest CSV
+
+The Mac (`Davids-MacBook-Air.local`) is NOT reliably reachable over the
+`macair-new` / NordVPN Meshnet SSH alias (`dave-lanin9381.nord`) — it timed
+out entirely this session. **Use mDNS/Bonjour discovery on the local LAN
+instead**: `avahi-browse -art` and look for a `_ssh._tcp` / "SSH Remote
+Terminal" entry — it resolved to `Davids-MacBook-Air.local` at
+`192.168.0.213`, which connected fine via plain `ssh`/`scp`. Don't waste time
+debugging Meshnet itself (checking `nordvpn status` etc.) — go straight to
+the mDNS fallback.
+
+### Where secrets actually live — a gotcha hit this session
+
+**`/home/dave/secrets/` is the canonical, live secrets directory** — every
+script in this repo (`sync_youtube.py`, `sync_kit.py`,
+`podcast-host/generator/post_to_bluesky.py`, etc.) reads from there.
+`/mnt/portable1/managed/config/secrets/` is just a **one-way backup mirror**
+(`backup.yml`: `source: /home/dave/secrets/` → that mirror) — writing a new
+secret there only does nothing for any running script. Every secret created
+during this session (Bluesky handle/password, YouTube OAuth client) had to be
+copied into `/home/dave/secrets/` after initially being written only to the
+backup path. **Any new secret file must go into `/home/dave/secrets/`
+first** — the backup copy will pick it up automatically on the next backup
+run, not the other way round.
 
 ## Bluesky post — full prerequisite checklist
 

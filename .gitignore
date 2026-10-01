@@ -2,4 +2,6 @@
 .venv/
 __pycache__/
 private/luma_emails.json
+private/luma_mailing_opt_ins.json
+private/*.csv
 data/

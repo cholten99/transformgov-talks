@@ -146,6 +146,16 @@
           </table>
         </div>
       </section>
+
+      <section class="p-6 md:p-8 rounded-2xl tg-bg-cell shadow">
+        <h2 class="text-2xl font-extrabold mb-4">How people heard about us</h2>
+        <p class="text-sm opacity-70 mb-4" id="heard-about-subtitle">Most recent event</p>
+
+        <div class="relative mb-2" style="height:300px">
+          <canvas id="heard-about-chart"></canvas>
+        </div>
+        <p id="heard-about-chart-error" class="text-red-600 text-sm mt-2 hidden"></p>
+      </section>
       </main>
 
       <!--#include virtual="/includes/footer.html" -->
@@ -573,6 +583,62 @@
       }
     } catch (err) {
       errEl.textContent = "Could not load registrations data: " + err.message;
+      errEl.classList.remove("hidden");
+    }
+  })();
+
+  (async () => {
+    const errEl = document.getElementById("heard-about-chart-error");
+    try {
+      const resp = await fetch("/data/luma_heard_about.json");
+      if (!resp.ok) throw new Error(`API returned ${resp.status}`);
+      const data = await resp.json();
+      if (!data.length) throw new Error("no events recorded yet");
+
+      const latest = data[data.length - 1];
+      document.getElementById("heard-about-subtitle").textContent =
+        `Most recent event: ${latest.event_name}`;
+
+      // Coarse keyword-based bucketing of free-text survey answers — not
+      // exact classification, just enough to spot broad trends at a glance.
+      const BUCKETS = [
+        ["Luma",               a => a.includes("luma")],
+        ["LinkedIn",           a => a.includes("linkedin") || a.includes("linked in")],
+        ["Word of mouth",      a => a.includes("word of mouth")],
+        ["Organiser",          a => a.includes("organiser") || a.includes("organizer")],
+        ["Returning attendee", a => a.includes("previous") || a.includes("been before") || a.includes("regular")],
+      ];
+      const counts = Object.fromEntries(BUCKETS.map(([label]) => [label, 0]));
+      counts["Other / personal mention"] = 0;
+
+      for (const raw of latest.answers) {
+        const a = raw.toLowerCase();
+        const bucket = BUCKETS.find(([, test]) => test(a));
+        counts[bucket ? bucket[0] : "Other / personal mention"]++;
+      }
+
+      const labels = Object.keys(counts);
+      const ctx = document.getElementById("heard-about-chart").getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels,
+          datasets: [{
+            label: "Responses",
+            data: labels.map(l => counts[l]),
+            backgroundColor: "rgba(34,108,87,0.85)",
+          }],
+        },
+        options: {
+          indexAxis: "y",
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { x: { beginAtZero: true, ticks: { precision: 0 } } },
+        },
+      });
+    } catch (err) {
+      errEl.textContent = "Could not load heard-about data: " + err.message;
       errEl.classList.remove("hidden");
     }
   })();

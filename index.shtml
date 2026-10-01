@@ -62,21 +62,21 @@
       <aside class="h-full flex flex-col gap-2">
         <!-- Let the top card take remaining space -->
         <section class="p-4 space-y-2 rounded-lg tg-bg-cell flex-1 min-h-0 flex flex-col justify-evenly">
-          <h2 class="text-xl font-bold">Our September London event!</h2>
+          <h2 class="text-xl font-bold">Our October London event!</h2>
           <p class="mt-2">
-            Join us on <span class="font-bold">30th September</span> at <span class="font-bold">6pm</span> for presentations, hosted by <span class="font-bold">Gavin Freeguard</span>, Director, State of the Future.
+            Join us on <span class="font-bold">28th October</span> at <span class="font-bold">6pm</span> for presentations, hosted by <span class="font-bold">Gavin Freeguard</span>, Director, State of the Future.
           </p>
           <p class="mt-2">
-            <span class="font-bold">Riz Parveen</span>, Department for Work and Pensions, on People at the heart of change (a machinery of govt case-study)
+            <span class="font-bold">Harry Trimble</span>, dxw, on prototypes exploring what data and automation in a blueprint for government could be like
           </p>
           <p class="mt-2">
-            <span class="font-bold">Julia Finch</span>, Director of Athene Leadership, on 'Eggs in One Basket: Strategic Risk in an Age of Volatility'
+            <span class="font-bold">Asma Nafees</span>, Deputy Chief Operating Officer, NHS England (Arden & GEM), on 'Leadership Without Borders: Challenging the Way We Do Public Service'
           </p>
           <p class="mt-2">
             The event will be streamed <a href="https://youtube.com/live/I_1gc9DWLV4" target="_blank" rel="noopener" class="underline">here</a>, followed by pizza, drinks and an opportunity to meet fellow government transformers.
           </p>
           <a
-            href="https://luma.com/bm1xsbsv"
+            href="https://luma.com/424qc6d1"
             target="_blank"
             rel="noopener"
             class="inline-flex items-center gap-2 rounded-md tg-bg-ourgreen px-4 py-2 text-white
@@ -91,7 +91,7 @@
         <section class="p-4 rounded-lg tg-bg-cell">
           <h2 class="text-xl font-bold">Watch our latest video</h2>
           <div class="mt-2 w-full aspect-video">
-            <iframe class="w-full h-full" src="https://www.youtube.com/embed/QlbF8RiN-fA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/0pio6HFWSO8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
         </section>
       </aside>

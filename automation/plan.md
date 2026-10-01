@@ -135,14 +135,27 @@ The doc literally says: "Not wired up for TGT — add a `SHOW_CONFIG` entry in t
 script if TGT gets its own Bluesky account later." TGT now has one
 (`transformgov_talks_bluesky_handle`/`_app_password`, saved this session).
 
-**Revised plan:** don't write a new Bluesky poster from scratch — add a
-`SHOW_CONFIG` entry for TGT to the existing script instead. Reuses tested code,
-matches repo convention. This covers the *podcast* announcement post; the richer
-multi-post thread described in the original automation doc (video + Spotify +
-Apple + next event) would still need new code layered on top, reusing this
-script's posting primitive rather than replacing it.
+**Mistake made and corrected (2026-10-01):** I initially used
+`post_to_bluesky.py` (with a TGT `SHOW_CONFIG` entry added) as TGT's actual
+Bluesky posting mechanism, posting one generic "New episode of X: title" link
+card. **This is wrong and was reverted (Dave deleted that post).**
+`post_to_bluesky.py` is the right tool for WYSLI, which really does just want
+a single episode-announcement post — but TGT's own template
+(`TGT Post Event Automation.docx`, "Bluesky template" section) explicitly
+calls for **a chain of 7 linked reply posts**: intro+blog link, speaker 1
+(with photo), speaker 2 (with photo), YouTube (embedded), Spotify, Apple
+Podcasts, next event + registration link. A single announcement post is not
+an acceptable substitute — don't reach for `post_to_bluesky.py` for TGT again.
 
-**Status:** not started. Straightforward once the MP3/episode step (#6) is done.
+**Correct tool:** `automation/post_bluesky_thread.py` — builds the full
+7-post reply chain per the template, with an `EVENT` dict at the top to edit
+for each new event. Real gotcha hit: Bluesky rejects images over ~1MB
+(`blob too big`) — the raw speaker photos from Downloads were 3-4MB, so the
+script compresses them (Pillow, iterating JPEG quality down until under
+1MB) before upload. Don't skip that step even for "small-looking" photos.
+
+**Status:** DONE — posted successfully for the Sept 2026 event, thread root:
+`at://did:plc:il2wth3satwuzblw7ybec7af/app.bsky.feed.post/3mwtpjwuzxu2i`.
 
 ## 8. Blog post (Medium)
 
@@ -260,6 +273,20 @@ after publishing the Sept 2026 episode:
 no-country-code query happened to be checking the wrong storefront timing).
 `https://podcasts.apple.com/gb/podcast/transformgov-talks-september-2026/id1776623246?i=1000792627799`.
 Docx, `previous_events.yml` (past events page, rebuilt via `build_previous.py`)
-all updated with YouTube + Spotify + Apple links. **Only the blog post URL
-is still missing** — the one remaining blocker for Bluesky, the full socials
-thread, and the newsletter send.
+all updated with YouTube + Spotify + Apple links. The blog post URL was the
+last blocker — Dave posted it to Medium:
+https://medium.com/@transformgovtalks/transformgov-talks-our-september-2026-london-event-505e12f717f7
+(added to `previous_events.yml` too, same rebuild step).
+
+**Bluesky: DONE — see the corrected version in item 7 above.** (First attempt
+used the wrong tool — a single generic announcement post via
+`post_to_bluesky.py` — which Dave caught and had removed; corrected with
+`post_bluesky_thread.py`, the proper 7-post thread.) One real bug hit along
+the way, independent of which script: the stored
+`transformgov_talks_bluesky_handle` secret had a leading `@`
+(`@transformgovtalks.bsky.social`), which broke login with a cryptic
+`InvalidEmail` error — Bluesky's login endpoint tries to parse any identifier
+containing `@` as an email address, and an empty local-part before the `@`
+fails validation. Fixed by storing the bare handle
+(`transformgovtalks.bsky.social`), matching the existing WYSLI secret's
+format — **no leading `@` for any Bluesky handle secret, ever.**

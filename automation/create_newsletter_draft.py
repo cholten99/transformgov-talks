@@ -95,7 +95,7 @@ def build_content(ev):
 
 <p>Our latest event took place at {ev["location"]} (and online!) on {ev["event_date"]}.</p>
 
-<p>Brought to you by our excellent sponsors GovCamp, dxw, TPXimpact, Ceva, Anmut, Public.Digital and Holistic Agility.</p>
+<p>Brought to you by our excellent sponsors GovCamp, dxw, TPXimpact, Ceva, Anmut, Agile, State of the Future, Public Digital and Holistic Agility.</p>
 
 <p>Hosted by {ev["host"]["name"]}, {ev["host"]["title"]}, <a href="{ev["host"]["org_url"]}" target="_blank" rel="noopener noreferrer">{ev["host"]["org"]}</a>.</p>
 

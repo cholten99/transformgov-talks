@@ -102,9 +102,6 @@
 
           <!-- Wrap on mobile; prevent squishing; keep proportions; square corners -->
           <div class="mt-2 grid grid-cols-2 md:grid-cols-4 gap-4 items-center justify-items-center">
-            <a href="https://www.anmut.co.uk/" target="_blank" rel="noopener">
-              <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="images/sponsors/Ammut.png" alt="Anmut" loading="lazy">
-            </a>
             <a href="https://www.dxw.com/" target="_blank" rel="noopener">
               <img class="h-12 sm:h-14 md:h-16 w-auto max-w-[160px] object-contain flex-shrink-0" src="/images/sponsors/DXW.png" alt="dxw" loading="lazy">
             </a>

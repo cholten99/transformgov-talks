@@ -55,7 +55,7 @@ EVENT = {
     ],
     "next_event": {
         "date_line": "28 October 2026, 6-7pm, at the Ministry of Justice",
-        "speakers_line": "Harry Trimble (dxw) and Asma Nafees, Deputy Chief Operating Officer, NHS England (Arden &amp; GEM)",
+        "speakers_line": "Harry Trimble (dxw) and Asma Nafees, NHS Non Exec Director | Local Authority Social Enterprise NED | Social Care Charity Trustee",
         "luma_url": "https://luma.com/424qc6d1",
     },
 }

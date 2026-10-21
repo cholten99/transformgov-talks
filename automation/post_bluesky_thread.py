@@ -46,7 +46,7 @@ EVENT = {
     "next_event": {
         "location": "Ministry of Justice",
         "date": "28 October",
-        "speakers": ["Harry Trimble (dxw)", "Asma Nafees (NHS England)"],
+        "speakers": ["Harry Trimble (dxw)", "Asma Nafees (NHS Non Exec Director | Local Authority Social Enterprise NED | Social Care Charity Trustee)"],
         "luma_url": "https://luma.com/424qc6d1",
     },
 }

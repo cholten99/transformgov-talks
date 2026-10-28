@@ -23,7 +23,8 @@ SPOTIFY_SHOW_ID = "0PUIa0T6fVxo0UkcTO9J2M"
 def check_apple(episode_title):
     r = requests.get(
         "https://itunes.apple.com/lookup",
-        params={"id": APPLE_SHOW_ID, "entity": "podcastEpisode", "limit": 10, "sort": "recent"},
+        # Without an explicit storefront the lookup lags hours behind the GB one
+        params={"id": APPLE_SHOW_ID, "entity": "podcastEpisode", "limit": 10, "sort": "recent", "country": "gb"},
         timeout=15,
     )
     r.raise_for_status()

@@ -430,11 +430,11 @@ format — **no leading `@` for any Bluesky handle secret, ever.**
 - **Kit's create-broadcast response is wrapped** (`{"broadcast": {...}}`);
   fixed in the script. If it ever errors after the POST, check the
   broadcast list before re-running — the draft may already exist.
-- **Gemini notes sharing:** the service account can't see each event's new
-  Meet folder, and the `TGT:` rclone remote is `drive.readonly`. Until the
-  "Google Meet" folder is shared with the service account as Editor, share
-  the notes doc by hand. `share_gemini_notes.py <file_id>` does it once
-  that's in place.
+- **Gemini notes sharing:** fixed 2026-10-28 — the "Google Meet" folder is
+  now shared with the service account as Editor, so
+  `python3 automation/share_gemini_notes.py <file_id>` works on each new
+  event's notes (verified on October's). The `TGT:` rclone remote can't do
+  this itself: it's `drive.readonly`.
 - **Apple Podcasts check:** `check_episode_links.py` now queries the GB
   storefront, which picks up new episodes hours earlier.
 - **YouTube description order** came from Luma (Harry first) but the talks

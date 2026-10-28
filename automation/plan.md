@@ -291,6 +291,22 @@ its event list).
 specific event URL, pulling date/time/venue/speakers from it works fine (its
 `__NEXT_DATA__` JSON blob has structured data once you're on the right page).
 
+**Update (2026-10-28): found automatically after all.** Luma's own frontend
+API answers unauthenticated: take a host's `usr-…` id from the current
+event page's `__NEXT_DATA__`, then
+`GET https://api.lu.ma/user/profile/events-hosting?user_api_id=<usr-id>`
+lists that host's upcoming events (`url` field is the slug, e.g.
+`8oaszd9g` → `luma.com/8oaszd9g`). The host that worked was
+`usr-PrqB1ALWQZqRVBR`. The `calendar/get-items` endpoint rate-limits
+quickly, so don't hammer it. The guest CSV still needs host login (the
+official Luma API needs a Luma Plus key, which we don't have), so it stays
+a manual export.
+
+**Poster link (for "download this poster")** is stable across events:
+`https://drive.google.com/file/d/1ZkA37iPO9NbALvxvNBA431fVpAAMKtwP/view`,
+and it appears in previous round-up broadcasts in Kit
+(`GET /v4/broadcasts/<id>`).
+
 ## 10. Newsletter (Kit)
 
 **Script:** `automation/create_newsletter_draft.py` — builds the same content

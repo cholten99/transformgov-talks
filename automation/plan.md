@@ -418,3 +418,25 @@ containing `@` as an email address, and an empty local-part before the `@`
 fails validation. Fixed by storing the bare handle
 (`transformgovtalks.bsky.social`), matching the existing WYSLI secret's
 format — **no leading `@` for any Bluesky handle secret, ever.**
+
+## October 2026 run — gotchas
+
+- **Run the automation scripts with `/var/www/podcast-host/venv/bin/python`**
+  — system `python3` lacks `atproto` (Bluesky) and `google-auth`.
+- **Bluesky intro wording:** `EVENT["when"]` ("this evening" / "last night")
+  — set it to match when the thread actually goes out.
+- **Talks without a title:** set `"quote_topic": False` on the speaker in
+  both `post_bluesky_thread.py` and `create_newsletter_draft.py`.
+- **Kit's create-broadcast response is wrapped** (`{"broadcast": {...}}`);
+  fixed in the script. If it ever errors after the POST, check the
+  broadcast list before re-running — the draft may already exist.
+- **Gemini notes sharing:** the service account can't see each event's new
+  Meet folder, and the `TGT:` rclone remote is `drive.readonly`. Until the
+  "Google Meet" folder is shared with the service account as Editor, share
+  the notes doc by hand. `share_gemini_notes.py <file_id>` does it once
+  that's in place.
+- **Apple Podcasts check:** `check_episode_links.py` now queries the GB
+  storefront, which picks up new episodes hours earlier.
+- **YouTube description order** came from Luma (Harry first) but the talks
+  ran Asma first — check the actual running order (Gemini "Details"
+  section) before writing the description.

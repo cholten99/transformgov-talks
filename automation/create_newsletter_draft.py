@@ -22,41 +22,43 @@ import requests
 SECRETS_DIR = Path("/home/dave/secrets")
 
 EVENT = {
-    "subject": "TransformGov Talks : Our September 2026 London event!",
+    "subject": "TransformGov Talks : Our October 2026 London event!",
     "location": "the Ministry of Justice",
-    "event_date": "30 September 2026",
+    "event_date": "28 October 2026",
     "host": {"name": "Gavin Freeguard", "title": "Director", "org": "State of the Future", "org_url": "https://sotf.org.uk/"},
+    # "quote_topic": False for a description rather than a talk title
     "speakers": [
         {
-            "name": "Riz Parveen", "org": "Department for Work and Pensions",
-            "topic": "People at the heart of change",
-            "photo_url": "https://www.transformgov.org.uk/images/2026-09-riz-parveen.jpg",
+            "name": "Asma Nafees", "org": "NHS Non-Exec Director, Local Authority Social Enterprise NED and Social Care Charity Trustee",
+            "topic": "Leadership Without Borders: Challenging the Way We Do Public Service",
+            "photo_url": "https://www.transformgov.org.uk/images/2026-10-asma-nafees.jpg",
         },
         {
-            "name": "Julia Finch", "org": "Director, Athene Leadership",
-            "topic": "Eggs in One Basket: Strategic Risk in an Age of Volatility",
-            "photo_url": "https://www.transformgov.org.uk/images/2026-09-julia-finch.jpg",
+            "name": "Harry Trimble", "org": '<a href="https://www.dxw.com/" target="_blank" rel="noopener noreferrer">dxw</a>',
+            "topic": "prototypes exploring what data and automation in a blueprint for government could be like",
+            "quote_topic": False,
+            "photo_url": "https://www.transformgov.org.uk/images/2026-10-harry-trimble.jpg",
         },
     ],
-    "blog_url": "https://medium.com/@transformgovtalks/transformgov-talks-our-september-2026-london-event-505e12f717f7",
-    "gemini_url": "https://docs.google.com/document/d/1ufpOXhEVzWhIT6G8-csWkepG427Gh151M_0rQtSl6zk/edit?usp=drivesdk",
-    "youtube_url": "https://youtu.be/0pio6HFWSO8",
-    "spotify_url": "https://open.spotify.com/episode/7kFeIergJysuxfugvFfFaR",
-    "apple_url": "https://podcasts.apple.com/gb/podcast/transformgov-talks-september-2026/id1776623246?i=1000792627799",
+    "blog_url": "https://medium.com/@transformgovtalks/transformgov-talks-our-october-2026-london-event-59ccc0384282",
+    "gemini_url": "https://docs.google.com/document/d/1zn32rHAWf3fvc5j2jhM-6YRa4R1mI5CmiPkDFn0z-JU/edit?usp=sharing",
+    "youtube_url": "https://youtu.be/0EV_5pcTajU",
+    "spotify_url": "https://open.spotify.com/episode/0hcOCHUWG37wGYnTGc1Ezg",
+    "apple_url": "https://podcasts.apple.com/gb/podcast/transformgov-talks-october-2026/id1776623246?i=1000798593195",
     # (label, url) pairs — drop any event that's already passed by the time of writing.
     "parish_notices": [
-        ("Policy Camp (more post-event publications soon)", "https://policycamp.org.uk/"),
+        ("Policy Camp (report now published)", "https://policycamp.org.uk/"),
         ("National Conversations", "https://nationalconversations.org/"),
         ("Civic Punks", "https://civicpunks.com/"),
-        ("Data Bites", "https://public.digital/data-bites-series"),
-        ("Think Digital conferences", "https://www.thinkdigitalpartners.com/"),
+        ("Data Bites", "https://www.thinkdigitalpartners.com/data-bites/"),
         ("The National Strategy Project", "https://www.nationalstrategy.uk/"),
-        ("GovCamp Cymru", "https://www.govcamp.cymru/"),
+        ("GovCamp Cymru (6 November)", "https://www.govcamp.cymru/"),
+        ("Open Data Camp (21\u201322 November)", "https://www.odcamp.uk/"),
     ],
     "next_event": {
-        "date_line": "28 October 2026, 6-7pm, at the Ministry of Justice",
-        "speakers_line": "Harry Trimble (dxw) and Asma Nafees, NHS Non Exec Director | Local Authority Social Enterprise NED | Social Care Charity Trustee",
-        "luma_url": "https://luma.com/424qc6d1",
+        "date_line": "25 November 2026, 6-7pm, at the Ministry of Justice",
+        "speakers_line": "Peter Thomas (civilservicereformuk.com) on what 15 years of GDS tell us about successful reform, and Tom Wynne-Morgan and Jack Strachan (Government Digital Service) on CustomerFirst, with another speaker to be confirmed",
+        "luma_url": "https://luma.com/8oaszd9g",
     },
 }
 
@@ -78,7 +80,9 @@ def build_content(ev):
     lead_ins = ["Our first speaker was", "Our second speaker was"]
     for lead_in, speaker in zip(lead_ins, ev["speakers"]):
         speaker_blocks.append(
-            f'<p>{lead_in} {speaker["name"]}, {speaker["org"]}, on &ldquo;{speaker["topic"]}&rdquo;.</p>'
+            f'<p>{lead_in} {speaker["name"]}, {speaker["org"]}, on '
+            + (f'&ldquo;{speaker["topic"]}&rdquo;' if speaker.get("quote_topic", True) else speaker["topic"])
+            + '.</p>'
             + _image_block(speaker["photo_url"], speaker["name"])
         )
 
@@ -136,8 +140,8 @@ def main():
 
     r = requests.post("https://api.kit.com/v4/broadcasts", headers=headers, data=json.dumps(payload))
     r.raise_for_status()
-    result = r.json()
-    print(f"Created draft broadcast id={result['id']}, status={result['status']}")
+    result = r.json()["broadcast"]
+    print(f"Created draft broadcast id={result['id']}, send_at={result.get('send_at')}")
     print("Review and send manually from the Kit dashboard — this script never sends.")
 
 

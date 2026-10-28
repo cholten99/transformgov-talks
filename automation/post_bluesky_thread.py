@@ -23,31 +23,34 @@ AUTOMATION_DIR = Path(__file__).parent
 
 EVENT = {
     "location": "Ministry of Justice",
-    "blog_url": "https://medium.com/@transformgovtalks/transformgov-talks-our-september-2026-london-event-505e12f717f7",
-    "youtube_url": "https://youtu.be/0pio6HFWSO8",
-    "youtube_title": "TransformGov Talks: September 2026",
-    "youtube_thumb_url": "https://i.ytimg.com/vi/0pio6HFWSO8/hqdefault.jpg",
-    "spotify_url": "https://open.spotify.com/episode/7kFeIergJysuxfugvFfFaR",
-    "apple_url": "https://podcasts.apple.com/gb/podcast/transformgov-talks-september-2026/id1776623246?i=1000792627799",
+    "when": "this evening",
+    "blog_url": "https://medium.com/@transformgovtalks/transformgov-talks-our-october-2026-london-event-59ccc0384282",
+    "youtube_url": "https://youtu.be/0EV_5pcTajU",
+    "youtube_title": "TransformGov Talks: October 2026",
+    "youtube_thumb_url": "https://i.ytimg.com/vi/0EV_5pcTajU/hqdefault.jpg",
+    "spotify_url": "https://open.spotify.com/episode/0hcOCHUWG37wGYnTGc1Ezg",
+    "apple_url": "https://podcasts.apple.com/gb/podcast/transformgov-talks-october-2026/id1776623246?i=1000798593195",
+    # "quote_topic": False for a description rather than a talk title
     "speakers": [
         {
-            "name": "Riz Parveen",
-            "org": "Department for Work and Pensions",
-            "topic": "People at the heart of change",
-            "photo": AUTOMATION_DIR / "Riz.jpg",
+            "name": "Asma Nafees",
+            "org": "NHS Non-Exec Director, Local Authority Social Enterprise NED and Social Care Charity Trustee",
+            "topic": "Leadership Without Borders: Challenging the Way We Do Public Service",
+            "photo": AUTOMATION_DIR.parent / "images" / "2026-10-asma-nafees.jpg",
         },
         {
-            "name": "Julia Finch",
-            "org": "Director, Athene Leadership",
-            "topic": "Eggs in One Basket: Strategic Risk in an Age of Volatility",
-            "photo": AUTOMATION_DIR / "Julia.jpg",
+            "name": "Harry Trimble",
+            "org": "dxw",
+            "topic": "prototypes exploring what data and automation in a blueprint for government could be like",
+            "quote_topic": False,
+            "photo": AUTOMATION_DIR.parent / "images" / "2026-10-harry-trimble.jpg",
         },
     ],
     "next_event": {
         "location": "Ministry of Justice",
-        "date": "28 October",
-        "speakers": ["Harry Trimble (dxw)", "Asma Nafees (NHS Non Exec Director | Local Authority Social Enterprise NED | Social Care Charity Trustee)"],
-        "luma_url": "https://luma.com/424qc6d1",
+        "date": "25 November",
+        "speakers": ["Peter Thomas (civilservicereformuk.com)", "Tom Wynne-Morgan and Jack Strachan (Government Digital Service)", "Another speaker tbc"],
+        "luma_url": "https://luma.com/8oaszd9g",
     },
 }
 
@@ -80,7 +83,7 @@ def main():
     # Post 1: intro + link to blog write-up
     text1 = (
         client_utils.TextBuilder()
-        .text(f"Another excellent TGT event last night at {EVENT['location']}. "
+        .text(f"Another excellent TGT event {EVENT['when']} at {EVENT['location']}. "
               f"Thanks as always to our speakers, our sponsors and our in-person and online attendees.\n\n"
               f"The full write-up can be found ")
         .link("here", EVENT["blog_url"])
@@ -92,10 +95,11 @@ def main():
 
     # Posts 2-3: speakers, each with their photo
     for i, speaker in enumerate(EVENT["speakers"]):
+        topic = f"\"{speaker['topic']}\"" if speaker.get("quote_topic", True) else speaker["topic"]
         if i == 0:
-            text = f"Our first speaker was {speaker['name']}, {speaker['org']}, on \"{speaker['topic']}\"."
+            text = f"Our first speaker was {speaker['name']}, {speaker['org']}, on {topic}."
         else:
-            text = f"That was followed by {speaker['name']}, {speaker['org']}, on \"{speaker['topic']}\"."
+            text = f"That was followed by {speaker['name']}, {speaker['org']}, on {topic}."
         reply = client.send_image(
             text=text,
             image=_compressed_jpeg_bytes(speaker["photo"]),

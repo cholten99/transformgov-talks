@@ -55,6 +55,16 @@ python3 build_previous.py --input-yaml previous_events.yml \
 It doesn't have to wait for the blog: add the entry as soon as the
 YouTube/Spotify/Apple links exist, then add the `blog:` link and rebuild
 once Dave posts to Medium (done this way for October 2026).
+
+**Dashboard (`dashboard.shtml`) — also don't skip.** Its data lives in
+`data/` (gitignored), fed by:
+- `sync_luma.py --file <guest csv> --event-name ... --event-date ...`
+  (registrations + "heard about" chart), then add the new opt-ins to Kit
+- `sync_kit.py` (subscriber counts)
+- `sync_youtube.py` — **not cron'd**, run it after the YouTube upload
+  (it was stale from 23 Sept until the October run)
+- `sync_podcast_host.py` — cron'd daily 07:00, after podcast-host's 06:45
+  listen count, so a new episode shows up the morning after publishing
 4. Dave reviews and sends the newsletter from Kit's dashboard — manual,
    deliberately never automated (see item 10)
 

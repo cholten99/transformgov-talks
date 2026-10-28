@@ -37,12 +37,24 @@ tracks C, D, E, F, G should happen *during* this wait, not after it.
 **Final convergence — blocked until YouTube + Spotify + Apple links all
 exist:**
 1. Finalize blog copy (draft it earlier with the other content, just not the
-   three links) — including a decision on whether the Gemini summary link
-   should be public (still unresolved as of Sept 2026: linked while private)
+   three links). The Gemini notes doc is made public with
+   `share_gemini_notes.py` (resolved Oct 2026)
 2. Dave posts it to Medium → blog URL
 3. Once the blog URL exists, these three are mutually independent — run in
    parallel: **Bluesky thread** (`post_bluesky_thread.py`), **newsletter
-   draft** (`create_newsletter_draft.py`), **past-events page entry**
+   draft** (`create_newsletter_draft.py`), **past-events page entry** (below)
+
+**Past-events page (`previous.shtml`) — don't skip this.** Add a new entry
+at the top of `previous_events.yml` (month, one item per talk in running
+order, `links:` with `blog`, `youtube`, `spotify`, `apple podcasts`), then
+rebuild and check the live page:
+```
+python3 build_previous.py --input-yaml previous_events.yml \
+  --template previous_template.shtml.j2 --output previous.shtml
+```
+It doesn't have to wait for the blog: add the entry as soon as the
+YouTube/Spotify/Apple links exist, then add the `blog:` link and rebuild
+once Dave posts to Medium (done this way for October 2026).
 4. Dave reviews and sends the newsletter from Kit's dashboard — manual,
    deliberately never automated (see item 10)
 

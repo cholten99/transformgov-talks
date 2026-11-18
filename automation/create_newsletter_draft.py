@@ -57,7 +57,7 @@ EVENT = {
     "gemini_url": "https://docs.google.com/document/d/1DKyzAlhB1nADv2OGBmC99OOquvgabbm__vejrX5vf-8/edit?usp=sharing",
     "youtube_url": "https://youtu.be/X8LxpuHTnD4",
     "spotify_url": "https://open.spotify.com/episode/5eHaDHBmQUGPabZk0DeLDL",
-    "apple_url": "TODO",
+    "apple_url": "https://podcasts.apple.com/gb/podcast/transformgov-talks-cymru-november-2026/id1776623246?i=1000802785504",
     # (label, url) pairs — drop any event that's already passed by the time of
     # writing. No notices were given on the night in Cardiff: these are ours.
     "parish_intro": "Here are a few other events and projects you might be interested in:",

@@ -33,7 +33,7 @@ EVENT = {
     "youtube_title": "TGT Cymru: TransformGov Talks x Transform Wales November 2026",
     "youtube_thumb_url": "https://i.ytimg.com/vi/X8LxpuHTnD4/hqdefault.jpg",
     "spotify_url": "https://open.spotify.com/episode/5eHaDHBmQUGPabZk0DeLDL",
-    "apple_url": "TODO",
+    "apple_url": "https://podcasts.apple.com/gb/podcast/transformgov-talks-cymru-november-2026/id1776623246?i=1000802785504",
     # In running order (check the Gemini notes).
     # "quote_topic": False for a description rather than a talk title
     "speakers": [

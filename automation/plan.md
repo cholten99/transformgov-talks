@@ -477,3 +477,14 @@ format — **no leading `@` for any Bluesky handle secret, ever.**
   past-events entries).
 - **`automation/` is served publicly** by the website (no deny rule) — keep
   anything sensitive out of it.
+- **Meet makes a NEW top-level "Google Meet" folder per event** (three by
+  Nov 2026: Sept, Oct, Nov — same name, different IDs), and only folders
+  shared by hand are visible to the service account. So the service-account
+  scan misses a new event's files and `share_gemini_notes.py` 404s until
+  Dave shares that night's "Google Meet" folder with the service account as
+  Editor (or shares the notes doc himself). The read-only `TGT:` rclone
+  remote sees everything: find files with
+  `rclone lsf -R --max-age 6h TGT:` and download with `rclone copy`.
+- Timing on 2026-11-18 (Cardiff, recording ended ~19:35 UTC): folder +
+  notes doc appeared 19:43–19:45, notes already filled in by ~20:30,
+  recording (759 MB) finished processing 20:33.

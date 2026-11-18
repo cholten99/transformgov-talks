@@ -27,8 +27,8 @@ AUTOMATION_DIR = Path(__file__).parent
 
 EVENT = {
     "location": "Yolk Recruitment in Cardiff",
-    "when": "last night",  # match when the thread actually goes out
-    "blog_url": "TODO",
+    "when": "this evening",  # match when the thread actually goes out
+    "blog_url": "https://medium.com/@transformgovtalks/transformgov-talks-cymru-our-november-2026-cardiff-event-6a61a15aaf63",
     "youtube_url": "https://youtu.be/X8LxpuHTnD4",
     "youtube_title": "TGT Cymru: TransformGov Talks x Transform Wales November 2026",
     "youtube_thumb_url": "https://i.ytimg.com/vi/X8LxpuHTnD4/hqdefault.jpg",

@@ -53,7 +53,7 @@ EVENT = {
             "photo_url": "https://www.transformgov.org.uk/images/2026-11-omar-idris.jpg",
         },
     ],
-    "blog_url": "TODO",
+    "blog_url": "https://medium.com/@transformgovtalks/transformgov-talks-cymru-our-november-2026-cardiff-event-6a61a15aaf63",
     "gemini_url": "https://docs.google.com/document/d/1DKyzAlhB1nADv2OGBmC99OOquvgabbm__vejrX5vf-8/edit?usp=sharing",
     "youtube_url": "https://youtu.be/X8LxpuHTnD4",
     "spotify_url": "https://open.spotify.com/episode/5eHaDHBmQUGPabZk0DeLDL",

@@ -59,14 +59,14 @@ EVENT = {
     "spotify_url": "TODO",
     "apple_url": "TODO",
     # (label, url) pairs — drop any event that's already passed by the time of
-    # writing. TODO: confirm against tonight's parish notices.
+    # writing. No notices were given on the night in Cardiff: these are ours.
+    "parish_intro": "Here are a few other events and projects you might be interested in:",
     "parish_notices": [
-        ("Policy Camp (report now published)", "https://policycamp.org.uk/"),
-        ("National Conversations", "https://nationalconversations.org/"),
         ("Civic Punks", "https://civicpunks.com/"),
         ("Data Bites #63 (2 December)", "https://www.thinkdigitalpartners.com/data-bites/"),
         ("The National Strategy Project", "https://www.nationalstrategy.uk/"),
         ("Open Data Camp (21\u201322 November)", "https://www.odcamp.uk/"),
+        ("UKGovCamp (Manchester, 16 January)", "https://www.ukgovcamp.com/"),
     ],
     "upcoming_events": [
         {
@@ -162,7 +162,7 @@ def build_content(ev):
 <li>Listen on <a href="{ev["spotify_url"]}" target="_blank" rel="noopener noreferrer">Spotify</a> or <a href="{ev["apple_url"]}" target="_blank" rel="noopener noreferrer">Apple Podcasts</a></li>
 </ul>
 
-<p>At the end of the event, we included a few parish notices for other events and projects you might be interested in:</p>
+<p>{ev.get("parish_intro", "At the end of the event, we included a few parish notices for other events and projects you might be interested in:")}</p>
 <ul>{notices}</ul>
 
 <p>Let us know if you have an event you&rsquo;d like us to publicise.</p>

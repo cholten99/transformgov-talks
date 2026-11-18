@@ -488,3 +488,15 @@ format — **no leading `@` for any Bluesky handle secret, ever.**
 - Timing on 2026-11-18 (Cardiff, recording ended ~19:35 UTC): folder +
   notes doc appeared 19:43–19:45, notes already filled in by ~20:30,
   recording (759 MB) finished processing 20:33.
+- **Cymru events get the full treatment**: same Kit newsletter and same
+  Bluesky account as London (Dave, 2026-11-18).
+- **Adding Luma opt-ins to Kit** (how it's been done, Oct + Nov 2026): after
+  `sync_luma.py`, for each opt-in email for the event, look it up
+  (`GET /v4/subscribers?email_address=…&status=all`); if absent,
+  `POST /v4/subscribers` with `state: active` and first name from the CSV.
+  Regional events also get a tag (`TGT Cymru <Month> <Year>`) on every
+  opt-in. Then `sync_kit.py`. Guest CSVs live in `private/` (gitignored),
+  chmod 600.
+- **No parish notices on the night?** Use our own list (the website's
+  Related events strip, pruned) and set `parish_intro` in
+  `create_newsletter_draft.py` so it doesn't claim they were read out.

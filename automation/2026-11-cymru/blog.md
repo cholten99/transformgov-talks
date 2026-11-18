@@ -26,14 +26,13 @@ If you weren't able to attend, you can catch up on the event in more detail:
 - [Video on YouTube](https://youtu.be/X8LxpuHTnD4)
 - Listen on [Spotify](TODO-spotify) or [Apple Podcasts](TODO-apple)
 
-At the end of the event, we included a few parish notices for other events and projects you might be interested in: **[TODO: confirm against tonight's notices]**
+Here are a few other events and projects you might be interested in:
 
-- [Policy Camp](https://policycamp.org.uk/) (report now published)
-- [National Conversations](https://nationalconversations.org/)
 - [Civic Punks](https://civicpunks.com/)
 - [Data Bites](https://www.thinkdigitalpartners.com/data-bites/) (#63, 2 December)
 - [The National Strategy Project](https://www.nationalstrategy.uk/)
 - [Open Data Camp](https://www.odcamp.uk/) (21–22 November)
+- [UKGovCamp](https://www.ukgovcamp.com/) (Manchester, 16 January)
 
 You can also [download this poster](https://drive.google.com/file/d/1ZkA37iPO9NbALvxvNBA431fVpAAMKtwP/view?usp=drive_link) to put up in your office. If you do — please share a photo with us!
 

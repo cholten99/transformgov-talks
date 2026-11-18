@@ -29,9 +29,9 @@ EVENT = {
     "location": "Yolk Recruitment in Cardiff",
     "when": "last night",  # match when the thread actually goes out
     "blog_url": "TODO",
-    "youtube_url": "TODO",
-    "youtube_title": "TransformGov Talks Cymru: November 2026",
-    "youtube_thumb_url": "TODO",  # https://i.ytimg.com/vi/<id>/hqdefault.jpg
+    "youtube_url": "https://youtu.be/X8LxpuHTnD4",
+    "youtube_title": "TGT Cymru: TransformGov Talks x Transform Wales November 2026",
+    "youtube_thumb_url": "https://i.ytimg.com/vi/X8LxpuHTnD4/hqdefault.jpg",
     "spotify_url": "TODO",
     "apple_url": "TODO",
     # In running order (check the Gemini notes).

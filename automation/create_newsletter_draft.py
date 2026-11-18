@@ -55,7 +55,7 @@ EVENT = {
     ],
     "blog_url": "TODO",
     "gemini_url": "https://docs.google.com/document/d/1DKyzAlhB1nADv2OGBmC99OOquvgabbm__vejrX5vf-8/edit?usp=sharing",
-    "youtube_url": "TODO",
+    "youtube_url": "https://youtu.be/X8LxpuHTnD4",
     "spotify_url": "TODO",
     "apple_url": "TODO",
     # (label, url) pairs — drop any event that's already passed by the time of

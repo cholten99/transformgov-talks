@@ -47,7 +47,7 @@ EVENT = {
         {
             "name": "Andy Regan",
             "org": "Nesta Cymru",
-            "topic": "bringing innovation into policymaking in Wales",
+            "topic": "why government should test and learn rather than rely on big up-front plans",
             "quote_topic": False,
             "photo": AUTOMATION_DIR.parent / "images" / "2026-11-andy-regan.jpg",
         },
@@ -60,15 +60,19 @@ EVENT = {
         },
     ],
     # Final post. "intro" heads it; each event gets a "Register now!" link.
-    "upcoming_intro": "Our next events are both at the Ministry of Justice in London:",
+    "upcoming_intro": "Our next events:",
     "upcoming_events": [
         {
-            "text": "25 November: Peter Thomas; Tom Wynne-Morgan and Jack Strachan (GDS); Beatriz Brown (Attorney General's Office).",
+            "text": "25 November, MoJ, London: Peter Thomas; Tom Wynne-Morgan and Jack Strachan (GDS); Beatriz Brown (Attorney General's Office).",
             "luma_url": "https://luma.com/8oaszd9g",
         },
         {
-            "text": "9 December: speakers to be announced soon.",
+            "text": "9 December, MoJ, London: speakers to be announced soon.",
             "luma_url": "https://luma.com/4pwpi726",
+        },
+        {
+            "text": "Late January, Cardiff: details coming soon.",
+            "luma_url": None,
         },
     ],
 }
@@ -109,7 +113,9 @@ def _lead_in(i):
 def _upcoming_builder():
     tb = client_utils.TextBuilder().text(EVENT["upcoming_intro"])
     for e in EVENT["upcoming_events"]:
-        tb.text(f"\n\n{e['text']} ").link("Register now!", e["luma_url"])
+        tb.text(f"\n\n{e['text']}")
+        if e.get("luma_url"):
+            tb.text(" ").link("Register now!", e["luma_url"])
     return tb
 
 

@@ -42,8 +42,7 @@ EVENT = {
         },
         {
             "name": "Andy Regan", "org": 'Head of <a href="https://www.nesta.org.uk/" target="_blank" rel="noopener noreferrer">Nesta Cymru</a>',
-            # No talk title on Luma — check the Gemini notes for what he covered.
-            "topic": "Nesta's work to shape policy in Wales and bring innovation into policymaking",
+            "topic": "why government should test and learn rather than rely on big up-front plans",
             "quote_topic": False,
             "photo_url": "https://www.transformgov.org.uk/images/2026-11-andy-regan.jpg",
         },
@@ -55,7 +54,7 @@ EVENT = {
         },
     ],
     "blog_url": "TODO",
-    "gemini_url": "TODO",
+    "gemini_url": "https://docs.google.com/document/d/1DKyzAlhB1nADv2OGBmC99OOquvgabbm__vejrX5vf-8/edit?usp=sharing",
     "youtube_url": "TODO",
     "spotify_url": "TODO",
     "apple_url": "TODO",
@@ -79,6 +78,12 @@ EVENT = {
             "date_line": "9 December 2026, 6-7pm, at the Ministry of Justice in London",
             "speakers_line": "speakers to be announced soon",
             "luma_url": "https://luma.com/4pwpi726",
+        },
+        {
+            # No Luma page yet: listed without a register link.
+            "date_line": "Late January 2027, our next TransformGov Talks Cymru in Cardiff",
+            "speakers_line": "details coming soon",
+            "luma_url": None,
         },
     ],
 }
@@ -122,8 +127,10 @@ def build_content(ev):
         )
     else:
         items = "".join(
-            f'<li>{e["date_line"]}: {e["speakers_line"]}. '
-            f'<a href="{e["luma_url"]}" target="_blank" rel="noopener noreferrer"><strong>Register now!</strong></a></li>'
+            f'<li>{e["date_line"]}: {e["speakers_line"]}.'
+            + (f' <a href="{e["luma_url"]}" target="_blank" rel="noopener noreferrer"><strong>Register now!</strong></a>'
+               if e.get("luma_url") else "")
+            + '</li>'
             for e in upcoming
         )
         upcoming_html = f'<p>Finally, our next events are:</p>\n<ul>{items}</ul>'

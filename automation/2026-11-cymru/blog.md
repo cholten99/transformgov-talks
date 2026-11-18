@@ -12,7 +12,7 @@ Our first speaker was Rachel Meese, Head of UCD at [Digital Health and Care Wale
 
 ![Rachel Meese](../../images/2026-11-rachel-meese.jpg)
 
-Our second speaker was Andy Regan, Head of [Nesta Cymru](https://www.nesta.org.uk/), on Nesta's work to shape policy in Wales and bring innovation into policymaking. **[TODO: his actual topic, from the Gemini notes]**
+Our second speaker was Andy Regan, Head of [Nesta Cymru](https://www.nesta.org.uk/), on why government should test and learn rather than rely on big up-front plans.
 
 ![Andy Regan](../../images/2026-11-andy-regan.jpg)
 
@@ -22,7 +22,7 @@ Our third speaker was Omar Idris, Head of Design at [Perago](https://perago.co.u
 
 If you weren't able to attend, you can catch up on the event in more detail:
 
-- Read the [Gemini AI Summary](TODO-gemini)
+- Read the [Gemini AI Summary](https://docs.google.com/document/d/1DKyzAlhB1nADv2OGBmC99OOquvgabbm__vejrX5vf-8/edit?usp=sharing)
 - [Video on YouTube](TODO-youtube)
 - Listen on [Spotify](TODO-spotify) or [Apple Podcasts](TODO-apple)
 
@@ -39,7 +39,8 @@ You can also [download this poster](https://drive.google.com/file/d/1ZkA37iPO9Nb
 
 Let us know if you have an event you'd like us to publicise.
 
-Finally, our next events are both at the Ministry of Justice in London:
+Finally, our next events are:
 
-- 25 November 2026, 6-7pm, featuring Peter Thomas (civilservicereformuk.com) on what 15 years of GDS tell us about successful reform; Tom Wynne-Morgan and Jack Strachan (Government Digital Service) on 'Transforming Gov: from digital transactions to digital decisions'; and Beatriz Brown (Attorney General's Office) on public engagement on the rule of law. [You can register now!](https://luma.com/8oaszd9g)
-- 9 December 2026, 6-7pm, speakers to be announced soon. [You can register now!](https://luma.com/4pwpi726)
+- 25 November 2026, 6-7pm, at the Ministry of Justice in London, featuring Peter Thomas (civilservicereformuk.com) on what 15 years of GDS tell us about successful reform; Tom Wynne-Morgan and Jack Strachan (Government Digital Service) on 'Transforming Gov: from digital transactions to digital decisions'; and Beatriz Brown (Attorney General's Office) on public engagement on the rule of law. [You can register now!](https://luma.com/8oaszd9g)
+- 9 December 2026, 6-7pm, at the Ministry of Justice in London, speakers to be announced soon. [You can register now!](https://luma.com/4pwpi726)
+- Late January 2027, our next TransformGov Talks Cymru in Cardiff: details coming soon.

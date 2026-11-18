@@ -31,7 +31,6 @@ Here are a few other events and projects you might be interested in:
 - [Civic Punks](https://civicpunks.com/)
 - [Data Bites](https://www.thinkdigitalpartners.com/data-bites/) (#63, 2 December)
 - [The National Strategy Project](https://www.nationalstrategy.uk/)
-- [Open Data Camp](https://www.odcamp.uk/) (21–22 November)
 - [UKGovCamp](https://www.ukgovcamp.com/) (Manchester, 16 January)
 
 You can also [download this poster](https://drive.google.com/file/d/1ZkA37iPO9NbALvxvNBA431fVpAAMKtwP/view?usp=drive_link) to put up in your office. If you do — please share a photo with us!

@@ -32,7 +32,7 @@ MP3 `TGT_Wales_<Month>_<Year>.mp3`, dashboard `TGT Cymru <Month> <Year>`.
 | A. Video | find the files with `rclone lsf -R --max-age 6h TGT:` (Meet makes a **new** "Google Meet" folder each event — see item 1); ask Dave to share that folder with the service account as Editor; `rclone copyto` the recording to a working dir in `~` | nothing |
 | B. YouTube auth | `upload_youtube.py --consent-url` → Dave approves as the TGT account → `--auth-code '<pasted URL>'` (~30s; token lasts 7 days, so can be done before the event) | nothing |
 | C. Photos | from the Mac's Downloads (`ssh macair-new`) or Dave's email → resize to 1200px wide **and re-save without EXIF** (phone photos carry GPS) → `images/<YYYY-MM>-<first>-<last>.jpg` (the newsletter needs public image URLs) | nothing |
-| D. Guest CSV → Kit + dashboard | `scp` the CSV into `private/` (chmod 600) → `sync_luma.py` → add opt-ins to Kit (item 10) → `sync_kit.py` | nothing |
+| D. Guest CSV → Kit + dashboard | `scp` the CSV into `private/` (chmod 600) → `sync_luma.py` → add opt-ins to Kit (item 10) → `sync_kit.py` → **delete the CSV** (it holds guests' details; everything needed is now in `data/` and Kit) | nothing |
 | E. Next event info | find the next event via Luma's `events-hosting` API (item 9), then read its page's `__NEXT_DATA__` | nothing |
 | F. Website: next-event section | update `index.shtml`, **confirm the live-stream link each time** (don't assume unchanged) | E |
 | G. Website: front-page "latest video" | update the embed | A1 (below) only |

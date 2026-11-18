@@ -4,10 +4,10 @@ Going through each action one at a time. Recording decisions/findings here as we
 
 ## Runbook: ordering & parallelization for next time
 
-**Raw inputs** (nothing starts without these; video/Gemini notes just need
-time after the event, the rest are manual asks to Dave): video + Gemini
-notes doc (Drive, appear naturally after the event), speaker photos,
-guest-list CSV, next event's Luma URL.
+**Raw inputs** (nothing starts without these): video + Gemini notes doc
+(Drive, appear on their own after the event), plus the manual asks to Dave —
+speaker photos, guest-list CSV, parish-notices confirmation (full list at the
+end of this doc). The next event's Luma URL is found automatically (item 9).
 
 **Independent tracks — kick all of these off together, right at the start:**
 
@@ -15,9 +15,9 @@ guest-list CSV, next event's Luma URL.
 |---|---|---|
 | A. Video | find latest recording in Drive → download | nothing |
 | B. YouTube auth | OAuth consent click (~30s, Testing-mode token, redo each time) | nothing |
-| C. Photos | pull from Mac Downloads | nothing |
+| C. Photos | pull from Mac Downloads (`ssh macair-new`) → copy into `/var/www/transformgov-talks/images/` (the newsletter needs public image URLs) | nothing |
 | D. Guest CSV → Kit + dashboard | pull CSV → `sync_luma.py` → Kit subscriber add + dashboard "heard about" chart (chart itself already built — this just feeds it data) | nothing |
-| E. Next event info | scrape the Luma URL Dave gives | just the URL |
+| E. Next event info | find the next event via Luma's `events-hosting` API (item 9), then read its page's `__NEXT_DATA__` | nothing |
 | F. Website: next-event section | update `index.shtml`, **confirm the live-stream link each time** (don't assume unchanged) | E |
 | G. Website: front-page "latest video" | update the embed | A1 (below) only |
 | H. Website: Related events / parish notices strip | `index.shtml` has its own hardcoded "Related events:" strip, **separate from the blog/newsletter copy's parish notices list** — keep both in sync manually. Gap found 2026-10-01: Dave dropped a stale "GovCamp Scotland" entry from the blog copy (already passed) but the website strip still had it — two different places, easy to update one and forget the other. | parish notices confirmation |
@@ -31,18 +31,21 @@ deleted the video in between, forcing a wasteful re-download):**
 
 **The one real bottleneck, not parallelizable — just a clock:** after A2
 publishes the feed, Spotify/Apple each independently index the episode
-(Spotify was near-instant this run, Apple took a few hours). Everything in
-tracks C, D, E, F, G should happen *during* this wait, not after it.
+(Spotify was near-instant, Apple took a few hours). Everything in
+tracks C–H should happen *during* this wait, not after it.
 
 **Final convergence — blocked until YouTube + Spotify + Apple links all
 exist:**
 1. Finalize blog copy (draft it earlier with the other content, just not the
-   three links). The Gemini notes doc is made public with
-   `share_gemini_notes.py` (resolved Oct 2026)
+   three links). Make the Gemini notes doc public first with
+   `share_gemini_notes.py <file_id>`.
 2. Dave posts it to Medium → blog URL
 3. Once the blog URL exists, these three are mutually independent — run in
    parallel: **Bluesky thread** (`post_bluesky_thread.py`), **newsletter
-   draft** (`create_newsletter_draft.py`), **past-events page entry** (below)
+   draft** (`create_newsletter_draft.py`), **past-events page `blog:` link**
+   (below)
+4. Dave reviews and sends the newsletter from Kit's dashboard — manual,
+   deliberately never automated (see item 10)
 
 **Past-events page (`previous.shtml`) — don't skip this.** Add a new entry
 at the top of `previous_events.yml` (month, one item per talk in running
@@ -65,8 +68,6 @@ once Dave posts to Medium (done this way for October 2026).
   (it was stale from 23 Sept until the October run)
 - `sync_podcast_host.py` — cron'd daily 07:00, after podcast-host's 06:45
   listen count, so a new episode shows up the morning after publishing
-4. Dave reviews and sends the newsletter from Kit's dashboard — manual,
-   deliberately never automated (see item 10)
 
 Critical path ≈ *(Google's own recording/notes delay) → download → publish
 podcast feed → Apple indexing wait → Dave posts blog → final parallel
@@ -80,8 +81,9 @@ batch.* Everything else is slack, not critical path.
 `transformgov_talks_youtube_api_key` secret is a read-only v3 API key (used by
 `sync_youtube.py` for stats) — it can't upload.
 
-**Finding:** the recording lands in the TGT Google account's Google Meet recordings
-location (exact folder TBD) — Dave confirmed it'll always be the most recent file there.
+**Finding:** the recording lands under the TGT Google account's "Google Meet"
+Drive folder — Dave confirmed it'll always be the most recent file there (exact
+layout below: scan recursively, don't trust folder names).
 
 **Access approach decided:** a plain API key won't work for private Drive files
 (unlike the YouTube stats key, which only reads public data). For an unattended
@@ -196,7 +198,10 @@ event is **October 28 2026**, featuring **Harry Trimble (DXW)** and **Asma Nafi
 (NHS England)**. No venue/time/registration link yet — that'll need checking Luma
 again closer to the date, once it's published there.
 
-**Status:** partial — have speakers/date, missing logistics + registration link.
+**Status:** resolved — since 2026-10-28 the next event's Luma page is found
+automatically (item 9), which gives date, venue, speakers and the
+registration link. The Gemini "Details" section is still useful as a check on
+what was announced on the night.
 
 ## 6. Add MP3 to podcast project
 
@@ -210,7 +215,7 @@ again closer to the date, once it's published there.
 4. Commit `data/*.yml` (not `dist/`, gitignored).
 5. (Bluesky posting — see below, now relevant to TGT.)
 
-**Status:** process known, not yet run for this event (blocked on video download).
+**Status:** DONE for Sept and Oct 2026 — the process above works as-is.
 
 ## 7. Bluesky cron post — simplification found
 
@@ -288,11 +293,11 @@ from now on:
   soon)" next to Policy Camp).
 - **The "download this poster" line gets a real link** to the poster file
   (he added a Drive link: `drive.google.com/file/d/1ZkA37iPO9NbALvxvNBA431fVpAAMKtwP`)
-  — find/ask for this each time rather than leaving it as plain unlinked text.
-- The Gemini summary link was used **as-is, still pointing at the private
-  Drive doc** (`docs.google.com/document/.../edit`) — Dave didn't ask for it
-  to be made public first. Worth flagging each time (public blog readers may
-  hit a permission wall) but apparently not a blocker to posting.
+  — the same link every time (item 9), never plain unlinked text.
+- The Gemini summary link points at the Drive doc itself
+  (`docs.google.com/document/.../edit`). In Sept it was still private when
+  posted; now `share_gemini_notes.py` makes it public first (item 2), so
+  readers don't hit a permission wall.
 
 **How to apply:** build the next event's docx against this refined list, not
 the original flat template text from `TGT Post Event Automation.docx`.
@@ -308,8 +313,8 @@ actually just September's own event page, not a calendar) nor from the org's
 profile page (`luma.com/user/TransformGTalks`, which also needs JS to render
 its event list).
 
-**Decision:** don't try to reverse-engineer Luma's backend API to scrape this
-— added to the manual "supply after event" list below instead. Once given the
+**Original decision (superseded, see update below):** don't reverse-engineer
+Luma's backend API — ask Dave for the URL instead. Once given the
 specific event URL, pulling date/time/venue/speakers from it works fine (its
 `__NEXT_DATA__` JSON blob has structured data once you're on the right page).
 
@@ -353,36 +358,30 @@ there. Do this before running the script.
 These need to be supplied by Dave each time — everything else in this doc is
 scriptable/automatic once these are in hand:
 
-1. **Next event's Luma URL** — e.g. `https://luma.com/424qc6d1`. Luma's JS
-   rendering blocks automatic discovery (see item 9 above).
-2. **Speaker photos** — currently pulled from the Mac's `~/Downloads/` root by
+1. **Speaker photos** — pulled from the Mac's `~/Downloads/` root by
    filename (e.g. `Riz.jpg`, `Julia.jpg`) — works as long as they keep landing
    there with recognisable names.
-3. **Gemini AI summary — public link.** We can read the private "Notes by
-   Gemini" doc via the service account, but there's no public link to share in
-   the blog/newsletter yet — needs a decision on whether to share the doc
-   itself, publish an export, or drop this line from the template.
-4. **Parish notices confirmation** — assumed unchanged from the website's
-   "Related events" strip (`index.shtml`) unless told otherwise each time.
-5. **Spotify / Apple Podcasts links** — only exist once the podcast episode
-   is published *and* those platforms have indexed it (can take time) —
-   can't be fetched at the moment the blog copy is drafted.
-6. **Guest list CSV from Luma** — also lands in the Mac's `~/Downloads/` root
+2. **Guest list CSV from Luma** — also lands in the Mac's `~/Downloads/` root
    (named like `TransformGov Talks_ <Month> <Year> - Guests - <timestamp>.csv`).
    Needed for both the Kit subscriber sync and the dashboard's "how did you
-   hear about us" data. No API access to Luma exists, so this is always a
-   manual export + copy, same as the photos above.
+   hear about us" data. Luma's official API needs a Luma Plus key, which we
+   don't have, so this is always a manual export + copy.
+3. **Parish notices confirmation** — assumed unchanged from the website's
+   "Related events" strip (`index.shtml`) unless told otherwise each time;
+   drop anything that has already happened.
+
+No longer manual: the next event's Luma URL (item 9) and the public Gemini
+notes link (item 2). Spotify/Apple links aren't a manual input either —
+`check_episode_links.py` finds them once the platforms have indexed the
+episode; they just take time.
 
 ### How to reach the Mac to pull photos/guest CSV
 
-The Mac (`Davids-MacBook-Air.local`) is NOT reliably reachable over the
-`macair-new` / NordVPN Meshnet SSH alias (`dave-lanin9381.nord`) — it timed
-out entirely this session. **Use mDNS/Bonjour discovery on the local LAN
-instead**: `avahi-browse -art` and look for a `_ssh._tcp` / "SSH Remote
-Terminal" entry — it resolved to `Davids-MacBook-Air.local` at
-`192.168.0.213`, which connected fine via plain `ssh`/`scp`. Don't waste time
-debugging Meshnet itself (checking `nordvpn status` etc.) — go straight to
-the mDNS fallback.
+Plain `ssh macair-new` / `scp macair-new:...`. Since 2026-11-04 the ssh
+config picks NordVPN Meshnet if it's up and falls back to the LAN address
+otherwise. If it still times out, find the Mac with `avahi-browse -art`
+(look for its `_ssh._tcp` entry, `Davids-MacBook-Air.local`) and connect
+to the address that gives.
 
 ### Where secrets actually live — a gotcha hit this session
 

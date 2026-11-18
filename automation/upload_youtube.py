@@ -2,19 +2,25 @@
 """
 upload_youtube.py — Upload a TGT event video to the TGT YouTube channel (public).
 
-Needs ~/secrets/transformgov_talks_youtube_token.json from the browser consent
-step in plan.md item 3 (Testing-mode OAuth: the refresh token lasts 7 days, so
-redo the consent before each event's upload).
+Sign-in (Testing-mode OAuth: the refresh token lasts 7 days, so do this
+before each event's upload; see plan.md item 3):
+    python3 upload_youtube.py --consent-url
+        -> Dave opens it signed in as the TGT account, approves, and pastes
+           back the dead http://localhost/?code=... address
+    python3 upload_youtube.py --auth-code '<that whole address or just the code>'
+        -> saves ~/secrets/transformgov_talks_youtube_token.json (mode 600)
 
-Usage:
+Upload:
     python3 upload_youtube.py VIDEO.mp4 META.json [--dry-run]
 META.json: {"title": ..., "description": ..., "categoryId": "25"}
 Uploads resumably in 16 MB chunks and prints the video URL at the end.
+Always public (every TGT video has been).
 """
 import json
 import os
 import sys
 import time
+import urllib.parse
 
 import requests
 
@@ -35,7 +41,42 @@ def access_token():
     return r.json()["access_token"]
 
 
+def consent_url():
+    client = json.load(open(CLIENT))["installed"]
+    return "https://accounts.google.com/o/oauth2/v2/auth?" + urllib.parse.urlencode({
+        "client_id": client["client_id"], "redirect_uri": "http://localhost",
+        "response_type": "code", "scope": "https://www.googleapis.com/auth/youtube.upload",
+        "access_type": "offline", "prompt": "consent"})
+
+
+def save_token(code_or_url):
+    if "code=" in code_or_url:
+        code_or_url = urllib.parse.parse_qs(urllib.parse.urlparse(code_or_url).query)["code"][0]
+    client = json.load(open(CLIENT))["installed"]
+    r = requests.post(client["token_uri"], data={
+        "code": code_or_url, "client_id": client["client_id"], "client_secret": client["client_secret"],
+        "redirect_uri": "http://localhost", "grant_type": "authorization_code"}, timeout=30)
+    if not r.ok:
+        sys.exit(f"Code exchange failed ({r.status_code}) — codes expire in minutes: {r.text[:200]}")
+    tok = r.json()
+    if not tok.get("refresh_token"):
+        sys.exit("No refresh token returned — make sure the consent URL had prompt=consent")
+    tok["obtained_at"] = int(time.time())
+    old = os.umask(0o077)
+    try:
+        with open(TOKEN, "w") as f:
+            json.dump(tok, f)
+    finally:
+        os.umask(old)
+    print(f"Saved {TOKEN} (valid for 7 days)")
+
+
 def main():
+    if "--consent-url" in sys.argv:
+        print(consent_url())
+        return
+    if "--auth-code" in sys.argv:
+        return save_token(sys.argv[sys.argv.index("--auth-code") + 1])
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     if len(args) != 2:
         sys.exit(__doc__)

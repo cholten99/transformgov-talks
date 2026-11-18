@@ -9,14 +9,30 @@ Going through each action one at a time. Recording decisions/findings here as we
 speaker photos, guest-list CSV, parish-notices confirmation (full list at the
 end of this doc). The next event's Luma URL is found automatically (item 9).
 
+**Before anything else, for each event:** make `automation/<YYYY-MM>-<slug>/`
+for the drafts (see `2026-11-cymru/`: `blog.md`, `youtube.json`,
+`podcast-entry.yml`, `previous-events-entry.yml`), and fill the `EVENT` dicts
+in `create_newsletter_draft.py` and `post_bluesky_thread.py`, leaving `TODO`
+for links that don't exist yet (both scripts refuse to post while any remain;
+`--dry-run` previews). Run the scripts with
+`/var/www/podcast-host/venv/bin/python`.
+
+**London vs Cymru:** Cymru (Cardiff) events are hosted by Transform Wales
+(host line "Hosted by Transform Wales." — `host` with only `org`/`org_url`),
+usually have three speakers, and get the same newsletter, Bluesky account and
+everything else as London (Dave, 2026-11-18). Names:
+YouTube `TGT Cymru: TransformGov Talks x Transform Wales <Month> <Year>`,
+podcast `TransformGov Talks Cymru: <Month> <Year>`,
+MP3 `TGT_Wales_<Month>_<Year>.mp3`, dashboard `TGT Cymru <Month> <Year>`.
+
 **Independent tracks — kick all of these off together, right at the start:**
 
 | Track | Steps | Blocked on |
 |---|---|---|
-| A. Video | find latest recording in Drive → download | nothing |
-| B. YouTube auth | OAuth consent click (~30s, Testing-mode token, redo each time) | nothing |
-| C. Photos | pull from Mac Downloads (`ssh macair-new`) → copy into `/var/www/transformgov-talks/images/` (the newsletter needs public image URLs) | nothing |
-| D. Guest CSV → Kit + dashboard | pull CSV → `sync_luma.py` → Kit subscriber add + dashboard "heard about" chart (chart itself already built — this just feeds it data) | nothing |
+| A. Video | find the files with `rclone lsf -R --max-age 6h TGT:` (Meet makes a **new** "Google Meet" folder each event — see item 1); ask Dave to share that folder with the service account as Editor; `rclone copyto` the recording to a working dir in `~` | nothing |
+| B. YouTube auth | `upload_youtube.py --consent-url` → Dave approves as the TGT account → `--auth-code '<pasted URL>'` (~30s; token lasts 7 days, so can be done before the event) | nothing |
+| C. Photos | from the Mac's Downloads (`ssh macair-new`) or Dave's email → resize to 1200px wide **and re-save without EXIF** (phone photos carry GPS) → `images/<YYYY-MM>-<first>-<last>.jpg` (the newsletter needs public image URLs) | nothing |
+| D. Guest CSV → Kit + dashboard | `scp` the CSV into `private/` (chmod 600) → `sync_luma.py` → add opt-ins to Kit (item 10) → `sync_kit.py` | nothing |
 | E. Next event info | find the next event via Luma's `events-hosting` API (item 9), then read its page's `__NEXT_DATA__` | nothing |
 | F. Website: next-event section | update `index.shtml`, **confirm the live-stream link each time** (don't assume unchanged) | E |
 | G. Website: front-page "latest video" | update the embed | A1 (below) only |
@@ -25,20 +41,31 @@ end of this doc). The next event's Luma URL is found automatically (item 9).
 **Fork once the video's downloaded — these two don't depend on each other,
 run them side by side (this session's mistake: did them sequentially and
 deleted the video in between, forcing a wasteful re-download):**
-- **A1. YouTube upload** = downloaded video + Track B's token → YouTube URL
-- **A2. Podcast** = downloaded video → extract MP3 → add episode entry →
-  render feed → publish
+- **A1. YouTube upload** = `upload_youtube.py <video> <drafts>/youtube.json`
+  → YouTube URL (public). Then `sync_youtube.py` for the dashboard.
+- **A2. Podcast** = `ffmpeg -i <video> -vn -c:a libmp3lame -b:a 112k -ar 48000`
+  → add episode entry → render feed → publish (item 6)
+
+**Trim?** October's published video was ~20 min shorter than the raw
+recording; November's needed nothing (the Gemini transcript's first line was
+the welcome, 3 s in, and its end matched the recording). Check the transcript
+tab's first and last timestamps against the recording length before
+uploading.
 
 **The one real bottleneck, not parallelizable — just a clock:** after A2
 publishes the feed, Spotify/Apple each independently index the episode
 (Spotify was near-instant, Apple took a few hours). Everything in
-tracks C–H should happen *during* this wait, not after it.
+tracks C–H should happen *during* this wait, not after it. Poll with
+`check_episode_links.py`, but it lags the apps — if Dave already sees the
+episode, ask him for the links.
 
 **Final convergence — blocked until YouTube + Spotify + Apple links all
 exist:**
 1. Finalize blog copy (draft it earlier with the other content, just not the
    three links). Make the Gemini notes doc public first with
-   `share_gemini_notes.py <file_id>`.
+   `share_gemini_notes.py <file_id>`. Build the docx with
+   `pandoc blog.md --resource-path=. -o "../TGT <event> - blog and newsletter copy.docx"`
+   and upload it to the TGT Drive folder (item 8).
 2. Dave posts it to Medium → blog URL
 3. Once the blog URL exists, these three are mutually independent — run in
    parallel: **Bluesky thread** (`post_bluesky_thread.py`), **newsletter
@@ -97,8 +124,22 @@ cron-style script, use a **Google Cloud service account**:
 problem, see above.)
 
 **Status:** DONE — service account `access-my-google-docs@sinuous-branch-503021-e4.iam.gserviceaccount.com`
-(key: `secrets/cholten99_google_sa.json`) has been shared (Viewer) on the TGT "Google Meet"
-Drive folder and confirmed working (tested with a one-off JWT auth script).
+(key: `secrets/cholten99_google_sa.json`).
+
+**But Meet makes a NEW top-level "Google Meet" folder per event** (Sept, Oct
+and Nov 2026 each got their own — same name, different IDs), and the service
+account only sees folders shared with it by hand. So each event: find the
+files with the read-only `TGT:` rclone remote (`rclone lsf -R --max-age 6h
+TGT:`), then ask Dave to share that night's "Google Meet" folder with the
+service account as **Editor** (needed for `share_gemini_notes.py` and for
+reading the transcript tab). Timing on 2026-11-18 (recording ended ~19:35
+UTC): folder + notes doc appeared 19:43–19:45, notes filled in by ~20:30,
+recording (759 MB) finished processing 20:33.
+
+The notes doc has three tabs (Quick notes, Full notes, Transcript); the plain
+text export only gives the first. Read all of them with the Docs API
+(`GET docs.googleapis.com/v1/documents/<id>?includeTabsContent=true`) via the
+service account.
 
 **Folder structure found:** under My Drive > "Google Meet" there isn't one consistent
 recordings folder — there's a "Meet Recordings" subfolder plus separate per-event
@@ -158,7 +199,9 @@ the manual post-event process, and avoids the verification paperwork entirely.
 - Flow: build consent URL (scope `youtube.upload`, `access_type=offline`,
   `prompt=consent`) → Dave opens it signed in as the TGT account → approves →
   redirected to dead `http://localhost/?code=...` → copy the `code` param →
-  exchange at the token endpoint for an access token (same-session use only).
+  exchange at the token endpoint. `upload_youtube.py --consent-url` /
+  `--auth-code` do all of this and save the token (7-day refresh token) to
+  `~/secrets/transformgov_talks_youtube_token.json`.
 
 **Status:** DONE (auth flow proven end-to-end for the Sept 2026 event upload).
 
@@ -168,6 +211,10 @@ the manual post-event process, and avoids the verification paperwork entirely.
 past video titles fetched via the read-only YouTube API (e.g. "TransformGov Talks:
 July 2026"). Regional events get different naming (e.g. "TransformGov Talks Scotland :
 September 2026") — only applies to the flagship (non-regional) event.
+Cymru videos follow Sept 2026's: `TGT Cymru: TransformGov Talks x Transform
+Wales <Month> <Year>`, with a sentence-style description ("Hosted by
+Transform Wales." / "Our first speaker was …" / "That was followed by …" /
+"Then finally …"), not the bulleted London one.
 
 **Description convention:** fetched an existing video's real description via the
 YouTube API to copy the exact format:
@@ -207,7 +254,8 @@ what was announced on the night.
 
 **Finding:** fully documented already in `/var/www/podcast-host/CLAUDE.md`
 ("Adding a new episode"), reusable as-is:
-1. Add audio file to `audio/transformgov-talks/`, named `TGT_<Month>_<Year>.mp3`.
+1. Add audio file to `audio/transformgov-talks/`, named `TGT_<Month>_<Year>.mp3`
+   (Cymru: `TGT_Wales_<Month>_<Year>.mp3`).
 2. Add new entry to top of `episodes:` in the relevant `data/*.yml` (copy shape of
    most recent entry).
 3. Re-run `generator/render_feed.py <data.yml> <feed_url> <output.xml>` to
@@ -215,7 +263,9 @@ what was announced on the night.
 4. Commit `data/*.yml` (not `dist/`, gitignored).
 5. (Bluesky posting — see below, now relevant to TGT.)
 
-**Status:** DONE for Sept and Oct 2026 — the process above works as-is.
+**Status:** DONE for Sept, Oct and Nov 2026 — the process above works as-is.
+Feed URL for step 3: `https://podcast-feed.transformgov.org.uk/feed.xml`,
+output `dist/534749-transformgov-talks.xml`.
 
 ## 7. Bluesky cron post — simplification found
 
@@ -240,7 +290,8 @@ Podcasts, next event + registration link. A single announcement post is not
 an acceptable substitute — don't reach for `post_to_bluesky.py` for TGT again.
 
 **Correct tool:** `automation/post_bluesky_thread.py` — builds the full
-7-post reply chain per the template, with an `EVENT` dict at the top to edit
+reply chain per the template (one post per speaker, so 7 posts for two
+speakers, 8 for three), with an `EVENT` dict at the top to edit
 for each new event. Real gotcha hit: Bluesky rejects images over ~1MB
 (`blob too big`) — the raw speaker photos from Downloads were 3-4MB, so the
 script compresses them (Pillow, iterating JPEG quality down until under
@@ -302,6 +353,16 @@ from now on:
 **How to apply:** build the next event's docx against this refined list, not
 the original flat template text from `TGT Post Event Automation.docx`.
 
+**Where the docx goes (Dave, 2026-11-18):** the TGT account's
+`Shared TGT folder/Automation/Blog and newsletter copy`
+(folder id `1XQBjOPKYi0dMnnIlUhDtsX0KcmbPHIK_`), shared with cholten99 as
+Editor. Upload with the existing cholten99 rclone remote:
+`rclone copyto --drive-root-folder-id 1XQBjOPKYi0dMnnIlUhDtsX0KcmbPHIK_ "<docx>" "cholten99:<docx>"`.
+The service account can create folders there but **not files** — Google
+gives service accounts no storage quota outside Shared Drives (403
+"Service Accounts do not have storage quota"), and the TGT Gmail account
+has no Shared Drives.
+
 ## 9. Luma: finding the next event's page automatically
 
 **Problem found:** Luma's pages are a client-rendered JS app — fetching the
@@ -347,9 +408,19 @@ reviewing. **Never add code that schedules or sends** — that was an explicit
 instruction, not just a default.
 
 **Dependency:** speaker photos must be hosted somewhere with a public URL
-first (Kit emails need real image URLs, not local files) — this session they
-were copied into `/var/www/transformgov-talks/images/` and referenced from
-there. Do this before running the script.
+first (Kit emails need real image URLs, not local files) — copy them into
+`/var/www/transformgov-talks/images/` (track C) before running the script.
+
+**No parish notices on the night?** Use our own list (the website's Related
+events strip, pruned) and set `parish_intro` so the copy doesn't claim they
+were read out.
+
+**Adding Luma opt-ins to Kit** (how it's been done, Oct + Nov 2026): after
+`sync_luma.py`, for each opt-in email for the event, look it up
+(`GET /v4/subscribers?email_address=…&status=all`); if absent,
+`POST /v4/subscribers` with `state: active` and the first name from the CSV.
+Regional events also get a tag (`TGT Cymru <Month> <Year>`) on every opt-in.
+Then `sync_kit.py`.
 
 ---
 
@@ -358,9 +429,10 @@ there. Do this before running the script.
 These need to be supplied by Dave each time — everything else in this doc is
 scriptable/automatic once these are in hand:
 
-1. **Speaker photos** — pulled from the Mac's `~/Downloads/` root by
-   filename (e.g. `Riz.jpg`, `Julia.jpg`) — works as long as they keep landing
-   there with recognisable names.
+1. **Speaker photos** — from the Mac's `~/Downloads/` root by filename
+   (e.g. `Riz.jpg`, `Julia.jpg`), or emailed to cholten99 from Dave's phone
+   (Nov 2026: one email, three attachments, subject naming one speaker —
+   check who's who before naming the files).
 2. **Guest list CSV from Luma** — also lands in the Mac's `~/Downloads/` root
    (named like `TransformGov Talks_ <Month> <Year> - Guests - <timestamp>.csv`).
    Needed for both the Kit subscriber sync and the dashboard's "how did you
@@ -371,9 +443,9 @@ scriptable/automatic once these are in hand:
    drop anything that has already happened.
 
 No longer manual: the next event's Luma URL (item 9) and the public Gemini
-notes link (item 2). Spotify/Apple links aren't a manual input either —
-`check_episode_links.py` finds them once the platforms have indexed the
-episode; they just take time.
+notes link (item 2, once Dave has shared the night's Meet folder). Spotify/
+Apple links come from `check_episode_links.py`, or from Dave if the apps have
+them first.
 
 ### How to reach the Mac to pull photos/guest CSV
 
@@ -451,61 +523,25 @@ format — **no leading `@` for any Bluesky handle secret, ever.**
 - **Kit's create-broadcast response is wrapped** (`{"broadcast": {...}}`);
   fixed in the script. If it ever errors after the POST, check the
   broadcast list before re-running — the draft may already exist.
-- **Gemini notes sharing:** fixed 2026-10-28 — the "Google Meet" folder is
-  now shared with the service account as Editor, so
-  `python3 automation/share_gemini_notes.py <file_id>` works on each new
-  event's notes (verified on October's). The `TGT:` rclone remote can't do
-  this itself: it's `drive.readonly`.
+- **Gemini notes sharing:** `python3 automation/share_gemini_notes.py
+  <file_id>` — works once the night's "Google Meet" folder is shared with the
+  service account as Editor (a new folder each event: item 1). The `TGT:`
+  rclone remote can't do this itself: it's `drive.readonly`.
 - **Apple Podcasts check:** `check_episode_links.py` now queries the GB
   storefront, which picks up new episodes hours earlier.
 - **YouTube description order** came from Luma (Harry first) but the talks
   ran Asma first — check the actual running order (Gemini "Details"
   section) before writing the description.
 
-## November 2026 Cymru run — prepared before the event (2026-11-18)
+## November 2026 Cymru run (2026-11-18) — what changed
 
-- Regional events differ from London: hosted by Transform Wales (no named
-  host/title — `create_newsletter_draft.py` now takes a host with just
-  `org`/`org_url`), three speakers, YouTube/podcast title
-  `TransformGov Talks Cymru: <Month> <Year>`, MP3 `TGT_Wales_<Month>_<Year>.mp3`.
-- Both scripts now handle any number of speakers, list several upcoming
-  events (`upcoming_events`), have `--dry-run`, and refuse to post while any
-  `EVENT` value contains `TODO`. The Bluesky dry run prints each post's
-  length (limit 300) and flags missing photos.
-- Drafts for this event are in `automation/2026-11-cymru/` (blog markdown →
-  docx via `pandoc blog.md -o ...`, YouTube title/description, podcast and
-  past-events entries).
-- **`automation/` is blocked from the web** since 2026-11-18 (`RedirectMatch 404` in `.htaccess`) — still
-  keep anything sensitive out of it.
-- **Meet makes a NEW top-level "Google Meet" folder per event** (three by
-  Nov 2026: Sept, Oct, Nov — same name, different IDs), and only folders
-  shared by hand are visible to the service account. So the service-account
-  scan misses a new event's files and `share_gemini_notes.py` 404s until
-  Dave shares that night's "Google Meet" folder with the service account as
-  Editor (or shares the notes doc himself). The read-only `TGT:` rclone
-  remote sees everything: find files with
-  `rclone lsf -R --max-age 6h TGT:` and download with `rclone copy`.
-- Timing on 2026-11-18 (Cardiff, recording ended ~19:35 UTC): folder +
-  notes doc appeared 19:43–19:45, notes already filled in by ~20:30,
-  recording (759 MB) finished processing 20:33.
-- **Cymru events get the full treatment**: same Kit newsletter and same
-  Bluesky account as London (Dave, 2026-11-18).
-- **Adding Luma opt-ins to Kit** (how it's been done, Oct + Nov 2026): after
-  `sync_luma.py`, for each opt-in email for the event, look it up
-  (`GET /v4/subscribers?email_address=…&status=all`); if absent,
-  `POST /v4/subscribers` with `state: active` and first name from the CSV.
-  Regional events also get a tag (`TGT Cymru <Month> <Year>`) on every
-  opt-in. Then `sync_kit.py`. Guest CSVs live in `private/` (gitignored),
-  chmod 600.
-- **No parish notices on the night?** Use our own list (the website's
-  Related events strip, pruned) and set `parish_intro` in
-  `create_newsletter_draft.py` so it doesn't claim they were read out.
-- **Blog and newsletter copy goes to Drive** (Dave, 2026-11-18): TGT account's
-  `Shared TGT folder/Automation/Blog and newsletter copy`
-  (folder id `1XQBjOPKYi0dMnnIlUhDtsX0KcmbPHIK_`), shared with cholten99 as
-  Editor. Upload each event's docx with the existing cholten99 rclone remote:
-  `rclone copyto --drive-root-folder-id 1XQBjOPKYi0dMnnIlUhDtsX0KcmbPHIK_ "<docx>" "cholten99:<docx>"`.
-  The service account can create folders there but **not files** — Google
-  gives service accounts no storage quota outside Shared Drives (403
-  "Service Accounts do not have storage quota"), and the TGT Gmail account
-  has no Shared Drives.
+Rules found this run are folded into the runbook and items above. History:
+- Scripts now take any number of speakers, an org-only host, several
+  upcoming events (one without a Luma link is listed as "details coming
+  soon"), `parish_intro`, `--dry-run`, and refuse to post with `TODO`s left.
+  `upload_youtube.py` added (sign-in + resumable upload).
+- Drafts kept in `automation/2026-11-cymru/` as the pattern for future events.
+- **`automation/` is blocked from the web** (`RedirectMatch 404` in
+  `.htaccess`) — it was publicly readable until 2026-11-18. Cloudflare caches
+  files for up to 4 hours, so a URL fetched before blocking keeps working
+  until its cache expires; none of the server's Cloudflare tokens can purge.

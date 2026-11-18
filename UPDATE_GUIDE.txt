@@ -7,6 +7,9 @@ Step 5 adds the event to the Previous Events page.
 All of this is done by giving Claude the relevant file or instruction.
 Claude will SSH into the server and run the scripts.
 
+The full post-event runbook (video, podcast, Gemini notes, blog copy,
+newsletter, Bluesky, Kit opt-ins, website) is automation/plan.md — start there.
+
 
 STEP 1: REGISTRATIONS (Luma)
 -----------------------------

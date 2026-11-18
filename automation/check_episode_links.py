@@ -11,6 +11,11 @@ Spotify: no API/app needed either — the public show page
   with their /episode/<id> links directly in the HTML, found by scraping
   rather than the Web API (which would need a registered app + Client
   Credentials just to search). Simpler and avoids a needless credential.
+
+Both public sources lag the apps: on 2026-11-18 Dave saw the episode in the
+Spotify and Apple apps while this still said "not indexed yet". If he has the
+links, use his (Spotify: check the title via
+open.spotify.com/oembed?url=<episode url>; Apple: the page <title>).
 """
 import re
 import sys

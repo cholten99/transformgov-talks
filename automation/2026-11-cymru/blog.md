@@ -10,15 +10,15 @@ Hosted by [Transform Wales](https://transform.wales/).
 
 Our first speaker was Rachel Meese, Head of UCD at [Digital Health and Care Wales](https://dhcw.nhs.wales/), on building a user-centred design team in the Welsh public sector, and lessons from helping senior leaders recognise the value of user-centred design.
 
-**[PHOTO: Rachel Meese — caption "Rachel Meese"]**
+![Rachel Meese](../../images/2026-11-rachel-meese.jpg)
 
 Our second speaker was Andy Regan, Head of [Nesta Cymru](https://www.nesta.org.uk/), on Nesta's work to shape policy in Wales and bring innovation into policymaking. **[TODO: his actual topic, from the Gemini notes]**
 
-**[PHOTO: Andy Regan — caption "Andy Regan"]**
+![Andy Regan](../../images/2026-11-andy-regan.jpg)
 
 Our third speaker was Omar Idris, Head of Design at [Perago](https://perago.co.uk/), on how a test-and-learn approach helps teams quickly find what works, with less risk.
 
-**[PHOTO: Omar Idris — caption "Omar Idris"]**
+![Omar Idris](../../images/2026-11-omar-idris.jpg)
 
 If you weren't able to attend, you can catch up on the event in more detail:
 

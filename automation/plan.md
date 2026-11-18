@@ -500,3 +500,12 @@ format — **no leading `@` for any Bluesky handle secret, ever.**
 - **No parish notices on the night?** Use our own list (the website's
   Related events strip, pruned) and set `parish_intro` in
   `create_newsletter_draft.py` so it doesn't claim they were read out.
+- **Blog and newsletter copy goes to Drive** (Dave, 2026-11-18): TGT account's
+  `Shared TGT folder/Automation/Blog and newsletter copy`
+  (folder id `1XQBjOPKYi0dMnnIlUhDtsX0KcmbPHIK_`), shared with cholten99 as
+  Editor. Upload each event's docx with the existing cholten99 rclone remote:
+  `rclone copyto --drive-root-folder-id 1XQBjOPKYi0dMnnIlUhDtsX0KcmbPHIK_ "<docx>" "cholten99:<docx>"`.
+  The service account can create folders there but **not files** — Google
+  gives service accounts no storage quota outside Shared Drives (403
+  "Service Accounts do not have storage quota"), and the TGT Gmail account
+  has no Shared Drives.

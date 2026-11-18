@@ -24,7 +24,7 @@ If you weren't able to attend, you can catch up on the event in more detail:
 
 - Read the [Gemini AI Summary](https://docs.google.com/document/d/1DKyzAlhB1nADv2OGBmC99OOquvgabbm__vejrX5vf-8/edit?usp=sharing)
 - [Video on YouTube](https://youtu.be/X8LxpuHTnD4)
-- Listen on [Spotify](TODO-spotify) or [Apple Podcasts](TODO-apple)
+- Listen on [Spotify](https://open.spotify.com/episode/5eHaDHBmQUGPabZk0DeLDL) or [Apple Podcasts](TODO-apple)
 
 Here are a few other events and projects you might be interested in:
 

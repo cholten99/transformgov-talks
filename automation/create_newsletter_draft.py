@@ -56,7 +56,7 @@ EVENT = {
     "blog_url": "TODO",
     "gemini_url": "https://docs.google.com/document/d/1DKyzAlhB1nADv2OGBmC99OOquvgabbm__vejrX5vf-8/edit?usp=sharing",
     "youtube_url": "https://youtu.be/X8LxpuHTnD4",
-    "spotify_url": "TODO",
+    "spotify_url": "https://open.spotify.com/episode/5eHaDHBmQUGPabZk0DeLDL",
     "apple_url": "TODO",
     # (label, url) pairs — drop any event that's already passed by the time of
     # writing. No notices were given on the night in Cardiff: these are ours.

@@ -12,9 +12,12 @@ copied into /var/www/transformgov-talks/images/) — Kit emails need real
 image URLs, not local files or attachments.
 
 Edit the EVENT dict below for each new event, then run:
-    python3 create_newsletter_draft.py
+    python3 create_newsletter_draft.py --dry-run > preview.html   # check the HTML, sends nothing
+    python3 create_newsletter_draft.py             # creates the Kit draft
+Refuses to create the draft while any EVENT value still contains "TODO".
 """
 import json
+import sys
 from pathlib import Path
 
 import requests
@@ -22,44 +25,62 @@ import requests
 SECRETS_DIR = Path("/home/dave/secrets")
 
 EVENT = {
-    "subject": "TransformGov Talks : Our October 2026 London event!",
-    "location": "the Ministry of Justice",
-    "event_date": "28 October 2026",
-    "host": {"name": "Gavin Freeguard", "title": "Director", "org": "State of the Future", "org_url": "https://sotf.org.uk/"},
-    # "quote_topic": False for a description rather than a talk title
+    "subject": "TransformGov Talks Cymru : Our November 2026 Cardiff event!",
+    "location": "Yolk Recruitment in Cardiff",
+    "event_date": "18 November 2026",
+    # Without "title", the line reads "Hosted by <org>."
+    "host": {"org": "Transform Wales", "org_url": "https://transform.wales/"},
+    "sponsors_line": "Brought to you by our excellent sponsors GovCamp, dxw, TPXimpact, Ceva, Agile, State of the Future, Public Digital and Holistic Agility.",
+    # In running order (check the Gemini notes). "quote_topic": False for a
+    # description rather than a talk title.
     "speakers": [
         {
-            "name": "Asma Nafees", "org": "NHS Non-Exec Director, Local Authority Social Enterprise NED and Social Care Charity Trustee",
-            "topic": "Leadership Without Borders: Challenging the Way We Do Public Service",
-            "photo_url": "https://www.transformgov.org.uk/images/2026-10-asma-nafees.jpg",
+            "name": "Rachel Meese", "org": 'Head of UCD at <a href="https://dhcw.nhs.wales/" target="_blank" rel="noopener noreferrer">Digital Health and Care Wales</a>',
+            "topic": "building a user-centred design team in the Welsh public sector, and lessons from helping senior leaders recognise the value of user-centred design",
+            "quote_topic": False,
+            "photo_url": "https://www.transformgov.org.uk/images/2026-11-rachel-meese.jpg",
         },
         {
-            "name": "Harry Trimble", "org": '<a href="https://www.dxw.com/" target="_blank" rel="noopener noreferrer">dxw</a>',
-            "topic": "prototypes exploring what data and automation in a blueprint for government could be like",
+            "name": "Andy Regan", "org": 'Head of <a href="https://www.nesta.org.uk/" target="_blank" rel="noopener noreferrer">Nesta Cymru</a>',
+            # No talk title on Luma — check the Gemini notes for what he covered.
+            "topic": "Nesta's work to shape policy in Wales and bring innovation into policymaking",
             "quote_topic": False,
-            "photo_url": "https://www.transformgov.org.uk/images/2026-10-harry-trimble.jpg",
+            "photo_url": "https://www.transformgov.org.uk/images/2026-11-andy-regan.jpg",
+        },
+        {
+            "name": "Omar Idris", "org": 'Head of Design at <a href="https://perago.co.uk/" target="_blank" rel="noopener noreferrer">Perago</a>',
+            "topic": "how a test-and-learn approach helps teams quickly find what works, with less risk",
+            "quote_topic": False,
+            "photo_url": "https://www.transformgov.org.uk/images/2026-11-omar-idris.jpg",
         },
     ],
-    "blog_url": "https://medium.com/@transformgovtalks/transformgov-talks-our-october-2026-london-event-59ccc0384282",
-    "gemini_url": "https://docs.google.com/document/d/1zn32rHAWf3fvc5j2jhM-6YRa4R1mI5CmiPkDFn0z-JU/edit?usp=sharing",
-    "youtube_url": "https://youtu.be/0EV_5pcTajU",
-    "spotify_url": "https://open.spotify.com/episode/0hcOCHUWG37wGYnTGc1Ezg",
-    "apple_url": "https://podcasts.apple.com/gb/podcast/transformgov-talks-october-2026/id1776623246?i=1000798593195",
-    # (label, url) pairs — drop any event that's already passed by the time of writing.
+    "blog_url": "TODO",
+    "gemini_url": "TODO",
+    "youtube_url": "TODO",
+    "spotify_url": "TODO",
+    "apple_url": "TODO",
+    # (label, url) pairs — drop any event that's already passed by the time of
+    # writing. TODO: confirm against tonight's parish notices.
     "parish_notices": [
         ("Policy Camp (report now published)", "https://policycamp.org.uk/"),
         ("National Conversations", "https://nationalconversations.org/"),
         ("Civic Punks", "https://civicpunks.com/"),
-        ("Data Bites", "https://www.thinkdigitalpartners.com/data-bites/"),
+        ("Data Bites #63 (2 December)", "https://www.thinkdigitalpartners.com/data-bites/"),
         ("The National Strategy Project", "https://www.nationalstrategy.uk/"),
-        ("GovCamp Cymru (6 November)", "https://www.govcamp.cymru/"),
         ("Open Data Camp (21\u201322 November)", "https://www.odcamp.uk/"),
     ],
-    "next_event": {
-        "date_line": "25 November 2026, 6-7pm, at the Ministry of Justice",
-        "speakers_line": "Peter Thomas (civilservicereformuk.com) on what 15 years of GDS tell us about successful reform, and Tom Wynne-Morgan and Jack Strachan (Government Digital Service) on CustomerFirst, with another speaker to be confirmed",
-        "luma_url": "https://luma.com/8oaszd9g",
-    },
+    "upcoming_events": [
+        {
+            "date_line": "25 November 2026, 6-7pm, at the Ministry of Justice in London",
+            "speakers_line": "Peter Thomas (civilservicereformuk.com) on what 15 years of GDS tell us about successful reform; Tom Wynne-Morgan and Jack Strachan (Government Digital Service) on &lsquo;Transforming Gov: from digital transactions to digital decisions&rsquo;; and Beatriz Brown (Attorney General&rsquo;s Office) on public engagement on the rule of law",
+            "luma_url": "https://luma.com/8oaszd9g",
+        },
+        {
+            "date_line": "9 December 2026, 6-7pm, at the Ministry of Justice in London",
+            "speakers_line": "speakers to be announced soon",
+            "luma_url": "https://luma.com/4pwpi726",
+        },
+    ],
 }
 
 
@@ -77,7 +98,9 @@ def _image_block(url, alt, width=400):
 
 def build_content(ev):
     speaker_blocks = []
-    lead_ins = ["Our first speaker was", "Our second speaker was"]
+    lead_ins = ["Our first speaker was", "Our second speaker was", "Our third speaker was", "Our fourth speaker was"]
+    if len(ev["speakers"]) > len(lead_ins):
+        raise SystemExit(f"Only {len(lead_ins)} speakers supported — add more lead-ins")
     for lead_in, speaker in zip(lead_ins, ev["speakers"]):
         speaker_blocks.append(
             f'<p>{lead_in} {speaker["name"]}, {speaker["org"]}, on '
@@ -85,6 +108,25 @@ def build_content(ev):
             + '.</p>'
             + _image_block(speaker["photo_url"], speaker["name"])
         )
+
+    host = ev["host"]
+    host_org = f'<a href="{host["org_url"]}" target="_blank" rel="noopener noreferrer">{host["org"]}</a>'
+    host_line = f'{host["name"]}, {host["title"]}, {host_org}' if host.get("title") else host_org
+
+    upcoming = ev["upcoming_events"]
+    if len(upcoming) == 1:
+        e = upcoming[0]
+        upcoming_html = (
+            f'<p>Finally, our next event is on {e["date_line"]}, featuring {e["speakers_line"]}.</p>\n\n'
+            f'<p><a href="{e["luma_url"]}" target="_blank" rel="noopener noreferrer"><strong>You can register now!</strong></a></p>'
+        )
+    else:
+        items = "".join(
+            f'<li>{e["date_line"]}: {e["speakers_line"]}. '
+            f'<a href="{e["luma_url"]}" target="_blank" rel="noopener noreferrer"><strong>Register now!</strong></a></li>'
+            for e in upcoming
+        )
+        upcoming_html = f'<p>Finally, our next events are:</p>\n<ul>{items}</ul>'
 
     notices = "".join(
         f'<li><a href="{url}" target="_blank" rel="noopener noreferrer">{label}</a></li>'
@@ -99,9 +141,9 @@ def build_content(ev):
 
 <p>Our latest event took place at {ev["location"]} (and online!) on {ev["event_date"]}.</p>
 
-<p>Brought to you by our excellent sponsors GovCamp, dxw, TPXimpact, Ceva, Agile, State of the Future, Public Digital and Holistic Agility.</p>
+<p>{ev["sponsors_line"]}</p>
 
-<p>Hosted by {ev["host"]["name"]}, {ev["host"]["title"]}, <a href="{ev["host"]["org_url"]}" target="_blank" rel="noopener noreferrer">{ev["host"]["org"]}</a>.</p>
+<p>Hosted by {host_line}.</p>
 
 {"".join(speaker_blocks)}
 
@@ -118,21 +160,28 @@ def build_content(ev):
 
 <p>Let us know if you have an event you&rsquo;d like us to publicise.</p>
 
-<p>Finally, our next event is on {ev["next_event"]["date_line"]}, featuring {ev["next_event"]["speakers_line"]}.</p>
-
-<p><a href="{ev["next_event"]["luma_url"]}" target="_blank" rel="noopener noreferrer"><strong>You can register now!</strong></a></p>
+{upcoming_html}
 
 </td></tr></tbody></table>
 '''
 
 
 def main():
+    content = build_content(EVENT)
+    if "--dry-run" in sys.argv:
+        print(content)
+        print("<!-- Dry run: nothing sent to Kit. -->")
+        return
+    todo = [k for k, v in EVENT.items() if "TODO" in json.dumps(v)]
+    if todo:
+        raise SystemExit(f"EVENT still has TODO values: {', '.join(todo)}")
+
     kit_api_key = _secret("transformgov_talks_kit_api_key")
     headers = {"X-Kit-Api-Key": kit_api_key, "Accept": "application/json", "Content-Type": "application/json"}
 
     payload = {
         "subject": EVENT["subject"],
-        "content": build_content(EVENT),
+        "content": content,
         "public": False,
         "thumbnail_url": "https://www.transformgov.org.uk/images/logo.png",
         "thumbnail_alt": "TransformGov Talks",

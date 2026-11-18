@@ -1,0 +1,11 @@
+# Goes at the top of events: in previous_events.yml, then rebuild with build_previous.py
+- month: 'November 2026 — TransformGov Talks Cymru (Yolk Recruitment, Cardiff, Wales)'
+  items:
+  - 'Rachel Meese, Head of UCD, Digital Health and Care Wales, on building a user-centred design team in the Welsh public sector.'
+  - 'Andy Regan, Head of Nesta Cymru, on bringing innovation into policymaking in Wales.'
+  - 'Omar Idris, Head of Design, Perago, on how a test-and-learn approach helps teams quickly find what works, with less risk.'
+  links:
+    blog: TODO
+    youtube: TODO
+    spotify: TODO
+    apple podcasts: TODO

@@ -1,0 +1,18 @@
+# Goes at the top of episodes: in /var/www/podcast-host/data/534749-transformgov-talks.yml
+# Fill in guid (uuid4), link, enclosure_length, duration once the MP3 exists.
+- title: 'TransformGov Talks Cymru: November 2026'
+  pub_date: Wed, 18 Nov 2026 18:00:00 +0000
+  guid: TODO
+  link: TODO  # https://www.youtube.com/watch?v=<id>
+  description: '<p>Rachel Meese, Head of UCD, Digital Health and Care Wales, on building a user-centred design team in the Welsh public sector.</p> <p>Andy Regan, Head of Nesta Cymru, on bringing innovation into policymaking in Wales.</p> <p>Omar Idris, Head of Design, Perago, on how a test-and-learn approach helps teams quickly find what works, with less risk.</p>'
+  content_encoded: '<p>Rachel Meese, Head of UCD, Digital Health and Care Wales, on building a user-centred design team in the Welsh public sector.</p> <p>Andy Regan, Head of Nesta Cymru, on bringing innovation into policymaking in Wales.</p> <p>Omar Idris, Head of Design, Perago, on how a test-and-learn approach helps teams quickly find what works, with less risk.</p>'
+  enclosure_url: https://podcast-feed.transformgov.org.uk/audio/transformgov-talks/TGT_Wales_November_2026.mp3
+  enclosure_length: TODO
+  enclosure_type: audio/mpeg
+  duration: TODO
+  explicit: 'false'
+  season: null
+  episode: null
+  episode_type: full
+  author: TransformGov Talks
+  image: null

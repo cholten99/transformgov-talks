@@ -461,3 +461,19 @@ format — **no leading `@` for any Bluesky handle secret, ever.**
 - **YouTube description order** came from Luma (Harry first) but the talks
   ran Asma first — check the actual running order (Gemini "Details"
   section) before writing the description.
+
+## November 2026 Cymru run — prepared before the event (2026-11-18)
+
+- Regional events differ from London: hosted by Transform Wales (no named
+  host/title — `create_newsletter_draft.py` now takes a host with just
+  `org`/`org_url`), three speakers, YouTube/podcast title
+  `TransformGov Talks Cymru: <Month> <Year>`, MP3 `TGT_Wales_<Month>_<Year>.mp3`.
+- Both scripts now handle any number of speakers, list several upcoming
+  events (`upcoming_events`), have `--dry-run`, and refuse to post while any
+  `EVENT` value contains `TODO`. The Bluesky dry run prints each post's
+  length (limit 300) and flags missing photos.
+- Drafts for this event are in `automation/2026-11-cymru/` (blog markdown →
+  docx via `pandoc blog.md -o ...`, YouTube title/description, podcast and
+  past-events entries).
+- **`automation/` is served publicly** by the website (no deny rule) — keep
+  anything sensitive out of it.

@@ -7,6 +7,9 @@ RewriteEngine On
 # Deny access to the .git directory and its contents
 RedirectMatch 404 "^/\.git($|/)"
 
+# Post-event automation scripts, plan and draft copy: server-side only
+RedirectMatch 404 "^/automation($|/)"
+
 # Deny access to common secret/backup/data file types
 <FilesMatch "\.(env|log|bak|old|orig|save|swp|sql|sqlite3?|db|pem|key)$">
     Require all denied

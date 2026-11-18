@@ -475,8 +475,8 @@ format — **no leading `@` for any Bluesky handle secret, ever.**
 - Drafts for this event are in `automation/2026-11-cymru/` (blog markdown →
   docx via `pandoc blog.md -o ...`, YouTube title/description, podcast and
   past-events entries).
-- **`automation/` is served publicly** by the website (no deny rule) — keep
-  anything sensitive out of it.
+- **`automation/` is blocked from the web** since 2026-11-18 (`RedirectMatch 404` in `.htaccess`) — still
+  keep anything sensitive out of it.
 - **Meet makes a NEW top-level "Google Meet" folder per event** (three by
   Nov 2026: Sept, Oct, Nov — same name, different IDs), and only folders
   shared by hand are visible to the service account. So the service-account

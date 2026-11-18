@@ -65,6 +65,7 @@ EVENT = {
         ("Civic Punks", "https://civicpunks.com/"),
         ("Data Bites #63 (2 December)", "https://www.thinkdigitalpartners.com/data-bites/"),
         ("The National Strategy Project", "https://www.nationalstrategy.uk/"),
+        ("Open Data Camp (21\u201322 November)", "https://www.odcamp.uk/"),
         ("UKGovCamp (Manchester, 16 January)", "https://www.ukgovcamp.com/"),
     ],
     "upcoming_events": [
